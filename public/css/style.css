@@ -1,0 +1,11 @@
+body {
+    font-family: "Nunito 400", sans-serif;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.title {
+    color: brown;
+}

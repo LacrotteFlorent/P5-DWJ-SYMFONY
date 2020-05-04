@@ -1,0 +1,109 @@
+
+.homeLayout {
+    background-image: url('/img/home.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 84vh;
+    width: 100%;
+    font-family: "Caveat", sans-serif;
+    font-weight: 500;
+    -webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+}
+
+.mainTitle {
+    color: #ffffff;
+    font-size: 5em;
+    font-weight: 700;
+}
+
+.homeText {
+    color: #ffffff;
+    font-size: 2.5em;
+    font-weight: 400;
+}
+
+.square {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    border: 2px solid #436C00;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.squareBackground {
+    width: 400px;
+    height: 400px;
+    background-color: #FFFFFF;
+    position: relative;
+}
+
+.showcase {
+    background-color: rgba(245, 245, 245, 1);
+    font-family: "Caveat", serif;
+    font-size: 3em;
+    color: #436C00;
+    -webkit-box-shadow: 0px 0px 25px 10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 25px 10px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 25px 10px rgba(0,0,0,0.75);
+
+}
+
+.showcaseBold {
+    font-family: "Jost", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    color: #333333;
+    text-decoration: underline;
+}
+
+.percentShowcase {
+    background-image: url('/img/percentage.png');
+    background-size: 9%;
+    background-position: center;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    opacity: 0.1;
+    top: 5%;
+    left: 5%;
+}
+
+.photoShowcase img {
+    max-width: 100%;
+    height: fit-content;
+    box-shadow: 0px 1px 10px #333333;
+}
+
+.photoShowcase {
+    padding: 20px;
+    /*box-shadow: 4px 4px 4px black;*/
+}
+
+.fa-sign-in-alt, .fa-car {
+    font-size: 2em;
+}
+
+.fa-shopping-cart  {
+    color: #FFFFFF;
+    font-size: 1em;
+}
+
+.movingBackground1 {
+    background-image: url('/img/moving.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 15vh;
+    width: 100%;
+}
+
+.movingBackground2 {
+    background-image: url('/img/moving2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 15vh;
+    width: 100%;
+}

@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
+{% endblock %}
+
+{% block title %}Accueil {% endblock %}
+
+{% block body %}
+    <div class="homeLayout col-12 d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="text-center square">
+                    <h1 class="mainTitle">Manger plus près .fr</h1>
+                    <p class="homeText">Retrouver votre producteur en ligne</p>
+                </div>
+            </div>
+            <div class="mt-5 col-12 d-flex justify-content-center">
+                <button type="button" class="homeText btn classicBtn"><i class="fas fa-shopping-cart mx-2"></i>Drive</button>
+            </div>
+        </div>
+    </div>
+    <div class="movingBackground1">
+        
+    </div>
+    <div class="showcase col-12">
+        <div class="row d-flex justify-content-around">
+            <div class="col-4 mt-5 squareBackground text-center d-flex flex-column justify-content-center">
+                <i class="fas fa-sign-in-alt"></i>
+                <p class="mb-0">Je m' <span class="showcaseBold">INSCRIS</span></p>
+                <p class="mb-0">&</p>
+                <p class="mb-0">je passe commande</p>
+            </div>
+            <div class="col-4 mt-5 squareBackground text-center d-flex flex-column justify-content-center">
+                <p><i class="fas fa-car"></i> Je <span class="showcaseBold">RETIRE</span></p>
+                <p>ma commande</h3>
+            </div class="col-4">
+        </div>
+        <div class="row d-flex justify-content-around mt-5">
+            <div class="col-3 mb-5 squareBackground text-center d-flex flex-column justify-content-center">
+                <p>100 %</p>
+                <p><span class="showcaseBold">LOCAL</span></p>
+                <div class="percentShowcase"></div>
+            </div>
+            <div class="col-3 mb-5 squareBackground photoShowcase text-center d-flex flex-column justify-content-center">
+                <img src="{{ asset('/img/producer.jpg') }}" alt="Photo de l'exploitation" />
+            </div>
+            <div class="col-3 mb-5 squareBackground text-center d-flex flex-column justify-content-center">
+                <p><span class="showcaseBold">DIRECT</span></p>
+                <p>Producteur</p>
+            </div>
+        </div>
+    </div>
+    <div class="movingBackground2">
+
+    </div>
+    <div class="flagshipProducts">
+        <div class="productCard col-4">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Laitue</h4>
+                    <div class="productPrice">
+                    <p>1.20€</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <img src="/public/img/product1321.png" alt="Photo de laitue" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="category">
+                        <img src="/public/img/catVegetables.png" alt="Icones légumes" />
+                        <p>Légumes</p>
+                    </div>
+                    <div class="season">
+                    <img src="/public/img/season.png" alt="Icones saison" />
+                        <p>Toute l'année</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p>Laitue verte</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <ul class="productNumber">
+                        <li class="productNumber-item">
+                        <a class="productNumber-link" href="#" aria-label="less">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        </li>
+                        <li class="productNumber-item"><a class="productNumber-link" href="#">1</a></li>
+                        <li class="productNumber-item">
+                        <a class="productNumber-link" href="#" aria-label="more">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <form method="POST" class="align-middle">
+                        <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted">Ajouter au panier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

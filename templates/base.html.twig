@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- Couleurs :
+    Blanc       #FFFFFF
+    Blanc N2    #FAF7F2
+    Gris        #333333
+    Gris clair  #919191
+    Gris N2     #F6F1E8
+    Gris foncé  #181A1B
+    Noir N1     #262626
+    Noir N2     #1B1B1B
+    Noir N3     #323A47
+    Orangé      #FF4E13
+    Orang Clair #F2291C
+    Vert        #4FBE16
+    Vert Olive  #436C00
+    Vert vert   #C3CF1F
+    Violet      #95325E
+    Violetrouge #CB2235
+    Jaune       #FBB704
+    -->
+<!-- VivonsLocal.fr - Made by Lacrotte Florent / Projet 5 - OpenClassrooms -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}{% endblock %}|  MangerPlusPrès.fr</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Jost:wght@500&family=Noto+Sans+JP&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/buttons.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            <header>
+                <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="/"><img style="width: 45%"src="{{ asset('img/logo2.png') }}"></a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarColor03">
+                        <ul class="navbar-nav d-flex justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Acceuil <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/producteur">Mon producteur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/drive">Drive</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fonctionnement">Le fonctionnement</a>
+                        </li>
+                        </ul>
+                    </div>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Rechercher un produit">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
+                    </form>
+                </nav>
+            </header>
+            <main>
+                {% block body %}{% endblock %}
+            </main>
+            <footer>
+                <div class="col-12 footer">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div>
+                <div class="footFoot d-flex justify-content-center align-items-center">
+                    <p class="mb-0 mx-1">Designed & created by Lacrotte Florent © 2020</p>
+                    <p class="mb-0">Copyrigth®</p>
+                </div>
+            </footer>
+            <!-- Icon FontAwesome -->
+            <script src="https://kit.fontawesome.com/de7ae60c29.js"></script>
+            {% block javascripts %}{% endblock %}
+        </div>
+    </body>
+</html>
