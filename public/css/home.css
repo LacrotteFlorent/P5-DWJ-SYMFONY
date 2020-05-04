@@ -41,7 +41,7 @@
     position: relative;
 }
 
-.showcase {
+.showcase{
     background-color: rgba(245, 245, 245, 1);
     font-family: "Caveat", serif;
     font-size: 3em;
@@ -106,4 +106,10 @@
     background-position: center;
     height: 15vh;
     width: 100%;
+}
+
+.flagshipProductTitle {
+    font-family: "Caveat", serif;
+    font-size: 3em;
+    color: #436C00;
 }

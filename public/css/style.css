@@ -9,3 +9,12 @@ body {
 .title {
     color: brown;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #436C00;
+}
