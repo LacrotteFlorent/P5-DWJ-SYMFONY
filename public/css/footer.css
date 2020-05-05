@@ -1,9 +1,19 @@
+
+
+                                /* FOOTER */
+                                /* FOOTER */
+                                /* FOOTER */
+
 footer a {
     color: #F6F1E8;
 }
 
 footer a:hover {
     color: #436C00;
+}
+
+footer {
+    border-top: 3px solid darkgrey;
 }
 
 .preFoot h4 {

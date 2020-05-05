@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProducerController extends AbstractController
 {
     /**
-     * @Route("/producteur", name="producer")
+     * @Route("/producteur", name="producer_show")
      */
     public function show()
     {

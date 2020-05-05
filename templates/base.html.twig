@@ -17,6 +17,7 @@
     Violet      #95325E
     Violetrouge #CB2235
     Jaune       #FBB704
+    Jaune qui me plait bien #f7c537
     -->
 <!-- VivonsLocal.fr - Made by Lacrotte Florent / Projet 5 - OpenClassrooms -->
 <html>
@@ -36,7 +37,7 @@
         <div class="container-fluid">
             <header>
                 <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="/"><img style="width: 45%"src="{{ asset('img/logo2.png') }}"></a>
+                    <a class="navbar-brand" href="{{ path('home_show') }}"><img style="width: 45%"src="{{ asset('img/logo2.png') }}"></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -45,16 +46,16 @@
                     <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarColor03">
                         <ul class="navbar-nav d-flex justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Acceuil <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ path('home_show') }}">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/producteur">Mon producteur</a>
+                            <a class="nav-link" href="{{ path('producer_show') }}">Mon producteur</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/drive">Drive</a>
+                            <a class="nav-link" href="{{ path('drive_show') }}">Drive</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/fonctionnement">Le fonctionnement</a>
+                            <a class="nav-link" href="{{ path('home_show') }}">Le fonctionnement</a>
                         </li>
                         </ul>
                     </div>

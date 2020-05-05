@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/drive.css') }}">
+{% endblock %}
+
+{% block title %}Drive {% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'D:/wamp/www/P5-DWJ-SYMFONY/mangerpluspres.fr/src/Controller/DriveController.php'|file_link(0) }}">src/Controller/DriveController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'D:/wamp/www/P5-DWJ-SYMFONY/mangerpluspres.fr/templates/drive/index.html.twig'|file_link(0) }}">templates/drive/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,39 +1,40 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/producer.css') }}">
+{% endblock %}
+
 {% block title %}Mon Producteur {% endblock %}
 
 {% block body %}
-    <section class="contentProducer">
-        <div class="row">
-            <div class="col-4">
-                <h2 class="title">Grand Horticulture<h2>
-                <hr/>
-                <p>Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite.</p>
+    <section class="col-12 contentProducer my-3">
+        <div class="row my-5 d-flex justify-content-center">
+            <div class="col-3">
+                <h2 class="title">Grand Horticulture</h2>
+                <p>"Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite."</p>
             </div>
-            <div class="col-8">
-                <img src= 'url("www.placehold.it/350x150")' alt="photo du producteur" />
-            </div>
-        </div>
-        <hr/>
-        <div class="row">
-            <div class="col-8">
-                <img src ="/public/photoProducer1" alt="photo du producteur" />
-            </div>
-            <div class="col-4">
-                <h2>Grand Horticulture<h2>
-                <hr/>
-                <p>Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite.</p>
+            <div class="col-6">
+                <img src="{{ asset('/img/producer1.jpg') }}" alt="Photo du champ" />
             </div>
         </div>
         <hr/>
-        <div class="row">
-            <div class="col-4">
-                <h2>Grand Horticulture<h2>
-                <hr/>
-                <p>Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite.</p>
+        <div class="row my-5 d-flex justify-content-center">
+            <div class="col-6">
+                <img src="{{ asset('/img/producer2.jpg') }}" alt="Photo des oignons" />
             </div>
-            <div class="col-8">
-                <img src ="/public/photoProducer1" alt="photo du producteur" />
+            <div class="col-3">
+                <h2>Grand Horticulture</h2>
+                <p>"Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite."</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="row my-5 d-flex justify-content-center">
+            <div class="col-3">
+                <h2>Grand Horticulture</h2>
+                <p>"Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite."</p>
+            </div>
+            <div class="col-6">
+                <img src="{{ asset('/img/producer3.jpg') }}" alt="Photo des poireaux" />
             </div>
         </div>
     </section>

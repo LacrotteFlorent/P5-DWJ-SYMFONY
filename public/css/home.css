@@ -1,4 +1,9 @@
 
+
+                                /* HOME LAYOUT */
+                                /* HOME LAYOUT */
+                                /* HOME LAYOUT */
+
 .homeLayout {
     background-image: url('/img/home.jpg');
     background-size: cover;
@@ -33,6 +38,11 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+
+                                /* SHOWCASE */
+                                /* SHOWCASE */
+                                /* SHOWCASE */
 
 .squareBackground {
     width: 400px;
@@ -80,7 +90,6 @@
 
 .photoShowcase {
     padding: 20px;
-    /*box-shadow: 4px 4px 4px black;*/
 }
 
 .fa-sign-in-alt, .fa-car {
@@ -91,6 +100,11 @@
     color: #FFFFFF;
     font-size: 1em;
 }
+
+
+                                /* MOVING BACKGROUND */
+                                /* MOVING BACKGROUND */
+                                /* MOVING BACKGROUND */
 
 .movingBackground1 {
     background-image: url('/img/moving.jpg');
@@ -108,8 +122,96 @@
     width: 100%;
 }
 
+
+                                /* FLAGSHIP */
+                                /* FLAGSHIP */
+                                /* FLAGSHIP */
+
 .flagshipProductTitle {
     font-family: "Caveat", serif;
     font-size: 3em;
     color: #436C00;
+}
+
+
+                                /* PRODUCT CARD */
+                                /* PRODUCT CARD */
+                                /* PRODUCT CARD */
+
+.productCard {
+    height: 37vh;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 9px, rgba(255,255,255,.5) 14px, rgba(255,255,255,.5) 39px);
+}
+
+.productCard:nth-child(even) {
+    background-color: rgba(247, 197, 55, 0.5);
+    border: 2px solid #dea400;
+    z-index: 9;
+}
+
+.productCard:nth-child(odd) {
+    background-color: rgba(195, 207, 31, 0.5);
+    border: 2px solid #436C00;
+    z-index: 9;
+}
+
+.productCard h4 {
+    font-family: "Caveat", serif;
+    font-weight: 700;
+    font-size: 2em;
+    color: #CB2235;
+}
+
+.productCard .headProduct {
+    font-family: "Jost", sans-serif;
+    font-size: 1.5em;
+}
+
+.productCard img {
+    height: 18vh;
+    width: auto;
+}
+
+.productCard ul {
+    list-style-type: none;
+}
+
+.productPrice {
+    font-family: "Jost", sans-serif;
+    font-style: italic;
+}
+
+.productUnit {
+    font-size: 0.5em;
+    font-style: normal;
+}
+
+.productCard .fa-shopping-cart {
+    color: #FFFFFF;
+    font-size: 1.5em;
+}
+
+.layoutInfoProduct {
+    font-family: "Caveat", serif;
+    font-size: 1.2em;
+}
+
+.productCard .category, .productCard .season {
+    font-family: "Caveat", serif;
+    font-size: 1em;
+}
+
+.productCard .describe {
+    font-family: "Caveat", serif;
+    font-size: 1.5em;
+}
+
+.productCard .layoutQuantity {
+    background-color: #FFFFFF;
+    font-family: "Caveat";
+    font-size: 2em
+}
+
+.productCard .layoutCart {
+    background-color: #436C00;
 }

@@ -103,55 +103,162 @@
                     <polygon class="" style="opacity: 1;fill: #d2d7d3;" points="1604,198 1604,186 -4,0 -4,0 	"></polygon>
                     <polygon class="" style="opacity: 1;fill: #bdc3c7;" points="1604,186 1604,174 -4,0 -4,0 	"></polygon>
                 </svg>
-                <div class="flagshipProduct col-12 d-flex flex-column justify-content-center align-items-center">
-                    <div class="productCard col-4">
+                <div class="flagshipProduct col-12 d-flex justify-content-center align-items-center">
+                    <div class="productCard col-3 mx-4">
                         <div class="">
-                            <div class="col-12">
+                            <div class="col-12 d-flex align-items-baseline justify-content-between headProduct">
                                 <h4>Laitue</h4>
-                                <div class="productPrice">
-                                <p>1.20€</p>
+                                <div class="productPrice d-flex">
+                                    <p>1.20€</p>
+                                    <p class="productUnit mx-1">pièce</p>
                                 </div>
                             </div>
                         </div>
                         <div class="">
-                            <div class="col-12">
-                                <img src="/public/img/product1321.png" alt="Photo de laitue" />
+                            <div class="col-12 d-flex justify-content-center my-3">
+                                <img src="{{ asset('/img/Lettuce.png') }}" alt="Photo de laitue" />
                             </div>
                         </div>
                         <div class="">
-                            <div class="col-6">
-                                <div class="category">
-                                    <img src="/public/img/catVegetables.png" alt="Icones légumes" />
-                                    <p>Légumes</p>
+                            <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
+                                <div class="category d-flex align-items-center">
+                                    <i class="fas fa-carrot"></i>
+                                    <p class="mx-2 my-0">Légumes</p>
                                 </div>
-                                <div class="season">
-                                <img src="/public/img/season.png" alt="Icones saison" />
-                                    <p>Toute l'année</p>
+                                <div class="season d-flex align-items-center">
+                                    <i class="fas fa-sun"></i>
+                                    <p class="mx-2 my-0">Toute l'année</p>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <p>Laitue verte</p>
+                            <div class="col-12 describe">
+                                <p>Laitue verte cueillie main</p>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="col-6">
-                                <ul class="productNumber">
-                                    <li class="productNumber-item">
+                        <div class="row">
+                            <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
+                                <ul class="productNumber d-flex m-0 p-0">
+                                    <li class="productNumber-item mx-2">
                                     <a class="productNumber-link" href="#" aria-label="less">
-                                        <span aria-hidden="true">&laquo;</span>
+                                        <span aria-hidden="true">&#45;</span>
                                     </a>
                                     </li>
-                                    <li class="productNumber-item"><a class="productNumber-link" href="#">1</a></li>
-                                    <li class="productNumber-item">
+                                    <li class="productNumber-item mx-2"><a class="productNumber-link" href="#">1</a></li>
+                                    <li class="productNumber-item mx-2">
                                     <a class="productNumber-link" href="#" aria-label="more">
-                                        <span aria-hidden="true">&raquo;</span>
+                                        <span aria-hidden="true">&#43;</span>
                                     </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
                                 <form method="POST" class="align-middle">
-                                    <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted">Ajouter au panier</button>
+                                    <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard col-3 mx-4">
+                        <div class="">
+                            <div class="col-12 d-flex align-items-baseline justify-content-between headProduct">
+                                <h4>Laitue</h4>
+                                <div class="productPrice d-flex">
+                                    <p>1.20€</p>
+                                    <p class="productUnit mx-1">pièce</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-12 d-flex justify-content-center my-3">
+                                <img src="{{ asset('/img/Lettuce.png') }}" alt="Photo de laitue" />
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
+                                <div class="category d-flex align-items-center">
+                                    <i class="fas fa-carrot"></i>
+                                    <p class="mx-2 my-0">Légumes</p>
+                                </div>
+                                <div class="season d-flex align-items-center">
+                                    <i class="fas fa-sun"></i>
+                                    <p class="mx-2 my-0">Toute l'année</p>
+                                </div>
+                            </div>
+                            <div class="col-12 describe">
+                                <p>Laitue verte cueillie main</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
+                                <ul class="productNumber d-flex m-0 p-0">
+                                    <li class="productNumber-item mx-2">
+                                    <a class="productNumber-link" href="#" aria-label="less">
+                                        <span aria-hidden="true">&#45;</span>
+                                    </a>
+                                    </li>
+                                    <li class="productNumber-item mx-2"><a class="productNumber-link" href="#">1</a></li>
+                                    <li class="productNumber-item mx-2">
+                                    <a class="productNumber-link" href="#" aria-label="more">
+                                        <span aria-hidden="true">&#43;</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
+                                <form method="POST" class="align-middle">
+                                    <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard col-3 mx-4">
+                        <div class="">
+                            <div class="col-12 d-flex align-items-baseline justify-content-between headProduct">
+                                <h4>Laitue</h4>
+                                <div class="productPrice d-flex">
+                                    <p>1.20€</p>
+                                    <p class="productUnit mx-1">pièce</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-12 d-flex justify-content-center my-3">
+                                <img src="{{ asset('/img/Lettuce.png') }}" alt="Photo de laitue" />
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
+                                <div class="category d-flex align-items-center">
+                                    <i class="fas fa-carrot"></i>
+                                    <p class="mx-2 my-0">Légumes</p>
+                                </div>
+                                <div class="season d-flex align-items-center">
+                                    <i class="fas fa-sun"></i>
+                                    <p class="mx-2 my-0">Toute l'année</p>
+                                </div>
+                            </div>
+                            <div class="col-12 describe">
+                                <p>Laitue verte cueillie main</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
+                                <ul class="productNumber d-flex m-0 p-0">
+                                    <li class="productNumber-item mx-2">
+                                    <a class="productNumber-link" href="#" aria-label="less">
+                                        <span aria-hidden="true">&#45;</span>
+                                    </a>
+                                    </li>
+                                    <li class="productNumber-item mx-2"><a class="productNumber-link" href="#">1</a></li>
+                                    <li class="productNumber-item mx-2">
+                                    <a class="productNumber-link" href="#" aria-label="more">
+                                        <span aria-hidden="true">&#43;</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
+                                <form method="POST" class="align-middle">
+                                    <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
                                 </form>
                             </div>
                         </div>

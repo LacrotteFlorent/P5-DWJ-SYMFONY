@@ -1,0 +1,29 @@
+
+
+                                /* PRODUCER */
+                                /* PRODUCER */
+                                /* PRODUCER */
+
+.contentProducer {
+
+}
+
+.contentProducer img {
+    width: 100%;
+    height: auto;
+}
+
+.contentProducer h2 {
+    font-family: "Caveat";
+    text-decoration: underline;
+    font-style: italic;
+    color: #436C00;
+}
+
+.contentProducer p {
+    font-family: "Nunito", serif;
+    font-style: italic;
+    font-size: 1.3em;
+    color: #333333;
+    text-decoration: none;
+}
