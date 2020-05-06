@@ -17,7 +17,7 @@
     Violet      #95325E
     Violetrouge #CB2235
     Jaune       #FBB704
-    Jaune qui me plait bien #f7c537
+    Jaune qui me plaît bien #f7c537
     -->
 <!-- VivonsLocal.fr - Made by Lacrotte Florent / Projet 5 - OpenClassrooms -->
 <html>
@@ -59,10 +59,14 @@
                         </li>
                         </ul>
                     </div>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Rechercher un produit">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
-                    </form>
+                    <div class="AccountAndCart">
+                        <button class="btn">
+                            <img src="{{ asset('/img/logo/wicker-basket.png') }}" alt="Icone fruits" />
+                        </button>
+                        <button class="btn">
+                            <img src="{{ asset('/img/logo/user.png') }}" alt="Icone fruits" />
+                        </button>
+                    </div>
                 </nav>
             </header>
             <main>
@@ -78,6 +82,7 @@
                     <div class="col-6 d-flex flex-column justify-content-center align-items-center text-center">
                         <adress>
                             <h4>Adresse du producteur</h4>
+                            <p> Hauchard Jean Marc</p>
                             <p>4 rue Jean Baptiste</p>
                             <p>07200</p>
                             <p>Aubenas</p>

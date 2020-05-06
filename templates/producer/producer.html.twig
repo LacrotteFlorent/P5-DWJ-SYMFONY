@@ -2,15 +2,34 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('/css/producer.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/divider.css') }}">
+
 {% endblock %}
 
 {% block title %}Mon Producteur {% endblock %}
 
 {% block body %}
-    <section class="col-12 contentProducer my-3">
+    <div class="col-12 pt-5 headProducer d-flex flex-column justify-content-start align-items-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1 class="styleTitle">Jean Marc Hauchard</h1>
+            <h4 class="styleBold">Maraîcher / &#201leveur</h4>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <p class="mx-4 mb-0 styleTitle">Producteur Ardéchois depuis 1967 !</p>
+            <img src="{{ asset('/img/ardecheMap.png') }}" alt="Carte de l'ardeche avec détail des départements" />
+        </div>
+    </div>
+    <div class="dividerHeadProducer">
+        <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep2" viewBox="0 0 1600 200" style="display: block;" data-height="200">
+            <polygon class="" style="fill: rgb(255, 255, 255);" points="-4,0 1604,198 1604,204 -4,204 	"></polygon>
+            <polygon class="" style="opacity: 1;fill: #d2d7d3;" points="1604,198 1604,186 -4,0 -4,0 	"></polygon>
+            <polygon class="" style="opacity: 1;fill: #bdc3c7;" points="1604,186 1604,174 -4,0 -4,0 	"></polygon>
+        </svg>
+    </div>
+    <div class="col-12 contentProducer my-3">
         <div class="row my-5 d-flex justify-content-center">
             <div class="col-3">
-                <h2 class="title">Grand Horticulture</h2>
+                <h2 class="title">Exploitation</h2>
                 <p>"Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite."</p>
             </div>
             <div class="col-6">
@@ -23,19 +42,23 @@
                 <img src="{{ asset('/img/producer2.jpg') }}" alt="Photo des oignons" />
             </div>
             <div class="col-3">
-                <h2>Grand Horticulture</h2>
+                <h2>Champ d'oignons</h2>
                 <p>"Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite."</p>
             </div>
         </div>
         <hr/>
         <div class="row my-5 d-flex justify-content-center">
             <div class="col-3">
-                <h2>Grand Horticulture</h2>
+                <h2>Champ de poireaux</h2>
                 <p>"Nous cultivons ces terres depuis 70ans, et nos produits sont notre réussite."</p>
             </div>
             <div class="col-6">
                 <img src="{{ asset('/img/producer3.jpg') }}" alt="Photo des poireaux" />
             </div>
         </div>
-    </section>
+    </div>
+    <hr class="progress">
+    <div class="footProducer">
+        <h2>This is cool!</h2>
+    </div>
 {% endblock body %}

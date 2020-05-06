@@ -7,13 +7,17 @@
 
 .divider .rowDivider{
   width:100%;
-  height:45vh;
+  height:600px;
   padding:0;
   margin:0;
   display: flex;
   justify-content: center;
   flex-direction: column;
   position:relative;
+}
+
+.divider .green {
+    height: 180px;
 }
 
 /* -- SVG CSS -- */
@@ -85,12 +89,54 @@
 
 /* -- Row BG Color -- */
 
-.green{background-color:#03a678;}
-.green2{background-color:#1bbc9b;}
-.red{background-color:#F6F1E8;}
+.green{background-color:#ECF0F1;}
 .light-grey{background-color:#ecf0f1;}
 .light-grey2{background-color:#ecf0f1;}
 .dark-blue{background-color:#22313f;}
 .grey-blue{background-color:#6c7a89;}
 .black{background-color:#333;}
 .stupid-blue{background-color:#19b5fe;}
+
+
+                                /* DIVIDER PROGRESS */
+                                /* DIVIDER PROGRESS */
+                                /* DIVIDER PROGRESS */
+
+/* -- Animated hr -- */
+
+.progress {
+  background: rgba(1, 15, 30, 0.1);
+  height: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress::before {
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-name: progress;
+  background: #436C00;
+  content: "";
+  display: block;
+  height: 3px;
+  position: absolute;
+  width: 80px;
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+}
+  100% {
+    transform: translateX(1440px);
+    -webkit-transform: translateX(1440px);
+    -moz-transform: translateX(1440px);
+    -ms-transform: translateX(1440px);
+    -o-transform: translateX(1440px);
+}
+}

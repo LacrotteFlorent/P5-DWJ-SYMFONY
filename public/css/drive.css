@@ -1,0 +1,73 @@
+
+
+                                /* HEAD DRIVE */
+                                /* HEAD DRIVE */
+                                /* HEAD DRIVE */
+
+.headDrive {
+    background-color: #ECF0F1;
+    border-bottom: 2px solid #333333;
+}
+
+.headDrive h2 {
+    background-color: #ECF0F1;
+    font-size: 3em;
+}
+
+.headDrive .filterCard {
+    height: 45px;
+    margin-top: 50px;
+}
+
+.headDrive .filterCard img {
+    height: fit-content;
+}
+
+.headDrive .filterCard button {
+    font-family: "Caveat", serif;
+    font-size: 1em;
+    color: #333333;
+}
+
+
+                                /* STORE */
+                                /* STORE */
+                                /* STORE */
+
+.store {
+    border-bottom: 2px solid #333333;
+}
+
+.headStore h3 {
+    font-size: 3em;
+}
+
+.headStore p {
+    font-family: "Caveat", serif;
+    font-size: 2.5em;
+    color: #CB2235;
+}
+
+.headStore .numberProductSelect {
+    color: #f7c537;
+    font-size: 0.7em;
+}
+
+                                /* PRODUCT CARD */
+                                /* PRODUCT CARD */
+                                /* PRODUCT CARD */
+
+.productCard {
+    background-image: none;
+    background-color: #FFFFFF !important;
+    border: 4px solid #436C00;
+}
+
+.productPrice {
+    font-family: "Caveat", sans-serif;
+    font-weight: 700;
+}
+
+.layoutQuantity {
+    background-color: #ECF0F1 !important;
+}

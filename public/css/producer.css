@@ -1,12 +1,32 @@
 
 
-                                /* PRODUCER */
-                                /* PRODUCER */
-                                /* PRODUCER */
+                                /* HEAD PRODUCER */
+                                /* HEAD PRODUCER */
+                                /* HEAD PRODUCER */
 
-.contentProducer {
-
+.headProducer {
+    background-color: #ECF0F1;
+    height: 450px;
 }
+
+.dividerHeadProducer {
+    height: 0px;
+}
+
+.headProducer img {
+    width: 6%;
+}
+
+.headProducer p {
+    font-size: 2em;
+    color: #333333;
+}
+
+
+                                /* PRODUCER */
+                                /* PRODUCER */
+                                /* PRODUCER */
+
 
 .contentProducer img {
     width: 100%;
@@ -27,3 +47,8 @@
     color: #333333;
     text-decoration: none;
 }
+
+
+                                /* FOOT PRODUCER */
+                                /* FOOT PRODUCER */
+                                /* FOOT PRODUCER */

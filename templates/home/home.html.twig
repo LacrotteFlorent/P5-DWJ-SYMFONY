@@ -2,7 +2,8 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/dividerHome.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/divider.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/productCards.css') }}">
 {% endblock %}
 
 {% block title %}Accueil {% endblock %}
@@ -25,6 +26,11 @@
         
     </div>
     <div class="showcase col-12">
+        <div class="row d-flex flex-column justify-content-center align-items-center infoShowcase">
+            <h2 class="showcaseBold mt-5">COMMENT FAIRE ?</h2>
+            <p>Créez un compte pour commencer vos courses et remplir votre panier</p>
+            <button class="btn classicBtn mb-5" href="#">Guide de fonctionnement</button>
+        </div>
         <div class="row d-flex justify-content-around">
             <div class="col-4 mt-5 squareBackground text-center d-flex flex-column justify-content-center">
                 <i class="fas fa-sign-in-alt"></i>
@@ -56,7 +62,7 @@
 
     </div>
         <div class="divider">
-            <div class="row rowDivider red">
+            <div class="row rowDivider green justify-content-center pt-4">
                 <div>
                     <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep1" viewBox="0 0 1600 100" style="" data-height="100">
                     <path class="" style="opacity: 1;fill: #C3CF1F;" d="M1040,56c0.5,0,1,0,1.6,0c-16.6-8.9-36.4-15.7-66.4-15.7c-56,0-76.8,23.7-106.9,41C881.1,89.3,895.6,96,920,96
@@ -86,24 +92,18 @@
                     <path class="" style="opacity: 1;fill: #436C00;" d="M1692.3,96V85c0,0,0,0-19.5,0s-19.6-13-39-13s-19.6,13-39,13c-0.1,0-0.2,0-0.4,0c11.4,6.2,24.9,11,45.6,11
                     C1669.9,96,1684.8,96,1692.3,96z"></path>
                     <path class="" style="opacity: 1;fill: #436C00;" d="M25.5,72C6,72,6.1,84.9-13.5,84.9L-20,85v8.9C0.7,90.1,12.6,80.6,25.9,72C25.8,72,25.7,72,25.5,72z"></path>
-                    <path class="" style="fill: rgb(246, 241, 232);" d="M-40,95.6C20.3,95.6,20.1,56,80,56s60,40,120,40s59.9-40,120-40s60.3,40,120,40s60.3-40,120-40
+                    <path class="" style="fill: rgb(236, 240, 241);" d="M-40,95.6C20.3,95.6,20.1,56,80,56s60,40,120,40s59.9-40,120-40s60.3,40,120,40s60.3-40,120-40
                     s60.2,40,120,40s60.1-40,120-40s60.5,40,120,40s60-40,120-40s60.4,40,120,40s59.9-40,120-40s60.3,40,120,40s60.2-40,120-40
                     s60.2,40,120,40s59.8,0,59.8,0l0.2,143H-60V96L-40,95.6z"></path>
                     </svg>
                     <div class="flagshipProductTitle d-flex flex-column justify-content-center align-items-center">
                         <h1><span class="showcaseBold">Drive</span></h1>
-                        <p>Faites vivre votre communauté</p>
+                        <p>Faites vivre votre communauté, découvrez nos trois produits star !</p>
                     </div>
                 </div>
             </div>
             <div class="row rowDivider light-grey">
-              <div>
-                <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep2" viewBox="0 0 1600 200" style="display: block;" data-height="200">
-                    <polygon class="" style="fill: rgb(236, 240, 241);" points="-4,0 1604,198 1604,204 -4,204 	"></polygon>
-                    <polygon class="" style="opacity: 1;fill: #d2d7d3;" points="1604,198 1604,186 -4,0 -4,0 	"></polygon>
-                    <polygon class="" style="opacity: 1;fill: #bdc3c7;" points="1604,186 1604,174 -4,0 -4,0 	"></polygon>
-                </svg>
-                <div class="flagshipProduct col-12 d-flex justify-content-center align-items-center">
+                <div class="row flagshipProduct col-12 d-flex justify-content-center align-items-center">
                     <div class="productCard col-3 mx-4">
                         <div class="">
                             <div class="col-12 d-flex align-items-baseline justify-content-between headProduct">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="">
                             <div class="col-12 d-flex justify-content-center my-3">
-                                <img src="{{ asset('/img/Lettuce.png') }}" alt="Photo de laitue" />
+                                <img src="{{ asset('/img/products/Lettuce.png') }}" alt="Photo de laitue" />
                             </div>
                         </div>
                         <div class="">
@@ -169,7 +169,7 @@
                         </div>
                         <div class="">
                             <div class="col-12 d-flex justify-content-center my-3">
-                                <img src="{{ asset('/img/Lettuce.png') }}" alt="Photo de laitue" />
+                                <img src="{{ asset('/img/products/Lettuce.png') }}" alt="Photo de laitue" />
                             </div>
                         </div>
                         <div class="">
@@ -222,7 +222,7 @@
                         </div>
                         <div class="">
                             <div class="col-12 d-flex justify-content-center my-3">
-                                <img src="{{ asset('/img/Lettuce.png') }}" alt="Photo de laitue" />
+                                <img src="{{ asset('/img/products/Lettuce.png') }}" alt="Photo de laitue" />
                             </div>
                         </div>
                         <div class="">
@@ -264,6 +264,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="footShowcaseLink d-flex justify-content-around align-items-start">
+                <button class="btn classicBtn footBtnOne col-6" href="#">Le drive est par ici</button>
+                <button class="btn classicBtn footBtnTwo col-6" href="#">Comment faire ?</button>
             </div>
         </div>
     </div>
