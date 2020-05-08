@@ -5,7 +5,7 @@
                                 /* PRODUCT CARD */
 
 .productCard {
-    height: 37vh;
+    height: auto;
     background-image: repeating-linear-gradient(45deg, transparent, transparent 9px, rgba(255,255,255,.5) 14px, rgba(255,255,255,.5) 39px);
 }
 
@@ -34,8 +34,8 @@
 }
 
 .productCard img {
-    height: 18vh;
-    width: auto;
+    height: 200px;
+    width: 200px;
 }
 
 .productCard ul {
