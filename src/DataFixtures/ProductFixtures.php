@@ -4,15 +4,15 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Article;
+use App\Entity\Product;
 
-class ArticleFixtures extends Fixture
+class ProductFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         for($i = 0; $i <= 10; $i++){
-            $article = new Article();
-            $article->setName("Légume". $i)
+            $product = new Product();
+            $product->setName("Légume". $i)
                     ->setEnabled(true)
                     ->setDescription("Ceci est un légume BIO")
                     ->setCreatedAt(new \DateTime())
@@ -21,11 +21,11 @@ class ArticleFixtures extends Fixture
                     ->setCategory("CategoryOne")
                     ->setImgId(30+$i);
             
-            $manager->persist($article);
+            $manager->persist($product);
         }
         for($i = 1; $i <= 10; $i++){
-            $article = new Article();
-            $article->setName("Légume". $i)
+            $product = new Product();
+            $product->setName("Légume". $i)
                     ->setEnabled(true)
                     ->setDescription("Ceci est un légume BIO")
                     ->setCreatedAt(new \DateTime())
@@ -34,7 +34,7 @@ class ArticleFixtures extends Fixture
                     ->setCategory("CategoryTwo")
                     ->setImgId(20+$i);
             
-            $manager->persist($article);
+            $manager->persist($product);
         }
         
         $manager->flush();

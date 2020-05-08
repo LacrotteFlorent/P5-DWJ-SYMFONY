@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
-class Article
+class Product
 {
     /**
      * @ORM\Id()
@@ -27,11 +27,6 @@ class Article
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $season;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $enabled;
@@ -47,14 +42,20 @@ class Article
     private $enabledSince;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
+    private $Category;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity="App\Entity\Picture", mappedBy="Product", cascade={"persist", "remove"})
      */
-    private $imgId;
+    private $picture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="Product")
+     */
+    private $season;
 
     public function getId(): ?int
     {
@@ -81,18 +82,6 @@ class Article
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getSeason(): ?string
-    {
-        return $this->season;
-    }
-
-    public function setSeason(?string $season): self
-    {
-        $this->season = $season;
 
         return $this;
     }
@@ -133,26 +122,43 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?Category
     {
-        return $this->category;
+        return $this->Category;
     }
 
-    public function setCategory(string $category): self
+    public function setCategory(?Category $Category): self
     {
-        $this->category = $category;
+        $this->Category = $Category;
 
         return $this;
     }
 
-    public function getImgId(): ?int
+    public function getPicture(): ?Picture
     {
-        return $this->imgId;
+        return $this->picture;
     }
 
-    public function setImgId(int $imgId): self
+    public function setPicture(Picture $picture): self
     {
-        $this->imgId = $imgId;
+        $this->picture = $picture;
+
+        // set the owning side of the relation if necessary
+        if ($picture->getProduct() !== $this) {
+            $picture->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function getSeason(): ?Season
+    {
+        return $this->season;
+    }
+
+    public function setSeason(?Season $season): self
+    {
+        $this->season = $season;
 
         return $this;
     }
