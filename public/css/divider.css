@@ -7,7 +7,7 @@
 
 .divider .rowDivider{
   width:100%;
-  height:600px;
+  height: fit-content;
   padding:0;
   margin:0;
   display: flex;
@@ -17,7 +17,7 @@
 }
 
 .divider .green {
-    height: 180px;
+    height: fit-content;
 }
 
 /* -- SVG CSS -- */
