@@ -20,14 +20,14 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $limit
-     * @param string|null $orderBy 
-     * @return Product[] Returns an array of Product objects
+     * @param int           $limit
+     * @param string|null   $orderBy, DESC if null
+     * @return Product[]    Returns an array of Product objects
      */
-    public function findAllWithLimit($limit, $orderBy = null)
+    public function findAllWithLimit($limit, $orderBy = 'DESC')
     {
         return $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
+            ->orderBy('a.createdAt', $orderBy)
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()

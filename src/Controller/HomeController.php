@@ -17,7 +17,6 @@ class HomeController extends AbstractController
 
         $products = $repo->findAllWithLimit(3);
 
-
         return $this->render('home/home.html.twig', [
             'products'       => $products,
         ]);
