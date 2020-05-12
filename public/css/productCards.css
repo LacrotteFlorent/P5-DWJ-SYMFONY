@@ -9,17 +9,17 @@
     background-image: repeating-linear-gradient(45deg, transparent, transparent 9px, rgba(255,255,255,.5) 14px, rgba(255,255,255,.5) 39px);
 }
 
-.productCard:nth-child(even) {
-    background-color: rgba(247, 197, 55, 0.5);
-    border: 2px solid #dea400;
+.productCard/*:nth-child(even)*/ {
+    /*background-color: rgba(247, 197, 55, 0.5);*/
+    border: 2px solid #333;
     z-index: 9;
 }
 
-.productCard:nth-child(odd) {
+/*.productCard:nth-child(odd) {
     background-color: rgba(195, 207, 31, 0.5);
     border: 2px solid #436C00;
     z-index: 9;
-}
+}*/
 
 .productCard h4 {
     font-family: "Caveat", serif;
@@ -33,7 +33,7 @@
     font-size: 1.5em;
 }
 
-.productCard img {
+.productCard .productImg {
     height: 200px;
     width: 200px;
 }

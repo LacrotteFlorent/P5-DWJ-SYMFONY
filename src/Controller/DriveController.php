@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Product;
+use App\Entity\Category;
 
 class DriveController extends AbstractController
 {
@@ -13,13 +14,33 @@ class DriveController extends AbstractController
      */
     public function show()
     {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
+        $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+        $products = $repoProduct->findAll();
 
-        $products = $repo->findAll();
+        $repoCategories = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repoCategories->findAll();
+        //dd($categories);
 
         return $this->render('drive/drive.html.twig', [
-            'controller_name'   => 'DriveController',
-            "products"          => $products,
+            'products'          => $products,
+            'categories'        => $categories,
+        ]);
+    }
+    
+    /**
+     * @Route("/drive", name="drive_showByFilter{filter}")
+     */
+    public function showByFilter()
+    {
+        $repoCategories = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repoCategories->findAll();
+
+        $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+        $products = $repoProduct->findAll();
+
+        return $this->render('drive/drive.html.twig', [
+            'products'          => $products,
+            'categories'        => $categories,
         ]);
     }
 }

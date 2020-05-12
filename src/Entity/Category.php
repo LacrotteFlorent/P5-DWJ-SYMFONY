@@ -24,6 +24,11 @@ class Category
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $urlIcon;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
@@ -51,6 +56,18 @@ class Category
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getUrlIcon(): ?string
+    {
+        return $this->urlIcon;
+    }
+
+    public function setUrlIcon(string $urlIcon): self
+    {
+        $this->urlIcon = $urlIcon;
 
         return $this;
     }

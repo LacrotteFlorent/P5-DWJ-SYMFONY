@@ -9,62 +9,17 @@
 
 {% block body %}
     <div class="headDrive mb-5 d-flex flex-column justify-content-center align-items-center">
-        <h2 class="styleBold mt-5 mb-4">Catégories</h2>
+        <h2 class="styleBold mt-5 mb-4">Drive</h2>
+        <p>Filtrez votre sélection par catégories ou recherchez directement votre produit</p>
         <div class="filterDrive mb-5 row col-10 d-flex justify-content-center">
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/cheese.png') }}" alt="Icone fromage" />
-                    Fromage
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/chili.png') }}" alt="Icone piments" />
-                    Piments / Poivrons
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/fruits.png') }}" alt="Icone fruits" />
-                    Fruits
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/canned-food.png') }}" alt="Icone plats en conserves" />
-                    Conserves
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/aromats.png') }}" alt="Icone aromates" />
-                    Aromates
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/season.png') }}" alt="Icone de saison" />
-                    De saison
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/vegetables.png') }}" alt="Icone légumes" />
-                    Légumes
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/plants.png') }}" alt="Icone plants" />
-                    Plants pour jardin
-                </button>
-            </div>
-            <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <img src="{{ asset('/img/category/mushroom.png') }}" alt="Icone champignons" />
-                    Champignons
-                </button>
-            </div>
+            {% for category in categories %}
+                <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
+                    <button class="btn">
+                        <img src="{{ asset('/img/category/'~category.urlIcon|e) }}" alt="Icone {{category.title}}" />
+                        {{category.title}}
+                    </button>
+                </div>
+            {% endfor %}
         </div>
         <div class="searchDrive mb-5">
             <form class="form-inline my-2 my-lg-0">
@@ -83,8 +38,8 @@
                 {% for product in products %}
                     <div class="productCard d-flex flex-column col-sm-10 col-md-5 col-lg-5 col-xl-3 mx-4 mb-5 justify-content-space-between">
                         <div class="">
-                            <div class="col-12 d-flex align-items-baseline justify-content-between headProduct">
-                                <h4>{{ product.name|capitalize }}</h4>
+                            <div class="col-12 d-flex flex-column align-items-center justify-content-between headProduct">
+                                <h4 class="text-center">{{ product.name|capitalize }}</h4>
                                 <div class="productPrice d-flex">
                                     <p>1.20€</p>
                                     <p class="productUnit ml-2">pièce</p>
@@ -93,13 +48,13 @@
                         </div>
                         <div class="">
                             <div class="col-12 d-flex justify-content-center my-3">
-                                <img src="{{ asset('/img/products/'~product.picture.name|e) }}" alt="Photo de laitue" />
+                                <img class="productImg" src="{{ asset('/img/products/'~product.picture.name|e) }}" alt="Photo de laitue" />
                             </div>
                         </div>
-                        <div class="">
+                        <div class="mb-2">
                             <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
                                 <div class="category d-flex align-items-center">
-                                    <i class="fas fa-carrot"></i>
+                                    <img src="{{ asset('/img/category/'~product.category.urlIcon|e) }}" alt="Icone {{product.category.title}}" />
                                     <p class="mx-2 my-0">{{ product.category.title|capitalize }}</p>
                                 </div>
                                 {% if product.season == true %}
@@ -109,9 +64,9 @@
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="col-12 describe">
+                            <!--<div class="col-12 describe">
                                 <p>{{ product.description|capitalize }}</p>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row flex">
                             <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
