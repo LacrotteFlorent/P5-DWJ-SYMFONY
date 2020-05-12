@@ -91,6 +91,7 @@
 .photoShowcase img {
     max-width: 100%;
     height: fit-content;
+    max-height: 420px;
     box-shadow: 0px 1px 10px #333333;
 }
 
