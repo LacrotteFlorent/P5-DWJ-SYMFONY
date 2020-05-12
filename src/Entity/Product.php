@@ -42,6 +42,16 @@ class Product
     private $enabledSince;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $unit;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $price;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -118,6 +128,30 @@ class Product
     public function setEnabledSince(\DateTimeInterface $enabledSince): self
     {
         $this->enabledSince = $enabledSince;
+
+        return $this;
+    }
+
+    public function getUnit(): ?\DateTimeInterface
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(\DateTimeInterface $unit): self
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
+
+    public function getPrice(): ?\DateTimeInterface
+    {
+        return $this->price;
+    }
+
+    public function setPrice(\DateTimeInterface $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

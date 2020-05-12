@@ -29,6 +29,11 @@ class Season
     private $description;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $urlIcon;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="season")
      */
     private $Product;
@@ -63,6 +68,18 @@ class Season
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUrlIcon(): ?string
+    {
+        return $this->urlIcon;
+    }
+
+    public function setUrlIcon(string $urlIcon): self
+    {
+        $this->urlIcon = $urlIcon;
 
         return $this;
     }
