@@ -10,16 +10,100 @@
 {% block body %}
     <div class="headDrive mb-5 d-flex flex-column justify-content-center align-items-center">
         <h2 class="styleBold mt-5 mb-4">Drive</h2>
-        <p>Filtrez votre sélection par catégories ou recherchez directement votre produit</p>
-        <div class="filterDrive mb-5 row col-10 d-flex justify-content-center">
-            {% for category in categories %}
-                <div class="filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
-                    <button class="btn">
-                        <img src="{{ asset('/img/category/'~category.urlIcon|e) }}" alt="Icone {{category.title}}" />
-                        {{category.title}}
-                    </button>
-                </div>
-            {% endfor %}
+        <p>Filtrez votre sélection de produits ou recherchez le directement</p>
+        <div class="col-11">
+            <form>
+                <fieldset>
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <p class="card-text">Vous pouvez selectionner plusieurs catégories.</p>
+                            <div class="filterDrive mb-5 row col-12 d-flex justify-content-center">
+                                {% for category in categories %}
+                                    <div class="form-check my-2 filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
+                                        <label class="form-check-label mt-1">
+                                            <input class="form-check-input align-self-center" type="checkbox" name="category" value="{{ category.id }}">
+                                            <img src="{{ asset('/img/category/'~category.urlIcon|e) }}" alt="Icone {{ category.title }}" />
+                                            {{ category.title }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary mx-1">Appliquer les filtres</button>
+                            <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</button>
+                        </div>
+                    </div>
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Saisons</div>
+                        <div class="card-body">
+                            <p class="card-text">Vous pouvez selectionner plusieurs saisons.</p>
+                            <div class="filterDrive mb-5 row col-12 d-flex justify-content-center">
+                                {% for season in seasons %}
+                                    <div class="form-check my-2 filterCard col-3 col-md-2 d-flex justify-content-center align-items-center">
+                                        <label class="form-check-label mt-1">
+                                            <input class="form-check-input align-self-center" type="checkbox" name="season" value="{{ season.id }}">
+                                            <img src="{{ asset('/img/seasons/'~season.urlIcon|e) }}" alt="Icone {{ season.name }}" />
+                                            {{ season.name }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary mx-1">Appliquer les filtres</button>
+                            <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</button>
+                        </div>
+                    </div>
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Prix</div>
+                        <div class="card-body">
+                            <p class="card-text">Choisissez votre tranche de prix.</p>
+                            <div class="filterDrive my-4 row col-12 d-flex justify-content-center">
+                                <fieldset class="col-12">
+                                    <div class="row d-flex justify-content-center">
+                                        <fieldset class="form-group col-4">
+                                            <label for="customRange1">Tranche haute</label>
+                                            <input type="range" class="custom-range" id="customRange1">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">€</span>
+                                                  </div>
+                                                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group col-4">
+                                            <label for="customRange1">Tranche basse</label>
+                                            <input type="range" class="custom-range" id="customRange1">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">€</span>
+                                                  </div>
+                                                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary mx-1">Appliquer les filtres</button>
+                            <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="searchDrive mb-5">
             <form class="form-inline my-2 my-lg-0">
@@ -151,6 +235,14 @@
     </div>
     <div>Icons made by
         <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
+        from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a>
+    </div>
+    <div>Icons made by 
+        <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a>
+        from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a>
+    </div>
+    <div>Icons made by 
+        <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a>
         from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a>
     </div>
 {% endblock %}

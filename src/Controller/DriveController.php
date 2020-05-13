@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Entity\Season;
 
 class DriveController extends AbstractController
 {
@@ -19,11 +20,14 @@ class DriveController extends AbstractController
 
         $repoCategories = $this->getDoctrine()->getRepository(Category::class);
         $categories = $repoCategories->findAll();
-        //dd($categories);
+
+        $repoSeasons = $this->getDoctrine()->getRepository(Season::class);
+        $seasons = $repoSeasons->findAll();
 
         return $this->render('drive/drive.html.twig', [
             'products'          => $products,
             'categories'        => $categories,
+            'seasons'           => $seasons,
         ]);
     }
     
