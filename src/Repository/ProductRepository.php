@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -32,6 +34,62 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @param array         $filters
+     * @return Product[]    Returns an array of Product objects
+     */
+    public function findByFilters($filters)
+    {
+        return $this->createQueryBuilder('p')
+            //for($i = 0; $i < array_cout_values($filters['seasons']); $i ++){
+            //    ->where('p.season = :season')
+            //    ->setParameter('season', $i)
+            //}
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @param int $page
+     * @param int $nbMaxByPage
+     * 
+     * @return $paginator
+     */
+    public function findAllAndPaginator($page, $nbMaxByPage)
+    {
+        if (!is_numeric($page)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
+            );
+        }
+
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        if (!is_numeric($nbMaxByPage)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $nbMaxByPage est incorrecte (valeur : ' . $nbMaxByPage . ').'
+            );
+        }
+
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC');
+        
+        $query = $qb->getQuery();
+        $firstResult = ($page - 1) * $nbMaxByPage;
+        $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);
+        $paginator = new Paginator($query);
+
+        if ( ($paginator->count() <= $firstResult) && $page != 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
+        }
+
+        return $paginator;
     }
 
     // /**
