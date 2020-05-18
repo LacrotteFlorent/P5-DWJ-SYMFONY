@@ -40,24 +40,63 @@ class ProductRepository extends ServiceEntityRepository
      * @param array         $filters
      * @return Product[]    Returns an array of Product objects
      */
-    public function findByFilters($filters)
+    public function findByFiltersAndPaginator($filters, $page, $nbMaxByPage)
     {
-        return $this->createQueryBuilder('p')
-            //for($i = 0; $i < array_cout_values($filters['seasons']); $i ++){
-            //    ->where('p.season = :season')
-            //    ->setParameter('season', $i)
-            //}
-            ->orderBy('p.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
+        if (!is_numeric($page)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
+            );
+        }
+
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        if (!is_numeric($nbMaxByPage)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $nbMaxByPage est incorrecte (valeur : ' . $nbMaxByPage . ').'
+            );
+        }
+        dump(array_values($filters['form']['seasons']));
+        $qb = $this->createQueryBuilder('p');
+        //foreach ($filters['form']['seasons'] as $season) {
+        //    $qb->andWhere('p.season = :val');
+        //    $qb->setParameter('val', $season);
+        //}
+        foreach ($filters['form']['categories'] as $category) {
+            $qb->andWhere('p.category = :val');
+            $qb->setParameter('val', $category);
+        }
+        if($filters['form']['minPrice'] == !null){
+            dump('passe2');
+            $qb->andWhere('p.price >= :val');
+            $qb->setParameter('val', $filters['form']['minPrice']);
+        }
+        if($filters['form']['maxPrice'] == !null){
+            dump('passe1');
+            $qb->andWhere('p.price <= :val');
+            $qb->setParameter('val', $filters['form']['maxPrice']);
+        }
+        
+        $qb->orderBy('p.createdAt', 'DESC');
+        
+        $query = $qb->getQuery();
+        //dd($query = $qb->getQuery()->getResult());
+        $firstResult = ($page - 1) * $nbMaxByPage;
+        $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);
+        $paginator = new Paginator($query);
+
+        if ( ($paginator->count() <= $firstResult) && $page != 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
+        }
+
+        return $paginator;
     }
 
     /**
-     * @param int $page
-     * @param int $nbMaxByPage
-     * 
-     * @return $paginator
+     * @param int           $page
+     * @param int           $nbMaxByPage
+     * @return Paginator    $paginator
      */
     public function findAllAndPaginator($page, $nbMaxByPage)
     {

@@ -43,7 +43,7 @@ class Filter
 
     public function setSeasons($seasons = null)
     {
-        $this->seasons = array_push($seasons);
+        $this->seasons = $seasons;
     }
 
     public function getMaxPrice()

@@ -55,7 +55,7 @@ class Product
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Category;
+    private $category;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Picture", mappedBy="Product", cascade={"persist", "remove"})
@@ -158,12 +158,12 @@ class Product
 
     public function getCategory(): ?Category
     {
-        return $this->Category;
+        return $this->category;
     }
 
-    public function setCategory(?Category $Category): self
+    public function setCategory(?Category $category): self
     {
-        $this->Category = $Category;
+        $this->Category = $category;
 
         return $this;
     }
