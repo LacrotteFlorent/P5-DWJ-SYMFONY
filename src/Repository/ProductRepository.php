@@ -57,30 +57,35 @@ class ProductRepository extends ServiceEntityRepository
                 'La valeur de l\'argument $nbMaxByPage est incorrecte (valeur : ' . $nbMaxByPage . ').'
             );
         }
-        dump(array_values($filters['form']['seasons']));
+
+        //dump(array_values($filters['form']['seasons']));
         $qb = $this->createQueryBuilder('p');
         //foreach ($filters['form']['seasons'] as $season) {
         //    $qb->andWhere('p.season = :val');
         //    $qb->setParameter('val', $season);
         //}
         foreach ($filters['form']['categories'] as $category) {
-            $qb->andWhere('p.category = :val');
-            $qb->setParameter('val', $category);
+            dump($category);
+            $qb->orWhere($qb->expr()->orX(
+                $qb->expr()->in('p.category', $category)
+            ));
         }
-        if($filters['form']['minPrice'] == !null){
-            dump('passe2');
-            $qb->andWhere('p.price >= :val');
-            $qb->setParameter('val', $filters['form']['minPrice']);
-        }
-        if($filters['form']['maxPrice'] == !null){
-            dump('passe1');
-            $qb->andWhere('p.price <= :val');
-            $qb->setParameter('val', $filters['form']['maxPrice']);
-        }
+        
+        //if($filters['form']['minPrice'] == !null){
+        //    dump('passe2');
+        //    $qb->andWhere('p.price >= :val');
+        //    $qb->setParameter('val', $filters['form']['minPrice']);
+        //}
+        //if($filters['form']['maxPrice'] == !null){
+        //    dump('passe1');
+        //    $qb->andWhere('p.price <= :val');
+        //    $qb->setParameter('val', $filters['form']['maxPrice']);
+        //}
         
         $qb->orderBy('p.createdAt', 'DESC');
         
         $query = $qb->getQuery();
+        dump($qb);
         //dd($query = $qb->getQuery()->getResult());
         $firstResult = ($page - 1) * $nbMaxByPage;
         $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);

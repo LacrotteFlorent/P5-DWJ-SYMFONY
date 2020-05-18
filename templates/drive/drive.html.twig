@@ -68,13 +68,13 @@
                                             <input type="range" class="custom-range" id="customRange1">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
-                                                  <div class="input-group-prepend">
-                                                    <span class="input-group-text">€</span>
-                                                  </div>
-                                                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                  </div>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">€</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -83,13 +83,13 @@
                                             <input type="range" class="custom-range" id="customRange1">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
-                                                  <div class="input-group-prepend">
-                                                    <span class="input-group-text">€</span>
-                                                  </div>
-                                                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                  </div>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">€</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -229,13 +229,13 @@
                                             <input type="range" class="custom-range" id="customRange1">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
-                                                  <div class="input-group-prepend">
-                                                    <span class="input-group-text">€</span>
-                                                  </div>
-                                                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                  </div>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">€</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -244,13 +244,13 @@
                                             <input type="range" class="custom-range" id="customRange1">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
-                                                  <div class="input-group-prepend">
-                                                    <span class="input-group-text">€</span>
-                                                  </div>
-                                                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                  </div>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">€</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -271,30 +271,41 @@
                     <ul class="pagination pagination-md">
                     {% if paginate.page > 1 %}
                         <li class="page-item">
-                            <a class="page-link" href="{{ path(paginate.nameRoute,
-                                paginate.paramsRoute|merge({'page': 1})) }}">&laquo;</a>
+                            <a  
+                                class="page-link" 
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': 1})) }}"
+                            >&laquo;</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{ path(paginate.nameRoute,
-                                paginate.paramsRoute|merge({'page': paginate.page-1})) }}">&#60;</a>
+                            <a  
+                                class="page-link" 
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page-1})) }}"
+                            >&#60;</a>
                         </li>
                     {% endif %}
                     {# Displays all pages between p-4 and p+4 unless < 1 or > nbPages #}
                     {% for p in range(max(paginate.page-4, 1), min(paginate.page+4, paginate.nbPages)) %}
                         <li {% if p == paginate.page %} class="active page-item" {else} class="page-item" {% endif %}>
-                            <a class="page-link" href="{{ path(paginate.nameRoute, paginate.paramsRoute|merge({'page': p})) }}">
+                            <a  
+                                class="page-link" 
+                                href="{{ path(paginate.nameRoute, paginate.paramsRoute|merge({'page': p})) }}"
+                            >
                                 {{ p }}
                             </a>
                         </li>
                     {% endfor %}
                     {% if paginate.page < paginate.nbPages %}
                         <li class="page-item">
-                            <a class="page-link" href="{{ path(paginate.nameRoute,
-                                paginate.paramsRoute|merge({'page': paginate.page+1})) }}">&#62;</a>
+                            <a 
+                                class="page-link" 
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page+1})) }}"
+                            >&#62;</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{ path(paginate.nameRoute,
-                                paginate.paramsRoute|merge({'page': paginate.nbPages})) }}">&raquo;</a>
+                            <a  
+                                class="page-link" 
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.nbPages})) }}"
+                            >&raquo;</a>
                         </li>
                     {% endif %}
                     </ul>
