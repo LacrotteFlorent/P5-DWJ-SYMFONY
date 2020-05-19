@@ -56,11 +56,11 @@ class DriveController extends AbstractController
             ->getForm();
         
             $form->handleRequest($request);
-
+            
             if($form->isSubmitted() && $form->isValid()) {
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-                dump($request->request->all());
-                $products = $repoProduct->findByFiltersAndPaginator($request->request->all(), $page, $nbProductsByPage);
+                dump($filter);
+                $products = $repoProduct->findByFiltersAndPaginator($filter, $page, $nbProductsByPage);
             }
             else {
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);

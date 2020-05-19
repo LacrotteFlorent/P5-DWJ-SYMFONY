@@ -37,7 +37,9 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param array         $filters
+     * @param Filter        $filters Entity
+     * @param int           $page Actual page
+     * @param int           $nbMaxByPage Products by page
      * @return Product[]    Returns an array of Product objects
      */
     public function findByFiltersAndPaginator($filters, $page, $nbMaxByPage)
@@ -58,35 +60,29 @@ class ProductRepository extends ServiceEntityRepository
             );
         }
 
-        //dump(array_values($filters['form']['seasons']));
         $qb = $this->createQueryBuilder('p');
-        //foreach ($filters['form']['seasons'] as $season) {
-        //    $qb->andWhere('p.season = :val');
-        //    $qb->setParameter('val', $season);
-        //}
-        foreach ($filters['form']['categories'] as $category) {
-            dump($category);
+        foreach ($filters->getSeasons() as $season) {
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->in('p.category', $category)
+                $qb->expr()->in('p.season', $season->getId())
             ));
         }
-        
-        //if($filters['form']['minPrice'] == !null){
-        //    dump('passe2');
-        //    $qb->andWhere('p.price >= :val');
-        //    $qb->setParameter('val', $filters['form']['minPrice']);
-        //}
-        //if($filters['form']['maxPrice'] == !null){
-        //    dump('passe1');
-        //    $qb->andWhere('p.price <= :val');
-        //    $qb->setParameter('val', $filters['form']['maxPrice']);
-        //}
-        
+        foreach ($filters->getCategories() as $category) {
+            $qb->orWhere($qb->expr()->orX(
+                $qb->expr()->in('p.category', $category->getId())
+            ));
+        }
+        if($filters->getMinPrice() == !null){
+            $qb->andWhere('p.price >= :valMin');
+            $qb->setParameter('valMin', $filters->getMinPrice());
+        }
+        if($filters->getMaxPrice() == !null){
+            $qb->andWhere('p.price <= :valMax');
+            $qb->setParameter('valMax', $filters->getMaxPrice());
+        }
         $qb->orderBy('p.createdAt', 'DESC');
         
         $query = $qb->getQuery();
-        dump($qb);
-        //dd($query = $qb->getQuery()->getResult());
+
         $firstResult = ($page - 1) * $nbMaxByPage;
         $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);
         $paginator = new Paginator($query);
