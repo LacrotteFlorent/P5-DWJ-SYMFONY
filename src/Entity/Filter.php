@@ -24,8 +24,6 @@ class Filter
      */
     protected $minPrice;
 
-
-
     public function getCategories()
     {
         return $this->categories;

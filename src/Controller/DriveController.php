@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,6 +18,14 @@ use App\Entity\Filter;
 
 class DriveController extends AbstractController
 {
+
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/drive/{page}", requirements={"page" = "\d+"}, name="drive_show")
      * @param   int $page
@@ -56,11 +65,21 @@ class DriveController extends AbstractController
             ->getForm();
         
             $form->handleRequest($request);
+
+            dump($filter);
+            dump($this->session->get('filters'));
             
             if($form->isSubmitted() && $form->isValid()) {
+                $this->session->set('filters', $filter);
+                dump($this->session->get('filters'));
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-                dump($filter);
                 $products = $repoProduct->findByFiltersAndPaginator($filter, $page, $nbProductsByPage);
+            }
+            elseif($this->session->get('filters') !== null){
+                $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+                dump($this->session->get('filters'));
+                $products = $repoProduct->findByFiltersAndPaginator($this->session->get('filters'), $page, $nbProductsByPage);
+                
             }
             else {
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);
