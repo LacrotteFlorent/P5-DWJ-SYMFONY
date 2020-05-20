@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\Type\FilterType;
-use App\Entity\Product;
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Entity\Season;
 use App\Entity\Filter;
 
@@ -66,20 +66,14 @@ class DriveController extends AbstractController
         
             $form->handleRequest($request);
 
-            dump($filter);
-            dump($this->session->get('filters'));
-            
             if($form->isSubmitted() && $form->isValid()) {
                 $this->session->set('filters', $filter);
-                dump($this->session->get('filters'));
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);
                 $products = $repoProduct->findByFiltersAndPaginator($filter, $page, $nbProductsByPage);
             }
             elseif($this->session->get('filters') !== null){
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-                dump($this->session->get('filters'));
                 $products = $repoProduct->findByFiltersAndPaginator($this->session->get('filters'), $page, $nbProductsByPage);
-                
             }
             else {
                 $repoProduct = $this->getDoctrine()->getRepository(Product::class);
