@@ -11,14 +11,21 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\Mailer\Mailer;
 use App\Entity\Contact;
+
+
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 
 class ContactController extends AbstractController
 {
     /**
      * @Route("/contact", name="contact_show")
      */
-    public function show(Request $request)
+    public function show(Request $request, MailerInterface $mailer)
     {
         $contact = new Contact;
 
@@ -87,8 +94,33 @@ class ContactController extends AbstractController
 
         $form->handleRequest($request);
 
+        $emailProducer = $_ENV['MAIL_PRODUCER'];
+
         if($form->isSubmitted() &&  $form->isValid()){
             // Ici on envois un mail -> Au client & au producteur
+
+            $emailToContact = (new TemplatedEmail())
+            ->from($emailProducer)
+            ->to($contact->getEmail())
+            ->subject('Votre demande de contact : MangerPlusPrès.fr')
+            ->htmlTemplate('emails/contactProducer.html.twig')
+            ->context([
+                'contact'       => $contact,
+                'emailProducer' => $emailProducer,
+            ]);
+
+            $emailToProducer = (new TemplatedEmail())
+            ->from($contact->getEmail())
+            ->to($emailProducer)
+            ->subject('Nouvelle demande de contact : MangerPlusPrès.fr')
+            ->htmlTemplate('emails/contactClient.html.twig')
+            ->context([
+                'contact'       => $contact,
+                'emailProducer' => $emailProducer,
+            ]);
+            
+            $mailer->send($emailToContact);
+            $mailer->send($emailToProducer);
         }
 
         return $this->render('contact/contact.html.twig', [
