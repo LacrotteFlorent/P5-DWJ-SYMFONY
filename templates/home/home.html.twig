@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="mt-5 col-12 d-flex justify-content-center">
-                <button type="button" class="homeText btn classicBtn"><i class="fas fa-shopping-cart mx-2"></i>Drive</button>
+                <a href="{{ path('drive_show', {'page' : '1'}) }}" class="homeText btn classicBtn"><i class="fas fa-shopping-cart mx-2"></i>Drive</a>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <div class="col-10 col-md-12 row d-flex flex-column justify-content-center align-items-center infoShowcase">
             <h2 class="showcaseBold mt-5 text-center">COMMENT FAIRE ?</h2>
             <p class="text-center">Créez un compte pour commencer vos courses et remplir votre panier</p>
-            <button class="btn classicBtn mb-5" href="#">Guide de fonctionnement</button>
+            <a class="btn classicBtn mb-5" href="{{ path('fonctionnement_show') }}">Guide de fonctionnement</a>
         </div>
         <div class="row mb-5 mb-md-auto col-12 d-flex justify-content-around">
             <div class="col-10 col-sm-6 col-md-6 col-lg-5 col-xl-6 mt-5 squareBackground text-center d-flex flex-column justify-content-center">
