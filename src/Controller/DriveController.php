@@ -4,10 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\Type\FilterType;
@@ -42,43 +38,22 @@ class DriveController extends AbstractController
         $seasons = $repoSeasons->findAll();
 
         $filter = new Filter;
-        $form = $this->createFormBuilder($filter)
-            ->add('maxPrice', IntegerType::class)
-            ->add('minPrice', IntegerType::class)
-            ->add('seasons', EntityType::class, [
-                'class'         => 'App\Entity\Season',
-                'choice_label'  => 'name',
-                'multiple'      => true,
-                'expanded'      => true,
-                'attr'          => ['class' => 'test'],
-            ])
-            ->add('categories', EntityType::class, [
-                'class'         => 'App\Entity\Category',
-                'choice_label'  => 'title',
-                'multiple'      => true,
-                'expanded'      => true,
-                'attr'          => ['class' => 'test'],
-            ])
-            ->add('changeFilter', SubmitType::class, [
-                'attr'          => ['class' => 'btn btn-primary mx-1']
-            ])
-            ->getForm();
+        $formFilter = $this->createForm(FilterType::class, $filter);
+        $formFilter->handleRequest($request);
         
-            $form->handleRequest($request);
-
-            if($form->isSubmitted() && $form->isValid()) {
-                $this->session->set('filters', $filter);
-                $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-                $products = $repoProduct->findByFiltersAndPaginator($filter, $page, $nbProductsByPage);
-            }
-            elseif($this->session->get('filters') !== null){
-                $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-                $products = $repoProduct->findByFiltersAndPaginator($this->session->get('filters'), $page, $nbProductsByPage);
-            }
-            else {
-                $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-                $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
-            }
+        if($formFilter->isSubmitted() && $formFilter->isValid()) {
+            $this->session->set('filters', $filter);
+            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+            $products = $repoProduct->findByFiltersAndPaginator($filter, $page, $nbProductsByPage);
+        }
+        elseif($this->session->get('filters') !== null){
+            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+            $products = $repoProduct->findByFiltersAndPaginator($this->session->get('filters'), $page, $nbProductsByPage);
+        }
+        else {
+            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+            $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
+        }
         
         $paginate = [
             'page'          => $page,
@@ -91,7 +66,7 @@ class DriveController extends AbstractController
             'products'          => $products,
             'categories'        => $categories,
             'seasons'           => $seasons,
-            'formFilter'        => $form->createView(),
+            'formFilter'        => $formFilter->createView(),
             'paginate'          => $paginate,
         ]);
     }

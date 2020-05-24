@@ -1,5 +1,6 @@
 {%- block checkbox_widget -%}
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {#{dump()}#}
 {%- endblock checkbox_widget -%}
 
 {# Labels #}
@@ -25,13 +26,11 @@
         <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
             {# Add div <img> for filter #}
             {#{dump(form.parent.choices.data.urlIcon)}#}
-            {#
-            {{dump()}}
-            {{dump(form.parent.vars)}}
+            
+            {#{{dump()}}
             {% set vars = form.parent.vars.form.vars %}
-            {{dump(vars)}}
-            {{dump(form.parent.vars|length)}}
-            #}
+            {{dump(vars.choices)}}
+            
             {#{dump(form.parent.vars.choices)}#}
 
 

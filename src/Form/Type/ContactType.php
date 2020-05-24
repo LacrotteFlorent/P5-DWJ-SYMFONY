@@ -16,7 +16,6 @@ class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //$contact = new Contact;
 
         $reasonChoices = [
             'Demande de renseignements'     => 'Demande de renseignements',
@@ -81,6 +80,5 @@ class ContactType extends AbstractType
             ])
         ;
 
-        //$form = $this->createFormBuilder($contact)->getForm();
     }
 }
