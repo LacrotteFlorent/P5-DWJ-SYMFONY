@@ -64,8 +64,6 @@ class DriveController extends AbstractController
 
         return $this->render('drive/drive.html.twig', [
             'products'          => $products,
-            'categories'        => $categories,
-            'seasons'           => $seasons,
             'formFilter'        => $formFilter->createView(),
             'paginate'          => $paginate,
         ]);

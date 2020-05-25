@@ -1,0 +1,34 @@
+
+                                /* HOW IT WORKS */
+                                /* HOW IT WORKS */
+                                /* HOW IT WORKS */
+
+
+.headHowItWorks{
+    height: 300px;
+}
+
+.rowDivider {
+    height: auto;
+}
+
+.svg-separator {
+    height: 100%;
+    width: 100%;
+    margin-top: 190px;
+}
+
+.help .btn {
+    background-color: #436C00;
+    border-color: #436C00;
+    color: #FFFFFF;
+}
+
+.help .btn:hover {
+    background-color: #568A00;
+    color: #FFFFFF;
+}
+
+.styleBold {
+    font-size: 2em;
+}
