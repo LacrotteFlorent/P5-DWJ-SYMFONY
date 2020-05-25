@@ -44,7 +44,8 @@ class DriveController extends AbstractController
         if($formFilter->isSubmitted() && $formFilter->isValid()) {
             $this->session->set('filters', $filter);
             $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-            $products = $repoProduct->findByFiltersAndPaginator($filter, $page, $nbProductsByPage);
+            $products = $repoProduct->findByFiltersAndPaginator($filter, 1, $nbProductsByPage);
+            return $this->redirectToRoute('drive_show', ['page' => '1']);
         }
         elseif($this->session->get('filters') !== null){
             $repoProduct = $this->getDoctrine()->getRepository(Product::class);
@@ -67,6 +68,30 @@ class DriveController extends AbstractController
             'formFilter'        => $formFilter->createView(),
             'paginate'          => $paginate,
         ]);
+    }
+
+    /**
+     * @Route("/drive/clearFilter", name="drive_clearFilter")
+     * @param   int $page
+     * @return  array render for twig
+     */
+    public function clearFilter()
+    {
+        $this->session->remove('filters');
+        
+        return $this->redirectToRoute('drive_show', ['page' => '1']);
+    }
+
+    /**
+     * @Route("/drive/search", name="drive_search")
+     * @param   int $page
+     * @return  array render for twig
+     */
+    public function search(Request $request)
+    {
+        $this->session->remove('filters');
+        
+        return $this->redirectToRoute('drive_show', ['page' => '1']);
     }
     
 }

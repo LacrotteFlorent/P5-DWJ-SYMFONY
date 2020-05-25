@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-end">
                             {{ buttonChangeFilter|raw }}
-                            <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</button>
+                            <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
                         </div>
                     </div>
                     <div class="card bg-light mb-3">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-end">
                             {{ buttonChangeFilter|raw }}
-                            <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</button>
+                            <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
                         </div>
                     </div>
                     <div class="card bg-light mb-3">
@@ -104,7 +104,7 @@
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-end">
                             {{ buttonChangeFilter|raw }}
-                            <button type="button" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</button>
+                            <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
                         </div>
                     </div>
                 {{ form_end(formFilter) }}
@@ -117,7 +117,7 @@
             </form>
         </div>
     </div>
-    <div class="headStore col-12 d-flex flex-column flex-md-row p-5">
+    <div id="store" class="headStore col-12 d-flex flex-column flex-md-row p-5">
         <h3 class="styleBold mr-md-2 mr-lg-5 col-sm-12 col-md-6">Votre sélection :</h3>
         <p class="col-sm-12 col-md-6">Tous les Articles <span class="numberProductSelect">({{ products|length }} produits)</span></p>
     </div>
@@ -189,13 +189,13 @@
                         <li class="page-item">
                             <a  
                                 class="page-link" 
-                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': 1})) }}"
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': 1})) }}#store"
                             >&laquo;</a>
                         </li>
                         <li class="page-item">
                             <a  
                                 class="page-link" 
-                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page-1})) }}"
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page-1})) }}#store"
                             >&#60;</a>
                         </li>
                     {% endif %}
@@ -204,7 +204,7 @@
                         <li {% if p == paginate.page %} class="active page-item" {else} class="page-item" {% endif %}>
                             <a  
                                 class="page-link" 
-                                href="{{ path(paginate.nameRoute, paginate.paramsRoute|merge({'page': p})) }}"
+                                href="{{ path(paginate.nameRoute, paginate.paramsRoute|merge({'page': p})) }}#store"
                             >
                                 {{ p }}
                             </a>
@@ -214,13 +214,13 @@
                         <li class="page-item">
                             <a 
                                 class="page-link" 
-                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page+1})) }}"
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page+1})) }}#store"
                             >&#62;</a>
                         </li>
                         <li class="page-item">
                             <a  
                                 class="page-link" 
-                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.nbPages})) }}"
+                                href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.nbPages})) }}#store"
                             >&raquo;</a>
                         </li>
                     {% endif %}

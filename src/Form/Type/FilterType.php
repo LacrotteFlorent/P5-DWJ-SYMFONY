@@ -16,9 +16,11 @@ class FilterType extends AbstractType
         $builder
             ->add('maxPrice', IntegerType::class, [
                 'attr'          => ['class' => 'form-control'],
+                'required'      => false,
             ])
             ->add('minPrice', IntegerType::class, [
                 'attr'          => ['class' => 'form-control'],
+                'required'      => false,
             ])
             ->add('seasons', EntityType::class, [
                 'class'         => 'App\Entity\Season',
