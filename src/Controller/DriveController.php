@@ -31,28 +31,21 @@ class DriveController extends AbstractController
     {
         $nbProductsByPage = 6;
 
-        $repoCategories = $this->getDoctrine()->getRepository(Category::class);
-        $categories = $repoCategories->findAll();
-
-        $repoSeasons = $this->getDoctrine()->getRepository(Season::class);
-        $seasons = $repoSeasons->findAll();
-
         $filter = new Filter;
         $formFilter = $this->createForm(FilterType::class, $filter);
         $formFilter->handleRequest($request);
         
+        $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+
         if($formFilter->isSubmitted() && $formFilter->isValid()) {
             $this->session->set('filters', $filter);
-            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
             $products = $repoProduct->findByFiltersAndPaginator($filter, 1, $nbProductsByPage);
             return $this->redirectToRoute('drive_show', ['page' => '1']);
         }
         elseif($this->session->get('filters') !== null){
-            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
             $products = $repoProduct->findByFiltersAndPaginator($this->session->get('filters'), $page, $nbProductsByPage);
         }
         else {
-            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
             $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
         }
         
