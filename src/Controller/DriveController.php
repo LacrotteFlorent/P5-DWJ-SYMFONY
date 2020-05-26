@@ -27,13 +27,10 @@ class DriveController extends AbstractController
      * @param   int $page
      * @return  array render for twig
      */
-    public function show(Request $request, $page)
+    public function show(Request $request, $page, $nbProductsByPage)
     {
-        $nbProductsByPage = 6;
-
         $filter = new Filter;
-        $formFilter = $this->createForm(FilterType::class, $filter);
-        $formFilter->handleRequest($request);
+        $formFilter = $this->createForm(FilterType::class, $filter)->handleRequest($request);
         
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
 
@@ -71,17 +68,6 @@ class DriveController extends AbstractController
     public function clearFilter()
     {
         $this->session->remove('filters');
-        
-        return $this->redirectToRoute('drive_show', ['page' => '1']);
-    }
-
-    /**
-     * @Route("/drive/search", name="drive_search")
-     * @param   int $page
-     * @return  array render for twig
-     */
-    public function search(Request $request)
-    {
         
         return $this->redirectToRoute('drive_show', ['page' => '1']);
     }

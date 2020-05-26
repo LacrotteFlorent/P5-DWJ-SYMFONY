@@ -52,6 +52,5 @@ class FilterType extends AbstractType
                 'label'         => 'Rechercher'
             ])
         ;
-        ;
     }
 }

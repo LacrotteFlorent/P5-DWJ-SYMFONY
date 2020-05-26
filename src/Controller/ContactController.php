@@ -27,23 +27,23 @@ class ContactController extends AbstractController
             $contact = $formContact->getData();
 
             $emailToContact = (new TemplatedEmail())
-            ->from($_ENV['MAIL_PRODUCER'])
+            ->from($mailProducer)
             ->to($contact->getEmail())
             ->subject('Votre demande de contact : MangerPlusPrès.fr')
             ->htmlTemplate('emails/contactProducer.html.twig')
             ->context([
                 'contact'       => $contact,
-                'emailProducer' => $_ENV['MAIL_PRODUCER'],
+                'emailProducer' => $mailProducer,
             ]);
 
             $emailToProducer = (new TemplatedEmail())
             ->from($contact->getEmail())
-            ->to($_ENV['MAIL_PRODUCER'])
+            ->to($mailProducer)
             ->subject('Nouvelle demande de contact : MangerPlusPrès.fr')
             ->htmlTemplate('emails/contactClient.html.twig')
             ->context([
                 'contact'       => $contact,
-                'emailProducer' => $_ENV['MAIL_PRODUCER'],
+                'emailProducer' => $mailProducer,
             ]);
             
             $mailer->send($emailToContact);

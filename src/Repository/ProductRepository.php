@@ -65,7 +65,6 @@ class ProductRepository extends ServiceEntityRepository
                 ));
             }
         }
-
         if($filters->getMinPrice() == !null){
             $qb->andWhere('p.price >= :valMin');
             $qb->setParameter('valMin', $filters->getMinPrice());
@@ -75,7 +74,6 @@ class ProductRepository extends ServiceEntityRepository
             $qb->setParameter('valMax', $filters->getMaxPrice());
         }
         
-
         return $this->paginatorDeploy($page, $nbMaxByPage, $qb);
     }
 
@@ -87,22 +85,6 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllAndPaginator($page, $nbMaxByPage)
     {
         return $this->paginatorDeploy($page, $nbMaxByPage);
-    }
-
-    /**
-     * @param Filter        $filterToTest
-     * @param Qb            $qb
-     * @param Qb            $qbToTest
-     * @return Qb           $qb or $qbToTest
-     */
-    private function choices($filterToTest, $qb, $qbToTest)
-    {
-        if($filterToTest == !null)
-        {
-            return $qbToTest;
-        }
-
-        return $qb;
     }
 
     /**
@@ -133,8 +115,7 @@ class ProductRepository extends ServiceEntityRepository
             $qb = $this->createQueryBuilder('p');
         }
 
-        $qb->orderBy('p.createdAt', 'DESC');       
-        $query = $qb->getQuery();
+        $query = $qb->orderBy('p.createdAt', 'DESC')->getQuery();
         $firstResult = ($page - 1) * $nbMaxByPage;
         $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);
         $paginator = new Paginator($query);
