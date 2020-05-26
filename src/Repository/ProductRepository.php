@@ -44,21 +44,8 @@ class ProductRepository extends ServiceEntityRepository
      */
     public function findByFiltersAndPaginator($filters, $page, $nbMaxByPage)
     {
-        if (!is_numeric($page)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
-            );
-        }
-        if ($page < 1) {
-            throw new NotFoundHttpException('La page demandée n\'existe pas');
-        }
-        if (!is_numeric($nbMaxByPage)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $nbMaxByPage est incorrecte (valeur : ' . $nbMaxByPage . ').'
-            );
-        }
-
         $qb = $this->createQueryBuilder('p');
+
         if($filters->getSearch() == !null){
             $qb->orWhere(
                 $qb->expr()->like('p.name', $qb->expr()->literal($filters->getSearch()))
@@ -78,6 +65,7 @@ class ProductRepository extends ServiceEntityRepository
                 ));
             }
         }
+
         if($filters->getMinPrice() == !null){
             $qb->andWhere('p.price >= :valMin');
             $qb->setParameter('valMin', $filters->getMinPrice());
@@ -88,19 +76,7 @@ class ProductRepository extends ServiceEntityRepository
         }
         
 
-        $qb->orderBy('p.createdAt', 'DESC');
-        
-        $query = $qb->getQuery();
-
-        $firstResult = ($page - 1) * $nbMaxByPage;
-        $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);
-        $paginator = new Paginator($query);
-
-        if ( ($paginator->count() <= $firstResult) && $page != 1) {
-            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
-        }
-
-        return $paginator;
+        return $this->paginatorDeploy($page, $nbMaxByPage, $qb);
     }
 
     /**
@@ -109,6 +85,33 @@ class ProductRepository extends ServiceEntityRepository
      * @return Paginator    $paginator
      */
     public function findAllAndPaginator($page, $nbMaxByPage)
+    {
+        return $this->paginatorDeploy($page, $nbMaxByPage);
+    }
+
+    /**
+     * @param Filter        $filterToTest
+     * @param Qb            $qb
+     * @param Qb            $qbToTest
+     * @return Qb           $qb or $qbToTest
+     */
+    private function choices($filterToTest, $qb, $qbToTest)
+    {
+        if($filterToTest == !null)
+        {
+            return $qbToTest;
+        }
+
+        return $qb;
+    }
+
+    /**
+     * @param int           $page
+     * @param int           $nbMaxByPage
+     * @param Qb|null       $qb
+     * @return Paginator    $paginator
+     */
+    private function paginatorDeploy($page, $nbMaxByPage, $qb = null)
     {
         if (!is_numeric($page)) {
             throw new InvalidArgumentException(
@@ -126,9 +129,11 @@ class ProductRepository extends ServiceEntityRepository
             );
         }
 
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy('p.createdAt', 'DESC');
-        
+        if($qb == null){
+            $qb = $this->createQueryBuilder('p');
+        }
+
+        $qb->orderBy('p.createdAt', 'DESC');       
         $query = $qb->getQuery();
         $firstResult = ($page - 1) * $nbMaxByPage;
         $query->setFirstResult($firstResult)->setMaxResults($nbMaxByPage);
