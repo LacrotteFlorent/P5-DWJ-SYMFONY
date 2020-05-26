@@ -89,7 +89,6 @@ class DriveController extends AbstractController
      */
     public function search(Request $request)
     {
-        $this->session->remove('filters');
         
         return $this->redirectToRoute('drive_show', ['page' => '1']);
     }

@@ -20,9 +20,14 @@ class Filter
     protected $maxPrice;
 
     /**
-     * @var float minPrice
+     * @var float $minPrice
      */
     protected $minPrice;
+
+    /**
+     * @var string $search
+     */
+    protected $search;
 
     public function getCategories()
     {
@@ -63,4 +68,15 @@ class Filter
     {
         $this->minPrice = $minPrice;
     }
+
+    public function getSearch()
+    {
+        return $this->search;
+    }
+
+    public function setSearch($search = null)
+    {
+        $this->search = $search;
+    }
+
 }

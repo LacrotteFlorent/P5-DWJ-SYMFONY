@@ -49,11 +49,9 @@ class ProductRepository extends ServiceEntityRepository
                 'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
             );
         }
-
         if ($page < 1) {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
         }
-
         if (!is_numeric($nbMaxByPage)) {
             throw new InvalidArgumentException(
                 'La valeur de l\'argument $nbMaxByPage est incorrecte (valeur : ' . $nbMaxByPage . ').'
@@ -61,15 +59,24 @@ class ProductRepository extends ServiceEntityRepository
         }
 
         $qb = $this->createQueryBuilder('p');
-        foreach ($filters->getSeasons() as $season) {
-            $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->in('p.season', $season->getId())
-            ));
+        if($filters->getSearch() == !null){
+            $qb->orWhere(
+                $qb->expr()->like('p.name', $qb->expr()->literal($filters->getSearch()))
+            );
         }
-        foreach ($filters->getCategories() as $category) {
-            $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->in('p.category', $category->getId())
-            ));
+        if(($filters->getSeasons() == !null ) && ($filters->getSearch() == null)){
+            foreach ($filters->getSeasons() as $season) {
+                $qb->orWhere($qb->expr()->orX(
+                    $qb->expr()->in('p.season', $season->getId())
+                ));
+            }
+        }
+        if(($filters->getCategories() == !null) && ($filters->getSearch() == null)){
+            foreach ($filters->getCategories() as $category) {
+                $qb->orWhere($qb->expr()->orX(
+                    $qb->expr()->in('p.category', $category->getId())
+                ));
+            }
         }
         if($filters->getMinPrice() == !null){
             $qb->andWhere('p.price >= :valMin');
@@ -79,6 +86,8 @@ class ProductRepository extends ServiceEntityRepository
             $qb->andWhere('p.price <= :valMax');
             $qb->setParameter('valMax', $filters->getMaxPrice());
         }
+        
+
         $qb->orderBy('p.createdAt', 'DESC');
         
         $query = $qb->getQuery();

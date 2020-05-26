@@ -17,7 +17,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact_show")
      */
-    public function show(Request $request, MailerInterface $mailer)
+    public function show(Request $request, MailerInterface $mailer, $mailProducer)
     {
         $contact = new Contact;
         $formContact = $this->createForm(ContactType::class, $contact);
