@@ -10,12 +10,12 @@
     color: #333!important;
 }
 
-.btn {
+.cart .btn {
     background-color: #436C00!important;
     border-color: #436C00!important;
 }
 
-.btn:hover {
+.cart .btn:hover {
     border-color: #333!important;
     background-color: #007BFF!important;
 }
