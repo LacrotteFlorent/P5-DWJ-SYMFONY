@@ -1,0 +1,42 @@
+                                /* GENERAL STYLE */
+                                /* GENERAL STYLE */
+                                /* GENERAL STYLE */
+
+.sign {
+    min-height: 60vh;
+}
+
+.sign h1 {
+    font-size: 3em!important;
+}
+
+.caveat {
+    font-family: "Caveat", serif;
+    color: #436C00;
+    font-size: 1.3em;
+}
+
+.sign .btn {
+    background-color: #436C00!important;
+    border-color: #436C00!important;
+    color: #FFFFFF;
+}
+
+.sign .btn:hover {
+    border-color: #333!important;
+    background-color: #007BFF!important;
+}
+
+.case {
+    height: fit-content;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+                                /* SIGNUP STYLE */
+                                /* SIGNUP STYLE */
+                                /* SIGNUP STYLE */

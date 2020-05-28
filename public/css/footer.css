@@ -26,9 +26,15 @@ footer {
     border-right: 1px solid #F6F1E8;
 }
 
+@media (min-width: 575px) { 
+    .preFoot {
+        height: 650px;
+  }
+}
+
 .preFoot {
     background-color: #333333;
-    height: 30vh;
+    height: 390px;
     width: 100%;
     color: #F6F1E8;
     font-family: "Caveat", serif;
@@ -37,7 +43,7 @@ footer {
 
 .footFoot {
     background-color: #181A1B;
-    height: 5vh;
+    height: 50px;
     width: 100%;
     color: #919191;
 }

@@ -155,6 +155,10 @@
     height: 100px;
 }
 
+.footBtnOne {
+    border-color: #767878;
+}
+
 .footBtnTwo {
     background-color: #436C00;
 }
