@@ -126,7 +126,7 @@
         <div class="productsStore row col-12 justify-content-center">
             <div class="row flagshipProduct col-12 d-flex justify-content-center align-items-center">
                 {% for product in products %}
-                    <div class="productCard d-flex flex-column col-sm-10 col-md-5 col-lg-5 col-xl-3 mx-4 mb-5 justify-content-space-between">
+                    {{ form_start(formsAddCart[product.id], {'attr':{'class': 'productCard d-flex flex-column col-sm-10 col-md-5 col-lg-5 col-xl-3 mx-4 mb-5 justify-content-space-between'}}) }}
                         <div class="">
                             <div class="col-12 d-flex flex-column align-items-center justify-content-between headProduct">
                                 <h4 class="text-center">{{ product.name|capitalize }}</h4>
@@ -154,33 +154,19 @@
                                     </div>
                                 {% endif %}
                             </div>
-                            <!--<div class="col-12 describe">
-                                <p>{{ product.description|capitalize }}</p>
-                            </div>-->
                         </div>
                         <div class="row flex">
                             <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
-                                <ul class="productNumber d-flex m-0 p-0">
-                                    <li class="productNumber-item mx-2">
-                                    <a class="productNumber-link" href="#" aria-label="less">
-                                        <span aria-hidden="true">&#45;</span>
-                                    </a>
-                                    </li>
-                                    <li class="productNumber-item mx-2"><a class="productNumber-link" href="#">1</a></li>
-                                    <li class="productNumber-item mx-2">
-                                    <a class="productNumber-link" href="#" aria-label="more">
-                                        <span aria-hidden="true">&#43;</span>
-                                    </a>
-                                    </li>
-                                </ul>
+                                {{form_widget(formsAddCart[product.id].productNumber, {"attr":{"class": "border-0"}})}}
                             </div>
                             <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
-                                <form method="POST" class="align-middle">
-                                    <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
-                                </form>
+                                <div class="align-middle">
+                                    {{form_widget(formsAddCart[product.id].productId)}}
+                                    <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add') }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button-->
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {{form_end(formsAddCart[product.id])}}
                 {% endfor %}
             </div>
             {% if paginate.nbPages > 0 %}

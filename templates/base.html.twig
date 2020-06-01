@@ -64,9 +64,9 @@
                         <button class="btn">
                             <img src="{{ asset('/img/logo/wicker-basket.png') }}" alt="Icone fruits" />
                         </button>
-                        <button class="btn">
+                        <a class="btn" href="{{ path('signIn_showIn') }}">
                             <img src="{{ asset('/img/logo/user.png') }}" alt="Icone fruits" />
-                        </button>
+                        </a>
                     </div>
                 </nav>
             </header>
@@ -74,19 +74,23 @@
                 {% block body %}{% endblock %}
             </main>
             <footer>
-                <div class="col-12 preFoot d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center preFootFirst">
-                        <a href="#">Mon espace client</a>
-                        <a href="#">Conditions générales de vente</a>
-                        <a href="{{ path('contact_show') }}">Contactez le producteur</a>
-                    </div>
-                    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center">
-                        <adress>
-                            <p> Hauchard Jean Marc</p>
-                            <p>4 rue Jean Baptiste</p>
-                            <p>07200</p>
-                            <p>Aubenas</p>
-                        </adress>
+                <div class="preFoot d-flex justify-content-center align-items-center">
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <div class="row col-12">
+                            <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center preFootFirst">
+                                <a href="#">Mon espace client</a>
+                                <a href="#">Conditions générales de vente</a>
+                                <a href="{{ path('contact_show') }}">Contactez le producteur</a>
+                            </div>
+                            <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center">
+                                <adress>
+                                    <p> Hauchard Jean Marc</p>
+                                    <p>4 rue Jean Baptiste</p>
+                                    <p>07200</p>
+                                    <p>Aubenas</p>
+                                </adress>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="footFoot d-flex justify-content-center align-items-center">

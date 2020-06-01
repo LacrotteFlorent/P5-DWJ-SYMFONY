@@ -132,24 +132,24 @@ class Product
         return $this;
     }
 
-    public function getUnit(): ?\DateTimeInterface
+    public function getUnit(): ?string
     {
         return $this->unit;
     }
 
-    public function setUnit(\DateTimeInterface $unit): self
+    public function setUnit(string $unit): self
     {
         $this->unit = $unit;
 
         return $this;
     }
 
-    public function getPrice(): ?\DateTimeInterface
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(\DateTimeInterface $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 

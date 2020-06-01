@@ -7,10 +7,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\Type\FilterType;
+use App\Form\Type\AddCartType;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Season;
 use App\Entity\Filter;
+use App\Entity\AddCart;
+
 
 class DriveController extends AbstractController
 {
@@ -45,7 +48,15 @@ class DriveController extends AbstractController
         else {
             $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
         }
-        
+
+        $addCart = new AddCart;
+        $formsAddCart = [];
+        foreach($products as $product){
+            $addCart->setProductId($product->getId());
+            $form = $this->createForm(AddCartType::class, $addCart);
+            $formsAddCart[$product->getId()] = $form->createView();
+        }
+
         $paginate = [
             'page'          => $page,
             'nbPages'       => ceil(count($products) / $nbProductsByPage),
@@ -57,6 +68,7 @@ class DriveController extends AbstractController
             'products'          => $products,
             'formFilter'        => $formFilter->createView(),
             'paginate'          => $paginate,
+            'formsAddCart'      => $formsAddCart,
         ]);
     }
 

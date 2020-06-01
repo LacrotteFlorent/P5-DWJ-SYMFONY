@@ -3,158 +3,151 @@
 {% block title %}Panier {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/css/cart.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/cart.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="col-12 row d-flex justify-content-center cart">
-    <div class="col-md-12 col-lg-11 col-xl-10 row d-flex justify-content-center">
-        <div class="col-12 col-sm-12 col-md-9 row d-flex justify-content-center">
-            <div class="row jumbotron col-12 d-flex justify-content-center mt-5 py-3">
-                <h1 class="display-5 col-12">1. Mon panier</h1>
-                <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">Produits</th>
-                        <th scope="col">Quantitée</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Default</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>X</td>
-                      </tr>
-                      <tr class="">
-                        <th scope="row">Primary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>X</td>
-                      </tr>
-                      <tr class="">
-                        <th scope="row">Secondary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>X</td>
-                      </tr>
-                      <tr class="">
-                        <th scope="row">Success</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>X</td>
-                      </tr>
-                      <tr class="table-dark">
-                        <th scope="row" class="totalCart">Total:</th>
-                        <td class="text-right sommeCart" colspan="3">118,34€</td>
-                      </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row jumbotron col-12 d-flex justify-content-center mt-5 py-3">
-                <h1 class="display-5 col-12">2. Mon créneau de retrait</h1>
-                <div class="card text-white bg-secondary mb-3 mr-3" style="max-width: 20rem;">
-                  <div class="card-header">Choisis le jour</div>
-                  <div class="card-body">
-                    <p class="card-text">Le premier jour disponnible est le 23/03/32.</p>
-                    <input  type="date" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31">
-                  </div>
-                </div>
-                <div class="card text-white bg-secondary mb-3 mr-3" style="max-width: 20rem;">
-                  <div class="card-header">Choisis l'heure</div>
-                  <div class="card-body">
-                    <p class="card-text">Le premier crénau horraire disponnible est à 08h00.</p>
-                    <input  type="time" id="start" name="trip-start"
-                        value="2018-07-22"
-                        min="2018-01-01" max="2018-12-31">
-                  </div>
-                </div>
-                <p class="card-text col-12 my-4 text-center lead">Tu as choisis le créneau suivant: Le 12/02/12 à 12h00.</p>
-            </div>
-            <div class="row col-12 d-flex justify-content-start mt-5 py-3 jumbotron">
-                <h1 class="display-5 col-12 mb-4">3. Validation</h1>
-                <h3 class="col-sm-12 col-md-7 p-0">TOTAL: 123.00 €</h3>
-                <button type="button" class="btn btn-primary col-sm-12 col-md-5 col">Finaliser ma commande</button>
-            </div>
-        </div>
-        <div class="d-none d-sm-none d-md-none d-lg-block col-3 mt-5 mb-5">
-            <div class="card mx-3">
-                <h3 class="card-header">Produits stars</h3>
-                <img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
-                <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                    <h4 class="card-title">Tomate</h4>
-                    <div class="d-flex">
-                        <p class="card-text">1.33€</p>
-                        <p class="card-text">/ La pièce</p>
-                    </div>
-                    <div class="d-flex">
-                        <select>
-                            <optgroup label="Qty">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="2">3</option>
-                              <option value="2">4</option>
-                              <option value="2">5</option>
-                            </optgroup>
-                        </select>
-                        <button type="button" class="mx-1 btn btn-primary">Ajouter</button>
-                    </div>
-                </div>
-                <hr class="my-4">
-                <img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
-                <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                    <h4 class="card-title">Tomate</h4>
-                    <div class="d-flex">
-                        <p class="card-text">1.33€</p>
-                        <p class="card-text">/ La pièce</p>
-                    </div>
-                    <div class="d-flex">
-                        <select>
-                            <optgroup label="Qty">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="2">3</option>
-                              <option value="2">4</option>
-                              <option value="2">5</option>
-                            </optgroup>
-                        </select>
-                        <button type="button" class="mx-1 btn btn-primary">Ajouter</button>
-                    </div>
-                </div>
-                <hr class="my-4">
-                <img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
-                <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                    <h4 class="card-title">Tomate</h4>
-                    <div class="d-flex">
-                        <p class="card-text">1.33€</p>
-                        <p class="card-text">/ La pièce</p>
-                    </div>
-                    <div class="d-flex">
-                        <select>
-                            <optgroup label="Qty">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="2">3</option>
-                              <option value="2">4</option>
-                              <option value="2">5</option>
-                            </optgroup>
-                        </select>
-                        <button type="button" class="mx-1 btn btn-primary">Ajouter</button>
-                    </div>
-                </div>
-                <hr class="my-4">
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="col-12">
+		<div class="row d-flex justify-content-center cart">
+			<div class="col-md-12 col-lg-11 col-xl-10 row d-flex justify-content-center">
+				<div class="col-12 col-sm-12 col-md-9 row d-flex justify-content-center">
+					<div class="row jumbotron col-12 d-flex justify-content-center mt-5 py-3">
+						<h1 class="display-5 col-12">1. Mon panier</h1>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Produits</th>
+									<th scope="col">Quantitée</th>
+									<th scope="col">Prix Unitaire</th>
+                  <th scope="col">Prix Total</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+                {% if cart | length > 0 %}
+                {% set total = 0 %}
+                  {% for product in cart %}
+							    	<tr class="">
+                      {% set total = total + (product.product.price * product.quantity) %}
+							    		<td scope="row">{{product.product.name|capitalize}}</td>
+							    		<td>{{product.quantity}}</td>
+							    		<td>{{(product.product.price)|number_format(2)}} € /{{product.product.unit}}</td>
+                      <td>{{(product.product.price * product.quantity)|number_format(2)}}&#32;€</td>
+							    		<td>
+                        <a href="{{path('cart_remove', {'id':product.product.id})}}" class="btn btn-danger btn-sm">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+							    	</tr>
+                  {% endfor %}
+                  <tr class="table-dark">
+									  <th scope="row" class="totalCart">Total:</th>
+									  <th class="text-right sommeCart" colspan="4">{{(total)|number_format(2)}}&#32;€</th>
+								  </tr>
+							  {% else %}
+                  <tr class="">
+                    <td colspan="4">Aucuns Produits</td>
+                  </tr>
+                  <tr class="table-dark">
+									  <th scope="row" class="totalCart">Total:</th>
+									  <td class="text-right sommeCart" colspan="4">0.00 €</td>
+								  </tr>
+                {% endif %}
+							</tbody>
+						</table>
+					</div>
+					<div class="row jumbotron col-12 d-flex justify-content-center mt-5 py-3">
+						<h1 class="display-5 col-12">2. Mon créneau de retrait</h1>
+						<div class="card text-white bg-secondary mb-3 mr-3" style="max-width: 20rem;">
+							<div class="card-header">Choisis le jour</div>
+							<div class="card-body">
+								<p class="card-text">Le premier jour disponnible est le 23/03/32.</p>
+								<input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+							</div>
+						</div>
+						<div class="card text-white bg-secondary mb-3 mr-3" style="max-width: 20rem;">
+							<div class="card-header">Choisis l'heure</div>
+							<div class="card-body">
+								<p class="card-text">Le premier crénau horraire disponnible est à 08h00.</p>
+								<input type="time" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+							</div>
+						</div>
+						<p class="card-text col-12 my-4 text-center lead">Tu as choisis le créneau suivant: Le 12/02/12 à 12h00.</p>
+					</div>
+					<div class="row col-12 d-flex justify-content-start mt-5 py-3 jumbotron">
+						<h1 class="display-5 col-12 mb-4">3. Validation</h1>
+						<h3 class="col-sm-12 col-md-7 p-0">TOTAL: 123.00 €</h3>
+						<button type="button" class="btn btn-primary col-sm-12 col-md-5 col">Finaliser ma commande</button>
+					</div>
+				</div>
+				<div class="d-none d-sm-none d-md-none d-lg-block col-3 mt-5 mb-5">
+					<div class="card mx-3">
+						<h3 class="card-header">Produits stars</h3>
+						<img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
+						<div class="card-body d-flex flex-column align-items-center justify-content-center">
+							<h4 class="card-title">Tomate</h4>
+							<div class="d-flex">
+								<p class="card-text">1.33€</p>
+								<p class="card-text">/ La pièce</p>
+							</div>
+							<div class="d-flex">
+								<select>
+									<optgroup label="Qty">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="2">3</option>
+										<option value="2">4</option>
+										<option value="2">5</option>
+									</optgroup>
+								</select>
+								<button type="button" class="mx-1 btn btn-primary">Ajouter</button>
+							</div>
+						</div>
+						<hr class="my-4">
+						<img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
+						<div class="card-body d-flex flex-column align-items-center justify-content-center">
+							<h4 class="card-title">Tomate</h4>
+							<div class="d-flex">
+								<p class="card-text">1.33€</p>
+								<p class="card-text">/ La pièce</p>
+							</div>
+							<div class="d-flex">
+								<select>
+									<optgroup label="Qty">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="2">3</option>
+										<option value="2">4</option>
+										<option value="2">5</option>
+									</optgroup>
+								</select>
+								<button type="button" class="mx-1 btn btn-primary">Ajouter</button>
+							</div>
+						</div>
+						<hr class="my-4">
+						<img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
+						<div class="card-body d-flex flex-column align-items-center justify-content-center">
+							<h4 class="card-title">Tomate</h4>
+							<div class="d-flex">
+								<p class="card-text">1.33€</p>
+								<p class="card-text">/ La pièce</p>
+							</div>
+							<div class="d-flex">
+								<select>
+									<optgroup label="Qty">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="2">3</option>
+										<option value="2">4</option>
+										<option value="2">5</option>
+									</optgroup>
+								</select>
+								<button type="button" class="mx-1 btn btn-primary">Ajouter</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
