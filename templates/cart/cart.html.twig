@@ -30,7 +30,17 @@
 							    	<tr class="">
                       {% set total = total + (product.product.price * product.quantity) %}
 							    		<td scope="row">{{product.product.name|capitalize}}</td>
-							    		<td>{{product.quantity}}</td>
+							    		<td class="tableQty">
+                        <div class="input-group input-group-sm mb-3">
+                          <div class="input-group-prepend">
+                            <a class="btn btn-outline-secondary align-items-center d-flex" href="{{path('cart_less', {'id':product.product.id})}}"><i class="far fa-arrow-alt-circle-down"></i></a>
+                          </div>
+                          <span class="input-group-text">{{product.quantity}}</span>
+                          <div class="input-group-append">
+                            <a class="btn btn-outline-secondary align-items-center d-flex" href="{{path('cart_more', {'id':product.product.id})}}"><i class="far fa-arrow-alt-circle-up"></i></a>
+                          </div>
+                        </div>
+                      </td>
 							    		<td>{{(product.product.price)|number_format(2)}} € /{{product.product.unit}}</td>
                       <td>{{(product.product.price * product.quantity)|number_format(2)}}&#32;€</td>
 							    		<td>

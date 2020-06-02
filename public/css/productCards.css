@@ -81,3 +81,7 @@
 .productCard .layoutCart {
     background-color: #436C00;
 }
+
+select {
+    background-color: #ECF0F1;
+}

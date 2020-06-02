@@ -14,6 +14,11 @@ class AddCart
      */
     protected $productNumber;
 
+    /**
+     * @var int $productPage
+     */
+    protected $productPage;
+
     public function getProductId()
     {
         return $this->productId;
@@ -32,5 +37,15 @@ class AddCart
     public function setProductNumber($productNumber)
     {
         $this->productNumber = $productNumber;
+    }
+
+    public function getProductPage()
+    {
+        return $this->productPage;
+    }
+
+    public function setProductPage($productPage)
+    {
+        $this->productPage = $productPage;
     }
 }

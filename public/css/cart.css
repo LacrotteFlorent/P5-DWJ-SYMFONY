@@ -19,3 +19,7 @@
     border-color: #333!important;
     background-color: #007BFF!important;
 }
+
+.tableQty .btn {
+    color: white;
+}

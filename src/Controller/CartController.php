@@ -24,7 +24,7 @@ class CartController extends AbstractController
                 'quantity'  => $quantity,
             ];
         }
-        dump($cartWithData);
+
         return $this->render('cart/cart.html.twig', [
             'cart'  => $cartWithData,
         ]);
@@ -49,7 +49,7 @@ class CartController extends AbstractController
 
         $session->set('cart', $cart);
 
-        return $this->redirectToRoute("cart_show");
+        return $this->redirectToRoute("drive_show",["page" => $addCart->getProductPage(), "_fragment" => $addCart->getProductId()]);
     }
 
     /**
@@ -61,6 +61,41 @@ class CartController extends AbstractController
 
         if(!empty($cart[$id])) {
             unset($cart[$id]);
+        }
+
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute("cart_show");
+    }
+
+    /**
+     * @Route("/cart/less/{id}", name="cart_less")
+     */
+    public function less($id, SessionInterface $session)
+    {
+        $cart = $session->get('cart', []);
+
+        if((!empty($cart[$id])) && $cart[$id] >= 2) {
+            $cart[$id] = $cart[$id] - 1;
+        }
+        elseif((!empty($cart[$id])) && $cart[$id] >= 1) {
+            unset($cart[$id]);
+        }
+
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute("cart_show");
+    }
+
+    /**
+     * @Route("/cart/more/{id}", name="cart_more")
+     */
+    public function more($id, SessionInterface $session)
+    {
+        $cart = $session->get('cart', []);
+
+        if((!empty($cart[$id]))) {
+            $cart[$id] = $cart[$id] + 1;
         }
 
         $session->set('cart', $cart);

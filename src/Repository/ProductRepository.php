@@ -48,8 +48,8 @@ class ProductRepository extends ServiceEntityRepository
 
         if($filters->getSearch() == !null){
             $qb->orWhere(
-                $qb->expr()->like('p.name', $qb->expr()->literal($filters->getSearch()))
-            );
+                $qb->expr()->like('p.name', ':search')
+            )->setParameter('search', "%" . $filters->getSearch() . "%");
         }
         if(($filters->getSeasons() == !null ) && ($filters->getSearch() == null)){
             foreach ($filters->getSeasons() as $season) {

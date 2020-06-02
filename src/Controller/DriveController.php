@@ -53,6 +53,7 @@ class DriveController extends AbstractController
         $formsAddCart = [];
         foreach($products as $product){
             $addCart->setProductId($product->getId());
+            $addCart->setProductPage($page);
             $form = $this->createForm(AddCartType::class, $addCart);
             $formsAddCart[$product->getId()] = $form->createView();
         }
