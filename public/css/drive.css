@@ -21,6 +21,7 @@
 
 .headDrive .filterCard img {
     height: fit-content;
+    margin: 10px;
 }
 
 .headDrive .filterCard button {
@@ -28,6 +29,20 @@
     font-size: 1em;
     color: #333333;
 }
+
+.filterDrive input:hover + .checkmark {
+    background-color: rgba(169,169,169,0.4);
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.filterDrive input:checked + .checkmark {
+    background-color: rgba(86,138,0,0.4);
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
 
 
                                 /* STORE */

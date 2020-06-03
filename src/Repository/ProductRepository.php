@@ -47,20 +47,18 @@ class ProductRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('p');
 
         if($filters->getSearch() == !null){
-            $qb->orWhere(
-                $qb->expr()->like('p.name', ':search')
-            )->setParameter('search', "%" . $filters->getSearch() . "%");
+            $qb->where($qb->expr()->like('p.name', ':search'))->setParameter('search', "%" . $filters->getSearch() . "%");
         }
         if(($filters->getSeasons() == !null ) && ($filters->getSearch() == null)){
             foreach ($filters->getSeasons() as $season) {
-                $qb->orWhere($qb->expr()->orX(
-                    $qb->expr()->in('p.season', $season->getId())
-                ));
+                $qb->andWhere($qb->expr()->orX(
+                    $qb->expr()->in('p.season', ':season')
+                ))->setParameter('season', $season->getId());
             }
         }
         if(($filters->getCategories() == !null) && ($filters->getSearch() == null)){
             foreach ($filters->getCategories() as $category) {
-                $qb->orWhere($qb->expr()->orX(
+                $qb->andWhere($qb->expr()->orX(
                     $qb->expr()->in('p.category', $category->getId())
                 ));
             }

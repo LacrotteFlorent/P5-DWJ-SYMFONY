@@ -4,9 +4,22 @@
                                 /* HEAD PRODUCER */
                                 /* HEAD PRODUCER */
 
+
 .headProducer {
-    background-color: #ECF0F1;
-    height: 450px;
+        height: 300px;
+  }
+
+@media (min-width: 575px) { 
+    .headProducer {
+        height: 340px;
+  }
+}
+
+@media (min-width: 768px) {                                
+    .headProducer {
+        background-color: #ECF0F1;
+        height: 450px;
+    }
 }
 
 .dividerHeadProducer {
