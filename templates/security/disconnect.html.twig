@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Déconnexion {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/sign.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="sign d-flex justify-content-center">
+    <div class="col-10 my-5">
+        <div class="mb-4">
+            <h1 class="styleBold mb-4">Déconnexion</h1>
+            <h4 class="mb-4">Vous avez été déconnecté de <span class="caveat">mangerPlusPrès.fr</span> connectez vous à nouveau et accédez aux fonctionalités suivantes:</h4>
+            <ul>
+                <li>Passer commande</li>
+                <li>Consulter l'historique des commandes</li>
+            </ul>
+        </div>
+        <div class="mt-5 d-flex flex-column align-items-center">
+            <h1 class="styleBold mb-4">Vous êtes déconnecté</h1>
+            <h4 class="mb-4">A très bientôt sur <span class="caveat">mangerPlusPrès.fr</span></h4>
+        </div>
+    </div>
+</div>
+{% endblock %}

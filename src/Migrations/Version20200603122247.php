@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200512214233 extends AbstractMigration
+final class Version20200603122247 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20200512214233 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE category CHANGE url_icon url_icon VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE product ADD unit VARCHAR(255) DEFAULT NULL, ADD price DOUBLE PRECISION DEFAULT NULL, CHANGE enabled_since enabled_since DATETIME NOT NULL');
-        $this->addSql('ALTER TABLE season ADD url_icon VARCHAR(255) NOT NULL');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, phone_number VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, role VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,7 @@ final class Version20200512214233 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE category CHANGE url_icon url_icon VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
-        $this->addSql('ALTER TABLE product DROP unit, DROP price, CHANGE enabled_since enabled_since DATETIME DEFAULT NULL');
-        $this->addSql('ALTER TABLE season DROP url_icon');
+        $this->addSql('DROP TABLE user');
+        $this->addSql('ALTER TABLE product CHANGE enabled_since enabled_since DATETIME DEFAULT NULL, CHANGE unit unit VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE price price DOUBLE PRECISION NOT NULL');
     }
 }
