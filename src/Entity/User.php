@@ -126,12 +126,13 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRoles(): ?array
     {
-        return $this->role;
+        $roles[] = $this->role;
+        return array_unique($roles);
     }
 
-    public function setRole(string $role): self
+    public function setRoles(string $role): self
     {
         $this->role = $role;
 
@@ -154,10 +155,8 @@ class User implements UserInterface
 
     public function getSalt() {}
 
-    public function getUsername() {}
-
-    public function getRoles()
+    public function getUsername()
     {
-        return ['ROLE_USER'];
+        return $this->email;
     }
 }

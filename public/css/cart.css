@@ -20,6 +20,6 @@
     background-color: #007BFF!important;
 }
 
-.tableQty .btn {
+.table .btn, .valid .btn {
     color: white;
 }

@@ -1,22 +1,33 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\AddCart;
+use App\Form\Type\AddCartType;
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\Type\AddCartType;
-use App\Entity\AddCart;
 
 
 class CartController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
      * @Route("/cart", name="cart_show")
      */
     public function show(SessionInterface $session, ProductRepository $productRepo)
     {
+        if($this->security->isGranted('ROLE_USER'))
+        {
+
         $cart = $session->get('cart', []);
         $cartWithData = [];
         foreach($cart as $id => $quantity) {
@@ -29,6 +40,10 @@ class CartController extends AbstractController
         return $this->render('cart/cart.html.twig', [
             'cart'  => $cartWithData,
         ]);
+
+        }
+
+        return $this->redirectToRoute("home_show");
     }
 
     /**

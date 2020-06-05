@@ -20,7 +20,7 @@ class SecurityController extends AbstractController
     public function registration(Request $request, ManagerRegistry $managerRegistry, UserPasswordEncoderInterface $encoder)
     {
         $user = new User;
-        $user->setRole('ROLE_USER');
+        $user->setRoles('ROLE_USER');
 
         $form = $this->createForm(RegistrationType::class, $user);
 
@@ -48,17 +48,7 @@ class SecurityController extends AbstractController
      */
     public function login(Request $request)
     {
-        //$connect = new Connect;
-        //$formConnect = $this->createForm(ConnectType::class, $connect)->handleRequest($request);
-//
-        //if($formConnect->isSubmitted() && $formConnect->isValid()) {
-//
-        //    return $this->redirectToRoute('home_show');
-        //}
-
-        return $this->render('security/connect.html.twig', [
-            //'formConnect'   => $formConnect->createView(),
-        ]);
+        return $this->render('security/connect.html.twig');
     }
 
     /**
