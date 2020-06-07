@@ -3,6 +3,7 @@
 {% block title %}Panier {% endblock %}
 
 {% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('/css/productCards.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/cart.css') }}">
 {% endblock %}
 
@@ -98,68 +99,57 @@
 				<div class="d-none d-sm-none d-md-none d-lg-block col-3 mt-5 mb-5">
 					<div class="card mx-3">
 						<h3 class="card-header">Produits stars</h3>
-						<img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
-						<div class="card-body d-flex flex-column align-items-center justify-content-center">
-							<h4 class="card-title">Tomate</h4>
-							<div class="d-flex">
-								<p class="card-text">1.33€</p>
-								<p class="card-text">/ La pièce</p>
-							</div>
-							<div class="d-flex">
-								<select>
-									<optgroup label="Qty">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="2">3</option>
-										<option value="2">4</option>
-										<option value="2">5</option>
-									</optgroup>
-								</select>
-								<button type="button" class="mx-1 btn btn-primary">Ajouter</button>
-							</div>
-						</div>
-						<hr class="my-4">
-						<img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
-						<div class="card-body d-flex flex-column align-items-center justify-content-center">
-							<h4 class="card-title">Tomate</h4>
-							<div class="d-flex">
-								<p class="card-text">1.33€</p>
-								<p class="card-text">/ La pièce</p>
-							</div>
-							<div class="d-flex">
-								<select>
-									<optgroup label="Qty">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="2">3</option>
-										<option value="2">4</option>
-										<option value="2">5</option>
-									</optgroup>
-								</select>
-								<button type="button" class="mx-1 btn btn-primary">Ajouter</button>
-							</div>
-						</div>
-						<hr class="my-4">
-						<img style="height: 200px; width: 100%; display: block;" src="https://via.placeholder.com/200" alt="Card image">
-						<div class="card-body d-flex flex-column align-items-center justify-content-center">
-							<h4 class="card-title">Tomate</h4>
-							<div class="d-flex">
-								<p class="card-text">1.33€</p>
-								<p class="card-text">/ La pièce</p>
-							</div>
-							<div class="d-flex">
-								<select>
-									<optgroup label="Qty">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="2">3</option>
-										<option value="2">4</option>
-										<option value="2">5</option>
-									</optgroup>
-								</select>
-								<button type="button" class="mx-1 btn btn-primary">Ajouter</button>
-							</div>
-						</div>
+						<div class="store col-12 d-flex flex-column justify-content-center align-items-center">
+						<div class="productsStore justify-content-center">
+
+						<div class=" flagshipProduct row d-flex justify-content-center align-items-center">
+                {% for product in products %}
+                    {{ form_start(formsAddCart[product.id], {'attr':{'class': 'productCard d-flex flex-column col-12 mx-4 mb-5 justify-content-space-between'}}) }}
+                        <div id="{{product.id}}" class="">
+                            <div class="col-12 d-flex flex-column align-items-center justify-content-between headProduct">
+                                <h4 class="text-center">{{ product.name|capitalize }}</h4>
+                                <div class="productPrice d-flex">
+                                    <p>1.20€</p>
+                                    <p class="productUnit ml-2">pièce</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-12 d-flex justify-content-center my-3">
+                                <img class="productImg" src="{{ asset('/img/products/'~product.picture.name|e) }}" alt="Photo de laitue" />
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
+                                <div class="category d-flex align-items-center">
+                                    <img src="{{ asset('/img/category/'~product.category.urlIcon|e) }}" alt="Icone {{product.category.title}}" />
+                                    <p class="mx-2 my-0">{{ product.category.title|capitalize }}</p>
+                                </div>
+                                {% if product.season == true %}
+                                    <div class="season d-flex align-items-center">
+                                        <img src="{{ asset('/img/seasons/'~product.season.urlIcon|e) }}" alt="Icone {{product.season.name}}" />
+                                        <p class="mx-2 my-0">{{ product.season.name|capitalize }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row flex">
+                            <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
+                                {{form_widget(formsAddCart[product.id].productNumber, {"attr":{"class": "border-0"}})}}
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
+                                <div class="align-middle">
+                                    {{form_widget(formsAddCart[product.id].productId)}}
+                                    {{form_widget(formsAddCart[product.id].productPage)}}
+                                    <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add') }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button-->
+                                </div>
+                            </div>
+                        </div>
+                    {{form_end(formsAddCart[product.id])}}
+                {% endfor %}
+            </div>
+			</div>
+			</div>
 					</div>
 				</div>
 			</div>

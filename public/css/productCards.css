@@ -85,3 +85,11 @@
 select {
     background-color: #ECF0F1;
 }
+
+.productCard {
+    border: 1px solid #436C00;
+}
+
+.layoutQuantity {
+    background-color: #ECF0F1 !important;
+}

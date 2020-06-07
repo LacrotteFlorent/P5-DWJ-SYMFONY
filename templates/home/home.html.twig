@@ -104,64 +104,51 @@
             </div>
             <div class="row rowDivider light-grey d-flex flex-column justify-content-center align-items-center">
                 <div class="row flagshipProduct col-12 d-flex justify-content-center align-items-center">
-                    {% for product in products %}
-                        <div class="productCard d-flex flex-column col-sm-12 col-md-5 col-lg-3 col-xl-3 mx-4 mb-5 justify-content-space-between">
-                            <div class="">
-                                <div class="col-12 d-flex flex-column align-items-center justify-content-between headProduct">
-                                    <h4 class="text-center">{{product.name|capitalize}}</h4>
-                                    <div class="productPrice d-flex justify-content-center align-self-center">
-                                        <p class="mb-0">1.20€</p>
-                                        <p class="mb-0 productUnit mx-2">pièce</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="col-12 d-flex justify-content-center my-3">
-                                    <img class="productImg" src="{{ asset('/img/products/'~product.picture.name|e) }}" alt="Photo de laitue" />
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
-                                    <div class="category d-flex align-items-center">
-                                        <img src="{{ asset('/img/category/'~product.category.urlIcon|e) }}" alt="Icone {{product.category.title}}" />
-                                        <p class="mx-2 my-0">{{ product.category.title|capitalize }}</p>
-                                    </div>
-                                    {% if product.season == true %}
-                                        <div class="season d-flex align-items-center">
-                                            <i class="fas fa-sun"></i>
-                                            <p class="mx-2 my-0">{{ product.season.name|capitalize }}</p>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <!--<div class="col-12 describe">
-                                    <p>{{ product.description|capitalize }}</p>
-                                </div>-->
-                            </div>
-                            <div class="row">
-                                <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
-                                    <ul class="productNumber d-flex m-0 p-0">
-                                        <li class="productNumber-item mx-2">
-                                        <a class="productNumber-link" href="#" aria-label="less">
-                                            <span aria-hidden="true">&#45;</span>
-                                        </a>
-                                        </li>
-                                        <li class="productNumber-item mx-2"><a class="productNumber-link" href="#">1</a></li>
-                                        <li class="productNumber-item mx-2">
-                                        <a class="productNumber-link" href="#" aria-label="more">
-                                            <span aria-hidden="true">&#43;</span>
-                                        </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
-                                    <form method="POST" class="align-middle">
-                                        <button title="Ajouter au panier" type="submit" formaction="/addCart" name="product" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
-                                    </form>
+                {% for product in products %}
+                    {{ form_start(formsAddCart[product.id], {'attr':{'class': 'productCard d-flex flex-column col-sm-10 col-md-5 col-lg-5 col-xl-3 mx-4 mb-5 justify-content-space-between'}}) }}
+                        <div id="{{product.id}}" class="">
+                            <div class="col-12 d-flex flex-column align-items-center justify-content-between headProduct">
+                                <h4 class="text-center">{{ product.name|capitalize }}</h4>
+                                <div class="productPrice d-flex">
+                                    <p>1.20€</p>
+                                    <p class="productUnit ml-2">pièce</p>
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                        <div class="">
+                            <div class="col-12 d-flex justify-content-center my-3">
+                                <img class="productImg" src="{{ asset('/img/products/'~product.picture.name|e) }}" alt="Photo de laitue" />
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="col-12 layoutInfoProduct d-flex justify-content-between align-items-center">
+                                <div class="category d-flex align-items-center">
+                                    <img src="{{ asset('/img/category/'~product.category.urlIcon|e) }}" alt="Icone {{product.category.title}}" />
+                                    <p class="mx-2 my-0">{{ product.category.title|capitalize }}</p>
+                                </div>
+                                {% if product.season == true %}
+                                    <div class="season d-flex align-items-center">
+                                        <img src="{{ asset('/img/seasons/'~product.season.urlIcon|e) }}" alt="Icone {{product.season.name}}" />
+                                        <p class="mx-2 my-0">{{ product.season.name|capitalize }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row flex">
+                            <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
+                                {{form_widget(formsAddCart[product.id].productNumber, {"attr":{"class": "border-0"}})}}
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
+                                <div class="align-middle">
+                                    {{form_widget(formsAddCart[product.id].productId)}}
+                                    {{form_widget(formsAddCart[product.id].productPage)}}
+                                    <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add') }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button-->
+                                </div>
+                            </div>
+                        </div>
+                    {{form_end(formsAddCart[product.id])}}
+                {% endfor %}
+            </div>
             </div>
             <div class="footShowcaseLink d-flex justify-content-around align-items-start pb-sm-4 pb-md-auto">
                 <div class="row col-12">

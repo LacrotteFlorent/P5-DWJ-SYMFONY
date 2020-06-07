@@ -17,20 +17,12 @@ use App\Entity\AddCart;
 
 class DriveController extends AbstractController
 {
-
-    private $session;
-
-    public function __construct(SessionInterface $session)
-    {
-        $this->session = $session;
-    }
-
     /**
      * @Route("/drive/{page}", requirements={"page" = "\d+"}, name="drive_show")
      * @param   int $page
      * @return  array render for twig
      */
-    public function show(Request $request, $page, $nbProductsByPage)
+    public function show(Request $request, $page, $nbProductsByPage, SessionInterface $session)
     {
         $filter = new Filter;
         $formFilter = $this->createForm(FilterType::class, $filter)->handleRequest($request);
@@ -38,12 +30,12 @@ class DriveController extends AbstractController
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
 
         if($formFilter->isSubmitted() && $formFilter->isValid()) {
-            $this->session->set('filters', $filter);
+            $session->set('filters', $filter);
             $products = $repoProduct->findByFiltersAndPaginator($filter, 1, $nbProductsByPage);
             return $this->redirectToRoute('drive_show', ['page' => '1']);
         }
-        elseif($this->session->get('filters') !== null){
-            $products = $repoProduct->findByFiltersAndPaginator($this->session->get('filters'), $page, $nbProductsByPage);
+        elseif($session->get('filters') !== null){
+            $products = $repoProduct->findByFiltersAndPaginator($session->get('filters'), $page, $nbProductsByPage);
         }
         else {
             $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\AddCart;
+use App\Entity\Product;
 use App\Form\Type\AddCartType;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,18 +29,33 @@ class CartController extends AbstractController
         if($this->security->isGranted('ROLE_USER'))
         {
 
-        $cart = $session->get('cart', []);
-        $cartWithData = [];
-        foreach($cart as $id => $quantity) {
-            $cartWithData[] = [
-                'product'   => $productRepo->find($id),
-                'quantity'  => $quantity,
-            ];
-        }
+            $cart = $session->get('cart', []);
+            $cartWithData = [];
+            foreach($cart as $id => $quantity) {
+                $cartWithData[] = [
+                    'product'   => $productRepo->find($id),
+                    'quantity'  => $quantity,
+                ];
+            }
 
-        return $this->render('cart/cart.html.twig', [
-            'cart'  => $cartWithData,
-        ]);
+            $repo = $this->getDoctrine()->getRepository(Product::class);
+
+            $products = $repo->findAllWithLimit(3);
+
+            $addCart = new AddCart;
+            $formsAddCart = [];
+            foreach($products as $product){
+                $addCart->setProductId($product->getId());
+                $addCart->setProductPage(1);
+                $form = $this->createForm(AddCartType::class, $addCart);
+                $formsAddCart[$product->getId()] = $form->createView();
+            }
+
+            return $this->render('cart/cart.html.twig', [
+                'cart'  => $cartWithData,
+                'products'          => $products,
+                'formsAddCart'      => $formsAddCart,
+            ]);
 
         }
 
