@@ -1,0 +1,39 @@
+
+.nav-tabs {
+    border-radius: 0.5rem;
+    background: #e9ecef;
+}
+
+.nav-tabs .nav-link.active {
+    border-radius:0.25rem!important;
+}
+
+.icon-rounded {
+    background-color: #e9ecef;
+    border: 1px solid #436C00;
+    border-radius: 10rem;
+    padding: 8px;
+    -webkit-border-radius: 10rem;
+    -moz-border-radius: 10rem;
+    -ms-border-radius: 10rem;
+    -o-border-radius: 10rem;
+}
+
+.icon-rounded img {
+    height: 50px;
+    width: 50px;
+}
+
+.progress {
+    height: 2px;
+}
+
+.card-meta .fa, .card-meta .fas {
+    font-size: 1.3em;
+    color: #6C757D;
+}
+
+.card-middle .fa, .card-middle .fas {
+    font-size: 1em;
+    color: #6C757D;
+}

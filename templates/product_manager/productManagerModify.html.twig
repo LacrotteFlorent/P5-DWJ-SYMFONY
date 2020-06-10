@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/productManager.css') }}">
+{% endblock %}
+
+{% block title %}Gestionnaire de produits {% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-10">
+        <h1>Gestionnaire de produits</h1>
+        <p class="lead"> Ajouter, modifier ou supprimer un produit</p>
+        <hr class="mt-4 mb-1">
+        <div class="d-flex justify-content-between text-small m-2">
+            <span class="small">{{products|length}} produits</span>
+            <span class="small">Rechercher</span>
+        </div>
+        <ul class="nav nav-tabs nav-fill p-2" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="true">Rechercher</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">Modifier</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#activity" role="tab" aria-controls="activity" aria-selected="false">Créer</a>
+            </li>
+        </ul>
+        <div class="content-list-body">
+            <div class="card-list mt-3 p-4 nav-tabs">
+                <div class="card-list-head mb-3">
+                    <h5>Produits par date de création</h5>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
