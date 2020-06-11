@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Product;
-use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -19,8 +18,6 @@ class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
-
         $builder
             ->add('name', TextType::class, [
                 'attr'              => [
@@ -29,18 +26,23 @@ class ProductType extends AbstractType
                         'placeholder'   => 'Nom',
                 ],
                 'label'             => 'Nom',
+                'row_attr'          => ['class' => 'mb-3'],
             ])
             ->add('description', TextareaType::class, [
                 'attr'              => [
                         'class'         => 'form-control',
                         'id'            => 'description',
                         'rows'          => 3,
-                    ]
+                ],
+                'row_attr'          => ['class' => 'mb-3'],
             ])
             ->add('enabled', CheckboxType::class, [
-                'attr'          => ['class' => 'form-control'],
-                'label'         => 'Produit en vente / inactif',
+                'attr'          => ['class' => 'custom-control-input',
+                                    'id'    => 'customSwitch1',
+                                    'checked'=> '',                
+                                    ],
                 'required'      => false,
+                'row_attr'          => ['class' => 'mb-3'],
                 ])
             ->add('unit', TextType::class, [
                 'attr'              => [
@@ -49,6 +51,7 @@ class ProductType extends AbstractType
                         'placeholder'   => 'Saisissez une unité de vente',
                 ],
                 'label'             => 'Unitée',
+                'row_attr'          => ['class' => 'mb-3'],
             ])
             ->add('price', IntegerType::class, [
                     'attr'              => [
@@ -57,18 +60,13 @@ class ProductType extends AbstractType
                         'placeholder'   => 'Saisissez un prix',
                 ],
                 'label'             => 'Prix',
-            ])
-            ->add('category', EntityType::class, [
-                'class'         => 'App\Entity\Category',
-                'attr'          => ['class' => 'form-control'],
-                'choice_label'  => 'title',
-                'multiple'      => false,
-                'expanded'      => false,
-                'label'         => 'Categorie',
+                'row_attr'          => ['class' => 'mb-3'],
             ])
             ->add('picture', FileType::class, [
-                'attr'          => ['class' => 'form-control'],
+                'attr'          => ['class' => 'form-control input-picture'],
                 'label'         => 'Image',
+                'row_attr'      => ['class' => 'mb-3'],
+                'mapped'        => false,
             ])
             ->add('season', EntityType::class, [
                 'class'         => 'App\Entity\Season',
@@ -77,12 +75,22 @@ class ProductType extends AbstractType
                 'multiple'      => false,
                 'expanded'      => false,
                 'label'         => 'Saison',
+                'row_attr'      => ['class' => 'mb-3'],
+            ])
+            ->add('category', EntityType::class, [
+                'class'         => 'App\Entity\Category',
+                'attr'          => ['class' => 'form-control'],
+                'choice_label'  => 'title',
+                'multiple'      => false,
+                'expanded'      => false,
+                'label'         => 'Categorie',
+                'row_attr'      => ['class' => 'mb-3'],
             ])
             ->add('add', SubmitType::class, [
                 'attr'              => [
-                        'class'         => 'btn btn-primary',
+                        'class'         => 'btn btn-primary mt-3',
                 ],
-                'label'             => 'Créer'
+                'label'             => 'Créer le produit'
             ])
         ;
     }

@@ -37,3 +37,7 @@
     font-size: 1em;
     color: #6C757D;
 }
+
+.input-picture {
+    height: auto!important;
+}

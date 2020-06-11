@@ -37,7 +37,7 @@ class Product
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $enabledSince;
 
@@ -125,7 +125,7 @@ class Product
         return $this->enabledSince;
     }
 
-    public function setEnabledSince(\DateTimeInterface $enabledSince): self
+    public function setEnabledSince(?\DateTimeInterface $enabledSince): self
     {
         $this->enabledSince = $enabledSince;
 
@@ -163,7 +163,7 @@ class Product
 
     public function setCategory(?Category $category): self
     {
-        $this->Category = $category;
+        $this->category = $category;
 
         return $this;
     }
