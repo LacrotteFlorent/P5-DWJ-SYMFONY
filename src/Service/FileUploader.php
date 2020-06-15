@@ -17,14 +17,14 @@ class FileUploader
         $this->slugger = $slugger;
     }
 
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, $productName)
     {
         $extension = $file->guessExtension();
         if (!$extension) {
             // extension cannot be guessed
             $extension = 'bin';
         }
-        $fileName = rand(1, 99999).'.'.$extension;
+        $fileName = $productName . rand(1, 99999). '.' . $extension;
 
         //$originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         //$safeFilename = $this->slugger->slug($originalFilename);

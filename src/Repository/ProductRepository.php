@@ -76,6 +76,23 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param Filter        $filters Entity
+     * @param int           $page Actual page
+     * @param int           $nbMaxByPage Products by page
+     * @return Product[]    Returns an array of Product objects
+     */
+    public function findBySearchAndPaginator($filters, $page, $nbMaxByPage)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        if($filters->getSearch() == !null){
+            $qb->where($qb->expr()->like('p.name', ':search'))->setParameter('search', "%" . $filters->getSearch() . "%");
+        }
+        
+        return $this->paginatorDeploy($page, $nbMaxByPage, $qb);
+    }
+
+    /**
      * @param int           $page
      * @param int           $nbMaxByPage
      * @return Paginator    $paginator
@@ -124,6 +141,19 @@ class ProductRepository extends ServiceEntityRepository
 
         return $paginator;
     }
+
+    /**
+      * @return int Return length of product table
+      */
+    public function productLenght()
+    {
+        return $this->createQueryBuilder('s')
+            ->select('count(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+    
 
     // /**
     //  * @return Product[] Returns an array of Product objects

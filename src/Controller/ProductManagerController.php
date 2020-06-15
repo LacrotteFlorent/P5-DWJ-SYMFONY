@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use App\Service\FileUploader;
+use App\Entity\Search;
 use App\Entity\Picture;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ProductType;
+use App\Service\FileUploader;
+use App\Form\Type\ProductSearchType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductManagerController extends AbstractController
@@ -20,8 +22,18 @@ class ProductManagerController extends AbstractController
     public function show(Request $request, $page = null, $nbProductsByPage)
     {
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+        $numberOfProducts = $repoProduct->productLenght();
 
-        $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
+        $productSearch = new Search;
+        $formSearch = $this->createForm(ProductSearchType::class, $productSearch);
+        $formSearch->handleRequest($request);
+
+        if($formSearch->isSubmitted() &&  $formSearch->isValid()){
+            $products = $repoProduct->findBySearchAndPaginator($productSearch, $page, $nbProductsByPage);
+        }
+        else {
+            $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
+        }
 
         $paginate = [
             'page'          => $page,
@@ -33,20 +45,58 @@ class ProductManagerController extends AbstractController
         return $this->render('product_manager/productManagerSearch.html.twig', [
             'products'          => $products,
             'paginate'          => $paginate,
+            'formSearch'        => $formSearch->createView(),
+            'numberOfProducts'  => $numberOfProducts,
         ]);
     }
 
     /**
-     * @Route("/product_manager/modify/{id}", requirements={"page" = "\d+"}, name="productManager_modify")
+     * @Route("/product_manager/modify/{id}", requirements={"id" = "\d+"}, name="productManager_modify")
+     * @Route("/product_manager/modify", name="productManager_modify_no_id")
      */
-    public function modify(Request $request, $page, $nbProductsByPage)
+    public function modify(Product $product=null, Request $request, ManagerRegistry $managerRegistry, FileUploader $fileUploader)
     {
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+        $numberOfProducts = $repoProduct->productLenght();
 
-        $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
+        if($product) {
+            $product  = $repoProduct->find($product->getId());
 
-        return $this->render('product_manager/productManagerSearch.html.twig', [
-            'products'          => $products,
+            $formProduct = $this->createForm(ProductType::class, $product);
+            $formProduct->handleRequest($request);
+
+            if($formProduct->isSubmitted() &&  $formProduct->isValid()){
+                if($formProduct['enabled']->getData() == true){
+                    $product->setEnabledSince(new \Datetime);
+                }
+
+                // Upload picture and sock in /public/img/products/...
+                $pictureFile = $formProduct['picture']->getData();
+                if($pictureFile){
+                    $pictureFileName = $fileUploader->upload($pictureFile, $product->getName());
+                    $picture = $product->getPicture();
+                    $picture->setName($pictureFileName);
+                    $picture->setAlt('photo de ' . $product->getName());
+                    $product->setPicture($picture);
+                }
+
+                $manager = $managerRegistry->getManager();
+                $manager->persist($product);
+                $manager->flush();
+
+                return $this->redirectToRoute('productManager_show', ['page' => '1']);
+            }
+
+            return $this->render('product_manager/productManagerModify.html.twig', [
+                'numberOfProducts'  => $numberOfProducts,
+                'formProduct'       => $formProduct->createView(),
+                'noId'              => false,
+            ]);
+        }
+
+        return $this->render('product_manager/productManagerModify.html.twig', [
+            'numberOfProducts'  => $numberOfProducts,
+            'noId'              => true,
         ]);
     }
 
@@ -56,14 +106,11 @@ class ProductManagerController extends AbstractController
     public function add(Request $request, ManagerRegistry $managerRegistry, FileUploader $fileUploader)
     {
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
-        $products = $repoProduct->findAll();
+        $numberOfProducts = $repoProduct->productLenght();
 
         $product = new Product;
-        
         $formProduct = $this->createForm(ProductType::class, $product);
-        
         $formProduct->handleRequest($request);
-        dump($product);
 
         if( $formProduct->isSubmitted() &&  $formProduct->isValid()){
             $product->setCreatedAt(new \Datetime);
@@ -74,17 +121,6 @@ class ProductManagerController extends AbstractController
                 $product->setEnabledSince(null);
             }
 
-            //$directory = '/img/products/';
-            //$file = $formProduct['picture']->getData();
-            //// compute a random name and try to guess the extension (more secure)
-            //$extension = $file->guessExtension();
-            //if (!$extension) {
-            //    // extension cannot be guessed
-            //    $extension = 'bin';
-            //}
-            //$pictureName = rand(1, 99999).'.'.$extension;
-            //$file->move($directory, $pictureName);
-            
             // Upload picture and sock in /public/img/products/...
             $pictureFile = $formProduct['picture']->getData();
             if($pictureFile){
@@ -95,13 +131,6 @@ class ProductManagerController extends AbstractController
                 $product->setPicture($picture);
             }
 
-            //$picture = new Picture;
-            //$picture->setName($pictureName);
-            //$picture->setAlt('photo de ' .$product->getName());
-            //$product->setPicture($picture);
-            
-            dump($picture);
-            dump($product);
             $manager = $managerRegistry->getManager();
             $manager->persist($product);
             $manager->flush();
@@ -110,8 +139,22 @@ class ProductManagerController extends AbstractController
         }
 
         return $this->render('product_manager/productManagerAdd.html.twig', [
-            'products'          => $products,
+            'numberOfProducts'  => $numberOfProducts,
             'formProduct'       => $formProduct->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/product_manager/delete/{id}", requirements={"id" = "\d+"}, name="productManager_delete")
+     */
+    public function delete(Product $product, Request $request, ManagerRegistry $managerRegistry)
+    {
+        $manager = $managerRegistry->getManager();
+        $manager->remove($product);
+        $manager->flush();
+
+        unlink('../public/img/products/'.$product->getPicture()->getName());
+
+        return $this->redirectToRoute('productManager_show', ['page' => '1']);
     }
 }

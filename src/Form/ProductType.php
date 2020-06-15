@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -34,7 +34,7 @@ class ProductType extends AbstractType
                         'id'            => 'description',
                         'rows'          => 3,
                 ],
-                'row_attr'          => ['class' => 'mb-3'],
+                'row_attr'          => ['class' => 'mt-3'],
             ])
             ->add('enabled', CheckboxType::class, [
                 'attr'          => ['class' => 'custom-control-input',
@@ -53,19 +53,20 @@ class ProductType extends AbstractType
                 'label'             => 'Unitée',
                 'row_attr'          => ['class' => 'mb-3'],
             ])
-            ->add('price', IntegerType::class, [
+            ->add('price', MoneyType::class, [
                     'attr'              => [
                         'class'         => 'form-control',
                         'id'            => 'price',
                         'placeholder'   => 'Saisissez un prix',
                 ],
-                'label'             => 'Prix',
+                'label'             => 'Prix en euros TTC',
                 'row_attr'          => ['class' => 'mb-3'],
+                'currency'          => false
             ])
             ->add('picture', FileType::class, [
                 'attr'          => ['class' => 'form-control input-picture'],
                 'label'         => 'Image',
-                'row_attr'      => ['class' => 'mb-3'],
+                'row_attr'      => ['class' => 'mb-1'],
                 'mapped'        => false,
             ])
             ->add('season', EntityType::class, [
@@ -76,6 +77,13 @@ class ProductType extends AbstractType
                 'expanded'      => false,
                 'label'         => 'Saison',
                 'row_attr'      => ['class' => 'mb-3'],
+                //'choices'       => [
+                //   // 'Aucunes'       => null,
+                //    'été'           => 'été',
+                //    'hiver'         => 'hiver',
+                //    'automne'       => 'automne',
+                //    'printemps'     => 'printemps',
+                //]
             ])
             ->add('category', EntityType::class, [
                 'class'         => 'App\Entity\Category',
@@ -86,7 +94,7 @@ class ProductType extends AbstractType
                 'label'         => 'Categorie',
                 'row_attr'      => ['class' => 'mb-3'],
             ])
-            ->add('add', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
                 'attr'              => [
                         'class'         => 'btn btn-primary mt-3',
                 ],

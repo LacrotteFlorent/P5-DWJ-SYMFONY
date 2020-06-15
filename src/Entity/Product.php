@@ -64,6 +64,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="Product")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $season;
 
