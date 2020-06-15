@@ -21,7 +21,7 @@
               <a class="nav-link" href="{{ path('productManager_show', {'page' : '1'}) }}" aria-controls="tasks" aria-selected="false">Vos produits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" aria-controls="files" aria-selected="true">Modifier</a>
+              <a class="nav-link active" href="{{ path('productManager_modify_no_id') }}" aria-controls="files" aria-selected="true">Modifier</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ path('productManager_add') }}" aria-controls="activity" aria-selected="false">Créer</a>
@@ -51,7 +51,13 @@
                         {{ form_row(formProduct.category) }}
                         {{ form_row(formProduct.season) }}
                         {{ form_row(formProduct.picture) }}
-                        <small>Choisir une image de 200px de haut et de 100px à 200px de large.</small>
+                        <div class="d-flex flex-column product-img-row">
+                            <small>Choisir une nouvelle image uniquement pour changer d'image.</small>
+                            <small>Choisir une image de 200px de haut et de 100px à 200px de large.</small>
+                            {% if formProduct.vars.data %}
+                                <img src="{{ asset('/img/products/'~formProduct.vars.data.picture.name|e) }}" alt="Image du produit en cours de modification" />
+                            {% endif %}
+                        </div
                         {{ form_row(formProduct.description) }}
                         {{ form_row(formProduct.submit, {'label':'Modifier le produit'}) }}
                     {{ form_end(formProduct) }}

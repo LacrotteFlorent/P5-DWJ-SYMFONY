@@ -41,3 +41,8 @@
 .input-picture {
     height: auto!important;
 }
+
+.product-img-row img{
+    width: fit-content;
+    height: auto;
+}

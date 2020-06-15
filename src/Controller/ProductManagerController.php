@@ -123,13 +123,19 @@ class ProductManagerController extends AbstractController
 
             // Upload picture and sock in /public/img/products/...
             $pictureFile = $formProduct['picture']->getData();
+            $picture = new Picture;
+            $picture->setName('defaultImg');
             if($pictureFile){
-                $pictureFileName = $fileUploader->upload($pictureFile);
-                $picture = new Picture;
+                $pictureFileName = $fileUploader->upload($pictureFile, $product->getName());
                 $picture->setName($pictureFileName);
                 $picture->setAlt('photo de ' . $product->getName());
-                $product->setPicture($picture);
+                
             }
+            else {
+                $picture->setName('defaultImg.png');
+                $picture->setAlt('Image par defaut');
+            }
+            $product->setPicture($picture);
 
             $manager = $managerRegistry->getManager();
             $manager->persist($product);

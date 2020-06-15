@@ -24,7 +24,7 @@
               <a class="nav-link" href="{{ path('productManager_modify_no_id') }}" aria-controls="files" aria-selected="false">Modifier</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" aria-controls="activity" aria-selected="true">Créer</a>
+              <a class="nav-link active" href="{{ path('productManager_add') }}" aria-controls="activity" aria-selected="true">Créer</a>
             </li>
         </ul>
         <div class="content-list-body">
@@ -50,7 +50,10 @@
                         {{ form_row(formProduct.category) }}
                         {{ form_row(formProduct.season) }}
                         {{ form_row(formProduct.picture) }}
-                        <small>Choisir une image de 200px de haut et de 100px à 200px de large.</small>
+                        <div class="d-flex flex-column product-img-row">
+                            <small>Si vous ne choisissez pas d'image, votre logo apparaîtra.</small>
+                            <small>Choisir une image de 200px de haut et de 100px à 200px de large.</small>
+                        </div
                         {{ form_row(formProduct.description) }}
                         {{ form_row(formProduct.submit, {'label':'Créer le produit'}) }}
                     {{ form_end(formProduct) }}
