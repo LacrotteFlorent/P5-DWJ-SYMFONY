@@ -129,7 +129,6 @@ class ProductManagerController extends AbstractController
                 $pictureFileName = $fileUploader->upload($pictureFile, $product->getName());
                 $picture->setName($pictureFileName);
                 $picture->setAlt('photo de ' . $product->getName());
-                
             }
             else {
                 $picture->setName('defaultImg.png');

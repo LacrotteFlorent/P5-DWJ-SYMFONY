@@ -17,11 +17,15 @@
     -moz-border-radius: 10rem;
     -ms-border-radius: 10rem;
     -o-border-radius: 10rem;
+    height: 60px;
+    width: 60px;
 }
 
 .icon-rounded img {
-    height: 50px;
-    width: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    height: auto;
+    width: auto;
 }
 
 .progress {

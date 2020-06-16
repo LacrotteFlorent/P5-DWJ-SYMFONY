@@ -6,30 +6,20 @@ use App\Entity\Season;
 use App\Entity\Product;
 use App\Entity\Picture;
 use Symfony\Component\Form\AbstractType;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
 {
-    private $managerRegistry;
-
-    public function __construct(ManagerRegistry $managerRegistry)
-    {
-        $this->managerRegistry = $managerRegistry;
-    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $repoSeason = $this->managerRegistry->getManager()->getRepository(Season::class);
-        $seasons = $repoSeason->findAll();
         $builder
             ->add('name', TextType::class, [
                 'attr'              => [
@@ -94,18 +84,6 @@ class ProductType extends AbstractType
                 'required'      => false,
                 'placeholder'   => 'Aucune',
             ])
-            //->add('season', ChoiceType::class, [
-            //    'attr'          => ['class' => 'form-control'],
-            //    'label'         => 'Saison',
-            //    'row_attr'      => ['class' => 'mb-3'],
-            //    'choices'  => [
-            //        'Aucunes'       => null,
-            //        'été'           => $seasons[0],
-            //        'hiver'         => $seasons[1],
-            //        'automne'       => $seasons[2],
-            //        'printemps'     => $seasons[3],
-            //    ],
-            //])
             ->add('category', EntityType::class, [
                 'class'         => 'App\Entity\Category',
                 'attr'          => ['class' => 'form-control'],
