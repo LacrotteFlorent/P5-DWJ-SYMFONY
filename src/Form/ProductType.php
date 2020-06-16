@@ -83,34 +83,29 @@ class ProductType extends AbstractType
                 'required'      => false,
                 'mapped'        => false
             ])
-            //->add('season', EntityType::class, [
-            //    'class'         => 'App\Entity\Season',
-            //    'attr'          => ['class' => 'form-control'],
-            //    'choice_label'  => 'name',
-            //    'multiple'      => false,
-            //    'expanded'      => false,
-            //    'label'         => 'Saison',
-            //    'row_attr'      => ['class' => 'mb-3'],
-            //    //'choices'       => [
-            //    //   // 'Aucunes'       => null,
-            //    //    'été'           => 'été',
-            //    //    'hiver'         => 'hiver',
-            //    //    'automne'       => 'automne',
-            //    //    'printemps'     => 'printemps',
-            //    //]
-            //])
-            ->add('season', ChoiceType::class, [
+            ->add('season', EntityType::class, [
+                'class'         => 'App\Entity\Season',
                 'attr'          => ['class' => 'form-control'],
+                'choice_label'  => 'name',
+                'multiple'      => false,
+                'expanded'      => false,
                 'label'         => 'Saison',
                 'row_attr'      => ['class' => 'mb-3'],
-                'choices'  => [
-                    'Aucunes'       => null,
-                    'été'           => $seasons[0],
-                    'hiver'         => $seasons[1],
-                    'automne'       => $seasons[2],
-                    'printemps'     => $seasons[3],
-                ],
+                'required'      => false,
+                'placeholder'   => 'Aucune',
             ])
+            //->add('season', ChoiceType::class, [
+            //    'attr'          => ['class' => 'form-control'],
+            //    'label'         => 'Saison',
+            //    'row_attr'      => ['class' => 'mb-3'],
+            //    'choices'  => [
+            //        'Aucunes'       => null,
+            //        'été'           => $seasons[0],
+            //        'hiver'         => $seasons[1],
+            //        'automne'       => $seasons[2],
+            //        'printemps'     => $seasons[3],
+            //    ],
+            //])
             ->add('category', EntityType::class, [
                 'class'         => 'App\Entity\Category',
                 'attr'          => ['class' => 'form-control'],

@@ -7,8 +7,8 @@
 {% block title %}Gestionnaire de produits {% endblock %}
 
 {% block body %}
-<div class="container justify-content-center">
-    <div class="">
+<div class="d-flex justify-content-center">
+    <div class="col-10">
         <h1>Gestionnaire de produits</h1>
         <p class="lead"> Ajouter, modifier ou supprimer un produit</p>
         <hr class="mt-4 mb-1">
@@ -50,7 +50,7 @@
                         {{ form_row(formProduct.category) }}
                         {{ form_row(formProduct.season) }}
                         {{ form_row(formProduct.picture) }}
-                        <div class="d-flex flex-column product-img-row">
+                        <div class="d-flex flex-column product-img-row mb-3">
                             <small>Si vous ne choisissez pas d'image, votre logo apparaîtra.</small>
                             <small>Choisir une image de 200px de haut et de 100px à 200px de large.</small>
                         </div

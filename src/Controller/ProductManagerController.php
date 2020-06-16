@@ -54,7 +54,7 @@ class ProductManagerController extends AbstractController
      * @Route("/product_manager/modify/{id}", requirements={"id" = "\d+"}, name="productManager_modify")
      * @Route("/product_manager/modify", name="productManager_modify_no_id")
      */
-    public function modify(Product $product=null, Request $request, ManagerRegistry $managerRegistry, FileUploader $fileUploader)
+    public function modify(Product $product=null, Request $request, FileUploader $fileUploader)
     {
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
         $numberOfProducts = $repoProduct->productLenght();
@@ -80,7 +80,7 @@ class ProductManagerController extends AbstractController
                     $product->setPicture($picture);
                 }
 
-                $manager = $managerRegistry->getManager();
+                $manager = $this->getDoctrine()->getManager();
                 $manager->persist($product);
                 $manager->flush();
 
@@ -103,7 +103,7 @@ class ProductManagerController extends AbstractController
     /**
      * @Route("/product_manager/add", name="productManager_add")
      */
-    public function add(Request $request, ManagerRegistry $managerRegistry, FileUploader $fileUploader)
+    public function add(Request $request, FileUploader $fileUploader)
     {
         $repoProduct = $this->getDoctrine()->getRepository(Product::class);
         $numberOfProducts = $repoProduct->productLenght();
@@ -137,7 +137,7 @@ class ProductManagerController extends AbstractController
             }
             $product->setPicture($picture);
 
-            $manager = $managerRegistry->getManager();
+            $manager = $this->getDoctrine()->getManager();
             $manager->persist($product);
             $manager->flush();
 
@@ -153,9 +153,9 @@ class ProductManagerController extends AbstractController
     /**
      * @Route("/product_manager/delete/{id}", requirements={"id" = "\d+"}, name="productManager_delete")
      */
-    public function delete(Product $product, Request $request, ManagerRegistry $managerRegistry)
+    public function delete(Product $product)
     {
-        $manager = $managerRegistry->getManager();
+        $manager = $this->getDoctrine()->getManager();
         $manager->remove($product);
         $manager->flush();
 
