@@ -10,6 +10,7 @@ class ProductFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        /*
         for($i = 0; $i <= 10; $i++){
             $product = new Product();
             $product->setName("Légume". $i)
@@ -38,5 +39,6 @@ class ProductFixtures extends Fixture
         }
         
         $manager->flush();
+        */
     }
 }
