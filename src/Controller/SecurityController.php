@@ -29,6 +29,11 @@ class SecurityController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
+
+            if($form['mobileNumber']->getData()){
+                $user->setPhoneNumber($form['mobileNumber']->getData());
+            }
+
             $manager = $managerRegistry->getManager();
             $manager->persist($user);
             $manager->flush();

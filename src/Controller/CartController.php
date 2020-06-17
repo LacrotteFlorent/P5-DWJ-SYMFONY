@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Order;
 use App\Entity\AddCart;
 use App\Entity\Product;
+use App\Form\OrderType;
 use App\Form\Type\AddCartType;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,10 +53,17 @@ class CartController extends AbstractController
                 $formsAddCart[$product->getId()] = $form->createView();
             }
 
+            $order = new Order;
+            $formOrder = $this->createForm(OrderType::class, $order, [
+                'action' => $this->generateUrl('orderManager_newOrder'),
+                'method' => 'POST',
+            ]);
+
             return $this->render('cart/cart.html.twig', [
-                'cart'  => $cartWithData,
+                'cart'              => $cartWithData,
                 'products'          => $products,
                 'formsAddCart'      => $formsAddCart,
+                'formOrder'         => $formOrder->createView(),
             ]);
 
         }

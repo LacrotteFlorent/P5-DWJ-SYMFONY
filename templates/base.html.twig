@@ -58,18 +58,28 @@
                         </ul>
                     </div>
                     <div class="AccountAndCart">
-                        <a class="btn" href="{{ path('productManager_show', {'page':'1'}) }}">
-                            <img src="{{ asset('/img/logo/gear.png') }}" alt="Icone réglages" />
-                        </a>
-                        <a class="btn" href="{{ path('orderManager_show', {'page':'1'}) }}">
-                            <img src="{{ asset('/img/logo/trolley.png') }}" alt="Icone commande" />
-                        </a>
+                    {% if app.user %}
+                        {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                            <a class="btn" href="{{ path('productManager_show', {'page':'1'}) }}">
+                                <img src="{{ asset('/img/logo/gear.png') }}" alt="Icone réglages" />
+                            </a>
+                            <a class="btn" href="{{ path('orderManager_show', {'page':'1'}) }}">
+                                <img src="{{ asset('/img/logo/trolley.png') }}" alt="Icone commande" />
+                            </a>
+                        {% endif %}
+                    {% endif %}
                         <a class="btn" href="{{ path('cart_show') }}">
                             <img src="{{ asset('/img/logo/wicker-basket.png') }}" alt="Icone pannier" />
                         </a>
+                    {% if app.user %}
+                        <a class="btn" href="{{ path('signIn_showIn') }}">
+                            <img src="{{ asset('/img/logo/connect-padlock.png') }}" alt="Icone compte" />
+                        </a>
+                    {% else %}
                         <a class="btn" href="{{ path('signIn_showIn') }}">
                             <img src="{{ asset('/img/logo/disconnect-padlock.png') }}" alt="Icone compte" />
                         </a>
+                    {% endif %}
                     </div>
                 </nav>
             </header>

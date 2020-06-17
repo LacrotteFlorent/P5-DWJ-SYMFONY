@@ -67,20 +67,23 @@
 							</tbody>
 						</table>
 					</div>
+					{{ form_start(formOrder) }}
 					<div class="row jumbotron col-12 d-flex justify-content-center mt-5 py-3">
 						<h1 class="display-5 col-12">2. Mon créneau de retrait</h1>
 						<div class="card text-white bg-secondary mb-3 mr-3" style="max-width: 20rem;">
 							<div class="card-header">Choisis le jour</div>
 							<div class="card-body">
 								<p class="card-text">Le premier jour disponnible est le 23/03/32.</p>
-								<input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+								{{ form_widget(formOrder.pickupDate) }}
+								{# <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"> #}
 							</div>
 						</div>
 						<div class="card text-white bg-secondary mb-3 mr-3" style="max-width: 20rem;">
 							<div class="card-header">Choisis l'heure</div>
 							<div class="card-body">
 								<p class="card-text">Le premier crénau horraire disponnible est à 08h00.</p>
-								<input type="time" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+								{{ form_widget(formOrder.pickupTime) }}
+								{# <input type="time" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"> #}
 							</div>
 						</div>
 						<p class="card-text col-12 my-4 text-center lead">Tu as choisis le créneau suivant: Le 12/02/12 à 12h00.</p>
@@ -89,12 +92,14 @@
 						<h1 class="display-5 col-12 mb-4">3. Validation</h1>
 						<h3 class="col-sm-12 col-md-7 p-0">TOTAL: 123.00 €</h3>
 						{% if app.user %}
-							<button type="button" class="btn col-sm-12 col-md-5 col">Finaliser ma commande</button>
+							{# <button type="button" class="btn col-sm-12 col-md-5 col">Finaliser ma commande</button> #}
+							{{ form_widget(formOrder.submit) }}
 						{% else %}
 							<p class="text-danger col-12 p-0">Connectez vous pour valider votre commande !</p>
 							<a href="{{ path('signIn_showIn') }}" class="btn col-sm-12 col-md-5 col d-flex align-items-center justify-content-center">Connexion</a>
 						{% endif %}
 					</div>
+					{{ form_end(formOrder) }}
 				</div>
 				<div class="d-none d-sm-none d-md-none d-lg-block col-4 mt-5 mb-5">
 					<div class="">
