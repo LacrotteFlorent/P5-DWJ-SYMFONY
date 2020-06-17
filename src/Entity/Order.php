@@ -38,6 +38,11 @@ class Order
      */
     private $list = [];
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $pickupDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Order
     public function setList(array $list): self
     {
         $this->list = $list;
+
+        return $this;
+    }
+
+    public function getPickupDate(): ?\DateTimeInterface
+    {
+        return $this->pickupDate;
+    }
+
+    public function setPickupDate(?\DateTimeInterface $pickupDate): self
+    {
+        $this->pickupDate = $pickupDate;
 
         return $this;
     }

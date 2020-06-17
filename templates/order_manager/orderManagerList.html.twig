@@ -13,125 +13,17 @@
         <p class="lead"> Valider, vérifier, et rechercher une commande</p>
         <hr class="mt-4 mb-1">
         <div class="d-flex justify-content-between text-small m-2">
-            <span class="small">{{numberOfProducts}} produits créés</span>
+            <span class="small">12 {#{numberOfProducts}#} commandes en attente(s)</span>
             <span class="small">Administration des commandes</span>
         </div>
         <ul class="nav nav-tabs nav-fill p-2" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ path('productManager_show', {'page' : '1'}) }}" aria-controls="tasks" aria-selected="false">Vos produits</a>
+              <a class="nav-link active" href="{{ path('productManager_show', {'page' : '1'}) }}" aria-controls="tasks" aria-selected="false">Liste</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('productManager_modify_no_id') }}" aria-controls="files" aria-selected="true">Modifier</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ path('productManager_add') }}" aria-controls="activity" aria-selected="false">Créer</a>
+              <a class="nav-link" href="{{ path('productManager_modify_no_id') }}" aria-controls="files" aria-selected="true">Détail</a>
             </li>
         </ul>
-        <fieldset class="col-12 my-3">
-            {{ form_start(formSearch) }}
-                <div class="row justify-content-between">
-                    {{ form_row(formSearch.search)}}
-                    {{ form_row(formSearch.searchBtn)}}
-                </div>
-            {{ form_end(formSearch) }}
-        </fieldset>
-        <div class="content-list-body">
-            <div class="card-list mt-3 p-4 nav-tabs">
-                <div class="card-list-head mb-3">
-                    <h5>Produits par date de création</h5>
-                </div>
-                <div class="card-list-body filter-list">
-                {% for product in products %}
-                    <div class="card card-task mb-2">
-                        <div class="progress">
-                            {% if product.enabled == true %}
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            {% else %}
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            {% endif %}
-                        </div>
-                        <div class="card-body d-flex justify-content-between">
-                            <div class="card-title col-6 col-sm-4">
-                                <a href="#">
-                                    <h5 class="">{{ product.name|capitalize }}</h5>
-                                </a>
-                                <span class="text-small">{{ product.category.title|capitalize }}</span>
-                            </div>
-                            <div class="card-middle col-4 d-none d-md-block">
-                                <span class="text-small"><i class="fas fa-euro-sign"></i> {{ product.price|number_format(2) }}€ / </span>
-                                <span class="text-small">{{ product.unit }}</span>
-                                {% if product.season == true %}
-                                    <div class="text-small"><i class="fas fa-sun"></i> {{ product.season.name|capitalize }}</div>
-                                {% else %}
-                                    <div class="text-small"><i class="fas fa-sun"></i> Aucune saison</div>
-                                {% endif %}
-                            </div>
-                            <div class="card-meta d-flex align-items-center">
-                                <div class="icon-rounded row justify-content-center align-items-center">
-                                    <img src="{{ asset('/img/products/'~product.picture.name|e) }}" alt="Icone {{product.category.title}}" />
-                                </div>
-                                <div class="card-options ml-2 ml-sm-4">
-                                    <button class="btn-options btn" type="button" id="task-dropdown-button-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item text-primary" href="{{ path('productManager_modify', {'id' : product.id}) }}">Modifier</a>
-                                      <div class="dropdown-divider"></div>
-                                      <a class="dropdown-item text-danger" href="{{ path('productManager_delete', {'id' : product.id}) }}">Supprimer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                </div>
-            </div>
-        </div>
-        {% if paginate.nbPages > 0 %}
-            <div class="col-12 d-flex justify-content-center align-items-center mt-4">
-                <ul class="pagination pagination-md">
-                {% if paginate.page > 1 %}
-                    <li class="page-item">
-                        <a  
-                            class="page-link" 
-                            href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': 1})) }}#store"
-                        >&laquo;</a>
-                    </li>
-                    <li class="page-item">
-                        <a  
-                            class="page-link" 
-                            href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page-1})) }}#store"
-                        >&#60;</a>
-                    </li>
-                {% endif %}
-                {# Displays all pages between p-4 and p+4 unless < 1 or > nbPages #}
-                {% for p in range(max(paginate.page-4, 1), min(paginate.page+4, paginate.nbPages)) %}
-                    <li {% if p == paginate.page %} class="active page-item" {else} class="page-item" {% endif %}>
-                        <a  
-                            class="page-link" 
-                            href="{{ path(paginate.nameRoute, paginate.paramsRoute|merge({'page': p})) }}#store"
-                        >
-                            {{ p }}
-                        </a>
-                    </li>
-                {% endfor %}
-                {% if paginate.page < paginate.nbPages %}
-                    <li class="page-item">
-                        <a 
-                            class="page-link" 
-                            href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.page+1})) }}#store"
-                        >&#62;</a>
-                    </li>
-                    <li class="page-item">
-                        <a  
-                            class="page-link" 
-                            href="{{ path(paginate.nameRoute,paginate.paramsRoute|merge({'page': paginate.nbPages})) }}#store"
-                        >&raquo;</a>
-                    </li>
-                {% endif %}
-                </ul>
-            </div>
-        {% endif %}
-    </div>
+    <div>
 </div>
 {% endblock body %}

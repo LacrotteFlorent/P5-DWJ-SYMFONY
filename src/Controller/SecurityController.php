@@ -40,7 +40,6 @@ class SecurityController extends AbstractController
         }
 
         return $this->redirectToRoute('security_login');
-        
     }
 
     /**
