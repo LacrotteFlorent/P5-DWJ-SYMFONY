@@ -38,6 +38,12 @@ class Order
      */
     private $list = [];
 
+    private $listWithData = [];
+
+    private $totalPrice;
+
+    private $totalNumberOfProducts;
+
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -96,6 +102,18 @@ class Order
         return $this;
     }
 
+    public function getListWithData(): ?array
+    {
+        return $this->listWithData;
+    }
+
+    public function setListWithData(array $listWithData): self
+    {
+        $this->listWithData = $listWithData;
+
+        return $this;
+    }
+
     public function getPickupDate(): ?\DateTimeInterface
     {
         return $this->pickupDate;
@@ -104,6 +122,30 @@ class Order
     public function setPickupDate(?\DateTimeInterface $pickupDate): self
     {
         $this->pickupDate = $pickupDate;
+
+        return $this;
+    }
+
+    public function getTotalPrice(): ?float
+    {
+        return $this->totalPrice;
+    }
+
+    public function setTotalPrice(?float $totalPrice): self
+    {
+        $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    public function getTotalNumberOfProducts(): ?int
+    {
+        return $this->totalNumberOfProducts;
+    }
+
+    public function setTotalNumberOfProducts(?int $totalNumberOfProducts): self
+    {
+        $this->totalNumberOfProducts = $totalNumberOfProducts;
 
         return $this;
     }

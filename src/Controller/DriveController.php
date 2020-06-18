@@ -70,9 +70,9 @@ class DriveController extends AbstractController
      * @param   int $page
      * @return  array render for twig
      */
-    public function clearFilter()
+    public function clearFilter(SessionInterface $session)
     {
-        $this->session->remove('filters');
+        $session->remove('filters');
         
         return $this->redirectToRoute('drive_show', ['page' => '1']);
     }

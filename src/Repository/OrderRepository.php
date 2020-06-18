@@ -19,6 +19,18 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    /**
+      * @return int Return length of order table
+      */
+      public function orderLenght()
+      {
+          return $this->createQueryBuilder('s')
+              ->select('count(s.id)')
+              ->getQuery()
+              ->getSingleScalarResult()
+          ;
+      }
+
     // /**
     //  * @return Order[] Returns an array of Order objects
     //  */
