@@ -38,16 +38,18 @@ class Order
      */
     private $list = [];
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $pickupDate;
+
     private $listWithData = [];
 
     private $totalPrice;
 
     private $totalNumberOfProducts;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $pickupDate;
+    private $pickupTime;
 
     public function getId(): ?int
     {
@@ -146,6 +148,18 @@ class Order
     public function setTotalNumberOfProducts(?int $totalNumberOfProducts): self
     {
         $this->totalNumberOfProducts = $totalNumberOfProducts;
+
+        return $this;
+    }
+
+    public function getPickupTime(): ?\DateTimeInterface
+    {
+        return $this->pickupTime;
+    }
+
+    public function setPickupTime(?\DateTimeInterface $pickupTime): self
+    {
+        $this->pickupTime = $pickupTime;
 
         return $this;
     }

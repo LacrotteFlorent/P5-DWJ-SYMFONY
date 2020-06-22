@@ -6,7 +6,10 @@ use DateInterval;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Form\OrderType;
+use App\Form\OrderValidationType;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -65,50 +68,59 @@ class OrderManagerController extends AbstractController
     }
 
     /**
-     * @Route("/order_manager/details", requirements={"id" = "\d+"}, name="orderManager_showAndValid")
-     * @Route("/order_manager/modify", name="orderManager_showAndValid_noId")
+     * @Route("/order_manager/details/{id}", requirements={"id" = "\d+"}, name="orderManager_showAndValid")
+     * @Route("/order_manager/details", name="orderManager_showAndValid_noId")
      */
-    public function showAndValid(Order $order=null, Request $request)
+    public function showAndValid(Order $order=null, Request $request, MailerInterface $mailer, $mailProducer)
     {
         if($this->security->isGranted('ROLE_ADMIN')){
 
             $repoOrder = $this->getDoctrine()->getRepository(Order::class);
-            $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+            
             $numberOfOrders = $repoOrder->orderLenght();
 
             if($order){
                 $order = $repoOrder->find($order->getId());
-
-                $formValidOrder = $this->createForm(OrderType::class, $order);
+                $order->setPickupTime($order->getPickupDate());
+                $formValidOrder = $this->createForm(OrderValidationType::class, $order);
                 $formValidOrder->handleRequest($request);
 
                 if($formValidOrder->isSubmitted() &&  $formValidOrder->isValid()){
+                    $pickupDate = $order->getPickupDate();
+                    $time = $formValidOrder['pickupTime']->getData();
+                    $time = getDate($time->getTimestamp());
+                    $timeInterval = new DateInterval('PT' . $time['hours'] . 'H' . $time['minutes'] . 'M' . $time['seconds'] . 'S');
+                    $pickupDate->add($timeInterval);
 
-                    // TODO une fois le formulaire validé, on passe valid à 1 et change la date si elle dois l'être
-                    // on envois un mail au client pour confirmer la date d'enlèvement de la commande
+                    $order->setValid(true);
+
+                    $order = $this->hydrateOrderWithData($order);
+
+                    $emailToCustomer = (new TemplatedEmail())
+                    ->from($mailProducer)
+                    ->to($order->getUser()->getEmail())
+                    ->subject('Validation de votre commande : MangerPlusPrès.fr')
+                    ->htmlTemplate('emails/orderManagerCustomer.html.twig')
+                    ->context([
+                        'order'         => $order,
+                        'emailProducer' => $mailProducer,
+                    ]);
+
+                    $mailer->send($emailToCustomer);
+
+                    $manager = $this->getDoctrine()->getManager();
+                    $manager->persist($order);
+                    $manager->flush();
+
                     return $this->redirectToRoute('orderManager_show');
                 }
 
-                $orderList = $order->getList();
-                $orderWithData = [];
-                $totalPrice = 0;
-                $totalNumberOfProducts = 0;
-                foreach($orderList as $id => $quantity) {
-                    $product = $repoProduct->find($id);
-                    $orderWithData[] = [
-                        'product'   => $product,
-                        'quantity'  => $quantity,
-                    ];
-                    $totalPrice = $totalPrice + $product->getPrice();
-                    $totalNumberOfProducts++;
-                }
-                $order->setListWithData($orderWithData);
-                $order->setTotalNumberOfProducts($totalNumberOfProducts);
-                $order->setTotalPrice($totalPrice);
+                $order = $this->hydrateOrderWithData($order);
+                dump($order);
 
                 return $this->render('order_manager/orderManagerDetails.html.twig', [
-                    'orders'            => $order,
-                    'formOrder'         => $formValidOrder,
+                    'order'             => $order,
+                    'formOrder'         => $formValidOrder->createView(),
                     'numberOfOrders'    => $numberOfOrders,
                     'noId'              => false,
                 ]);
@@ -124,11 +136,48 @@ class OrderManagerController extends AbstractController
     }
 
     /**
+     * @param Order $order
+     * @return Order Return order hydrate with products
+     */
+    private function hydrateOrderWithData($order)
+    {
+        $repoProduct = $this->getDoctrine()->getRepository(Product::class);
+
+        $orderList = $order->getList();
+        $orderWithData = [];
+        $totalPrice = 0;
+        $totalNumberOfProducts = 0;
+        foreach($orderList as $id => $quantity) {
+            $product = $repoProduct->find($id);
+            $orderWithData[] = [
+                'product'   => $product,
+                'quantity'  => $quantity,
+            ];
+            $totalPrice = $totalPrice + $product->getPrice();
+            $totalNumberOfProducts++;
+        }
+        $order->setListWithData($orderWithData);
+        $order->setTotalNumberOfProducts($totalNumberOfProducts);
+        $order->setTotalPrice($totalPrice);
+    
+        return $order;
+    }
+
+    /**
      * @Route("/order_manager/delete/{id}", requirements={"id" = "\d+"}, name="orderManager_delete")
      */
     public function delete(Order $order)
     {
-        // TODO  supprimer la commande
+        if($this->security->isGranted('ROLE_ADMIN'))
+        {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->remove($order);
+            $manager->flush();
+
+            return $this->redirectToRoute('orderManager_show');
+        }
+
+        return $this->redirectToRoute("home_show");
     }
 
     /**
@@ -166,4 +215,79 @@ class OrderManagerController extends AbstractController
 
         return $this->redirectToRoute('cart_show');
     }
+
+    /**
+     * @Route("/order_manager/more/{idProduct}/{idOrder}", requirements={"idProduct" = "\d+"}, requirements={"idOrder" = "\d+"}, name="orderManager_more")
+     */
+    public function moreProductInOrder($idProduct, $idOrder)
+    {
+        if($this->security->isGranted('ROLE_ADMIN')){
+            $repoOrder = $this->getDoctrine()->getRepository(Order::class);
+            $order = $repoOrder->find($idOrder);
+
+            $list = $order->getList();
+            $list[$idProduct] = ($list[$idProduct]+1);
+            $order->setList($list);
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($order);
+            $manager->flush();
+
+            return $this->redirectToRoute('orderManager_showAndValid', ['id'=>$idOrder]);
+        }
+
+        return $this->redirectToRoute('cart_show');
+    }
+
+    /**
+     * @Route("/order_manager/less/{idProduct}/{idOrder}", requirements={"idProduct" = "\d+"}, requirements={"idOrder" = "\d+"}, name="orderManager_less")
+     */
+    public function lessProductInOrder($idProduct, $idOrder)
+    {
+        if($this->security->isGranted('ROLE_ADMIN')){
+            $repoOrder = $this->getDoctrine()->getRepository(Order::class);
+            $order = $repoOrder->find($idOrder);
+
+            $list = $order->getList();
+            if($list[$idProduct] == 1){
+                unset($list[$idProduct]);
+            }
+            else{
+                $list[$idProduct] = ($list[$idProduct]-1);
+            }
+            $order->setList($list);
+            
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($order);
+            $manager->flush();
+
+            return $this->redirectToRoute('orderManager_showAndValid', ['id'=>$idOrder]);
+        }
+
+        return $this->redirectToRoute('cart_show');
+    }
+
+    /**
+     * @Route("/order_manager/deleteProductInOrder/{idProduct}/{idOrder}", requirements={"idProduct" = "\d+"}, requirements={"idOrder" = "\d+"}, name="orderManager_deleteProductInOrder")
+     */
+    public function removeProductInOrder($idProduct, $idOrder)
+    {
+        if($this->security->isGranted('ROLE_ADMIN')){
+            $repoOrder = $this->getDoctrine()->getRepository(Order::class);
+            $order = $repoOrder->find($idOrder);
+
+            $list = $order->getList();
+            unset($list[$idProduct]);
+            $order->setList($list);
+            
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($order);
+            $manager->flush();
+
+            return $this->redirectToRoute('orderManager_showAndValid', ['id'=>$idOrder]);
+        }
+
+        return $this->redirectToRoute('cart_show');
+    }
+
 }

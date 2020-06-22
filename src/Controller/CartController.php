@@ -54,6 +54,8 @@ class CartController extends AbstractController
             }
 
             $order = new Order;
+            $order->setPickupDate(new \Datetime('Europe/Paris'));
+            $order->setPickupTime($order->getPickupDate());
             $formOrder = $this->createForm(OrderType::class, $order, [
                 'action' => $this->generateUrl('orderManager_newOrder'),
                 'method' => 'POST',

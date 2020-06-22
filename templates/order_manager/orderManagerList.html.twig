@@ -70,9 +70,9 @@
                                                   <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                  <a class="dropdown-item text-primary" href="{{ path('productManager_modify', {'id' : order.id}) }}">Voir détails</a>
+                                                  <a class="dropdown-item text-primary" href="{{ path('orderManager_showAndValid', {'id' : order.id}) }}">Voir détails</a>
                                                   <div class="dropdown-divider"></div>
-                                                  <a class="dropdown-item text-danger" href="{{ path('productManager_delete', {'id' : order.id}) }}">Supprimer</a>
+                                                  <a class="dropdown-item text-danger" href="{{ path('orderManager_delete', {'id' : order.id}) }}">Supprimer</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="card-list mt-3 p-4 nav-tabs">
+                <div class="card-list mt-3 p-4 nav-tabs mb-5">
                     <div class="card-list-head mb-3">
                         <h5>Commandes validées par date de soumission</h5>
                     </div>
@@ -127,9 +127,9 @@
                                                   <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                  <a class="dropdown-item text-primary" href="{{ path('productManager_modify', {'id' : order.id}) }}">Voir détails</a>
+                                                  <a class="dropdown-item text-primary" href="{{ path('orderManager_showAndValid', {'id' : order.id}) }}">Voir détails</a>
                                                   <div class="dropdown-divider"></div>
-                                                  <a class="dropdown-item text-danger" href="{{ path('productManager_delete', {'id' : order.id}) }}">Supprimer</a>
+                                                  <a class="dropdown-item text-danger" href="{{ path('orderManager_delete', {'id' : order.id}) }}">Supprimer</a>
                                                 </div>
                                             </div>
                                         </div>

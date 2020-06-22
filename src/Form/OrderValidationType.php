@@ -9,28 +9,39 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class OrderType extends AbstractType
+class OrderValidationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('pickupDate', DateType::class, [
                 'attr'          => ['class' => 'form-control'],
-                'label'         => false,
-                'row_attr'      => ['class' => 'mb-1'],
+                'label'         => "Date d'enlèvement",
+                'row_attr'      => ['class' => 'mb-2'],
             ])
             ->add('pickupTime', TimeType::class, [
                 'attr'          => ['class' => 'form-control'],
                 'label'         => false,
-                'row_attr'      => ['class' => 'mb-1'],
+                'row_attr'      => ['class' => 'mb-2'],
                 'mapped'        => true,
+            ])
+            ->add('customerMessage', TextareaType::class, [
+                'attr'              => [
+                        'class'         => 'form-control',
+                        'id'            => 'message',
+                        'rows'          => 3,
+                ],
+                'label'         => 'Message au client',
+                'row_attr'      => ['class' => 'mb-2'],
+                'mapped'            => false,
             ])
             ->add('submit', SubmitType::class, [
                 'attr'              => [
-                        'class'         => 'btn btn-primary',
+                        'class'         => 'btn btn-success',
                 ],
-                'label'             => 'Finaliser ma commande'
+                'label'             => 'Valider la commande'
             ])
         ;
     }
