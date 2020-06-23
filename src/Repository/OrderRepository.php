@@ -24,11 +24,11 @@ class OrderRepository extends ServiceEntityRepository
       */
       public function orderLenght()
       {
-          return $this->createQueryBuilder('s')
-              ->select('count(s.id)')
-              ->getQuery()
-              ->getSingleScalarResult()
-          ;
+            return $this->createQueryBuilder('s')
+                ->select('count(s.id)')
+                ->getQuery()
+                ->getSingleScalarResult()
+            ;
       }
 
     // /**
