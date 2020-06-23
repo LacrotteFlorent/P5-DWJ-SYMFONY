@@ -202,6 +202,7 @@ class OrderManagerController extends AbstractController
                 $order->setCreatedAt(new \Datetime());
                 $order->setUser($this->getUser());
                 $order->setList($session->get('cart', []));
+                $session->remove('cart');
 
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($order);

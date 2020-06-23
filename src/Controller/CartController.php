@@ -30,7 +30,6 @@ class CartController extends AbstractController
     {
         if($this->security->isGranted('ROLE_USER'))
         {
-
             $cart = $session->get('cart', []);
             $cartWithData = [];
             foreach($cart as $id => $quantity) {
@@ -74,9 +73,9 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/cart/add", name="cart_add")
+     * @Route("/cart/add/{route}", name="cart_add")
      */
-    public function add(Request $request, SessionInterface $session)
+    public function add($route, Request $request, SessionInterface $session)
     {
         $addCart = new AddCart;
         $formAddCart = $this->createForm(AddCartType::class, $addCart)->handleRequest($request);
@@ -92,7 +91,8 @@ class CartController extends AbstractController
 
         $session->set('cart', $cart);
 
-        return $this->redirectToRoute("drive_show",["page" => $addCart->getProductPage(), "_fragment" => $addCart->getProductId()]);
+        // $currentRoute = $request->attributes->get('_route');
+        return $this->redirectToRoute($route, ["page" => $addCart->getProductPage(), "_fragment" => $addCart->getProductId()]);
     }
 
     /**
