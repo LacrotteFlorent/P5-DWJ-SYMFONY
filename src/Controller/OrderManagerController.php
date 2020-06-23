@@ -25,7 +25,7 @@ class OrderManagerController extends AbstractController
     }
 
     /**
-     * @Route("/order_manager/list", requirements={"page" = "\d+"}, name="orderManager_show")
+     * @Route("/order_manager/list", name="orderManager_show")
      */
     public function show()
     {
@@ -207,7 +207,7 @@ class OrderManagerController extends AbstractController
                 $manager->persist($order);
                 $manager->flush();
 
-                return $this->redirectToRoute('cart_show');
+                return $this->render('order_manager/orderSubmitted.html.twig');
             }
 
             return $this->redirectToRoute('cart_show');

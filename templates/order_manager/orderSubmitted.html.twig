@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre commande à été validée {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/sign.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="sign d-flex justify-content-center">
+    <div class="col-10 my-5">
+        <div class="mb-4">
+            <h1 class="styleBold mb-4">Déconnexion</h1>
+            <h4 class="mb-4">Votre commande sur <span class="caveat">mangerPlusPrès.fr</span> à été validée, vous allez être informé par mail.</h4>
+            <ul>
+                <li>De la validation de l'horraire</li>
+                <li>De tous imprévus, tel qu'un produit manquant</li>
+                <li>Le producteur peux également vous appeller</li>
+            </ul>
+        </div>
+        <div class="mt-5 d-flex flex-column align-items-center">
+            <h1 class="mb-4">Commande validée</h1>
+            <h4 class="mb-4">Les producteurs de <span class="caveat">mangerPlusPrès.fr</span> vous remercient</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}
