@@ -70,7 +70,7 @@ class CartController extends AbstractController
 
         }
 
-        return $this->redirectToRoute("home_show");
+        return $this->render('security/needConnect.html.twig');
     }
 
     /**

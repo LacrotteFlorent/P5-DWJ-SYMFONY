@@ -25,6 +25,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								{% set total = 0 %}
                 				{% if cart | length > 0 %}
                 					{% set total = 0 %}
                 				  	{% for product in cart %}
@@ -90,7 +91,7 @@
 					</div>
 					<div class="row col-12 d-flex justify-content-start mt-5 py-3 jumbotron valid">
 						<h1 class="display-5 col-12 mb-4">3. Validation</h1>
-						<h3 class="col-sm-12 col-md-7 p-0">TOTAL: 123.00 €</h3>
+						<h3 class="col-sm-12 col-md-7 p-0">TOTAL: {{(total)|number_format(2)}}&#32;€</h3>
 						{% if app.user %}
 							{# <button type="button" class="btn col-sm-12 col-md-5 col">Finaliser ma commande</button> #}
 							{{ form_widget(formOrder.submit) }}
@@ -113,8 +114,8 @@
             			    		            <div class="d-flex flex-column align-items-center justify-content-between headProduct">
             			    		                <h4 class="text-center">{{ product.name|capitalize }}</h4>
             			    		                <div class="productPrice d-flex">
-            			    		                    <p>1.20€</p>
-            			    		                    <p class="productUnit ml-2">pièce</p>
+            			    		                    <p>{{product.price|number_format(2)}}&#32;€</p>
+            	                    					<p class="productUnit ml-2">{{product.unit}}</p>
             			    		                </div>
             			    		            </div>
             			    		        </div>

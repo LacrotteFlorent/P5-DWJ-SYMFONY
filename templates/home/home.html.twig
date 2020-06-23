@@ -110,8 +110,8 @@
             	                <div class="d-flex flex-column align-items-center justify-content-between headProduct">
             	                    <h4 class="text-center">{{ product.name|capitalize }}</h4>
             	                    <div class="productPrice d-flex">
-            	                        <p>1.20€</p>
-            	                        <p class="productUnit ml-2">pièce</p>
+            	                        <p>{{product.price|number_format(2)}}&#32;€</p>
+            	                        <p class="productUnit ml-2">{{product.unit}}</p>
             	                    </div>
             	                </div>
             	            </div>
