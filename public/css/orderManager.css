@@ -4,6 +4,17 @@
                                 /* ORDER MANAGER */
                                 /* ORDER MANAGER */
 
-.test {
-    
+table td {
+    padding-left: 1px!important;
+    padding-right: 0px!important;
+}
+
+@media (max-width: 575px) { 
+    .customerInfo h5 { 
+        font-size: 1em;
+    }
+
+    .customerInfo p {
+        font-size: 0.8em;
+    }
 }

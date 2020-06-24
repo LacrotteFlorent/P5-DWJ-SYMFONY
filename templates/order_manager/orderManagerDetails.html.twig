@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/css/productManager.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/orderManager.css') }}">
 {% endblock %}
 
 {% block title %}Gestionnaire de commandes {% endblock %}
 
 {% block body %}
     <div class="d-flex justify-content-center">
-        <div class="col-10 mt-2">
+        <div class="col-12 col-sm-10 mt-2">
             <h1>Gestionnaire de commandes</h1>
             <p class="lead"> Valider, vérifier, et rechercher une commande</p>
             <hr class="mt-4 mb-1">
             <div class="d-flex justify-content-between text-small m-2">
-                <span class="small"> {{numberOfOrders}} commandes</span>
+                <span class="small"> {{ numberOfOrders }} commandes</span>
                 <span class="small">Administration des commandes</span>
             </div>
             <ul class="nav nav-tabs nav-fill p-2" role="tablist">
@@ -25,7 +25,7 @@
                 </li>
             </ul>
             {% if noId == false %}
-                <div class="content-list-body">
+                <div class="content-list-body customerInfo">
                     <div class="card-list mt-3 p-4 nav-tabs mb-2">
                         <div class="card-list-head mb-3">
                             <h4>Informations client</h4>
@@ -43,17 +43,17 @@
                                 </div>
                             </div>
                             <div class="col-8">
-                                <p>{{ order.user.name|capitalize }} {{ order.user.firstname|capitalize }}</p>
+                                <p class="mb-2">{{ order.user.name|capitalize }} {{ order.user.firstname|capitalize }}</p>
                                 {% set phone = order.user.phoneNumber|split('',2) %}
                                 {% set phone = phone|join('.') %}
-                                <p>{{ phone }}</p>
-                                <p> {{ order.user.email }}</p>
+                                <p class="mb-2">{{ phone }}</p>
+                                <p class="mb-1">{{ order.user.email }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="content-list-body">
-                    <div class="card-list mt-3 p-4 nav-tabs mb-2">
+                    <div class="card-list mt-3 p-2 p-sm-4 nav-tabs mb-2">
                         <div class="card-list-head mb-3">
                             <h4>Commande</h4>
                         </div>
@@ -62,8 +62,8 @@
 								<tr>
 									<th scope="col">Produits</th>
 									<th scope="col">Quantitée</th>
-									<th scope="col">Prix Unitaire</th>
-                  					<th scope="col">Prix Total</th>
+									<th scope="col" class="d-none d-md-table-cell">Prix Unitaire</th>
+                  					<th scope="col" class="d-none d-md-table-cell">Prix Total</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
@@ -71,23 +71,23 @@
                 				{% set total = 0 %}
                 				{% for product in order.listWithData %}
 								  	{% set total = total + (product.product.price * product.quantity) %}
-									<tr class="">
-										<td scope="row">{{product.product.name|capitalize}}</td>
-										<td class="tableQty">
+									<tr scope="row" class="">
+										<td scope="col">{{ product.product.name|capitalize }}</td>
+										<td scope="col" class="tableQty">
                 				    		<div class="input-group input-group-sm mb-3">
 	            				    		    <div class="input-group-prepend">
-    	    					    		        <a class="btn btn-outline-secondary align-items-center d-flex" href="{{path('orderManager_less', {'idProduct':product.product.id,'idOrder':order.id})}}"><i class="far fa-arrow-alt-circle-down"></i></a>
+    	    					    		        <a class="btn btn-outline-secondary align-items-center d-flex" href="{{ path('orderManager_less', {'idProduct':product.product.id,'idOrder':order.id}) }}"><i class="far fa-arrow-alt-circle-down"></i></a>
         	    				    		    </div>
-            					    		    <span class="input-group-text">{{product.quantity}}</span>
+            					    		    <span class="input-group-text">{{ product.quantity }}</span>
                 							    <div class="input-group-append">
-                				    		    	<a class="btn btn-outline-secondary align-items-center d-flex" href="{{path('orderManager_more', {'idProduct':product.product.id,'idOrder':order.id})}} "><i class="far fa-arrow-alt-circle-up"></i></a>
+                				    		    	<a class="btn btn-outline-secondary align-items-center d-flex" href="{{ path('orderManager_more', {'idProduct':product.product.id,'idOrder':order.id}) }} "><i class="far fa-arrow-alt-circle-up"></i></a>
                 				    			</div>
                 				    		</div>
                 				  		</td>
-										<td>{{(product.product.price)|number_format(2)}} € /{{product.product.unit}}</td>
-                				  		<td>{{(product.product.price * product.quantity)|number_format(2)}}&#32;€</td>
-										<td>
-                				    		<a href="{{path('orderManager_deleteProductInOrder', {'idProduct':product.product.id,'idOrder':order.id})}}" class="btn btn-primary btn-sm">
+										<td scope="col" class="d-none d-md-table-cell">{{ (product.product.price)|number_format(2) }} € /{{ product.product.unit }}</td>
+                				  		<td scope="col" class="d-none d-md-table-cell">{{ (product.product.price * product.quantity)|number_format(2) }}&#32;€</td>
+										<td scope="col">
+                				    		<a href="{{ path('orderManager_deleteProductInOrder', {'idProduct':product.product.id,'idOrder':order.id}) }}" class="btn btn-primary btn-sm">
                 				    	  		<i class="fas fa-trash"></i>
                 				    		</a>
                 				  		</td>
@@ -95,14 +95,14 @@
                 				{% endfor %}
                 				<tr class="table-dark">
 									<th scope="row" class="totalCart">Total:</th>
-									<th class="text-right sommeCart" colspan="4">{{(total)|number_format(2)}}&#32;€</th>
+									<th class="text-right sommeCart" colspan="4">{{ (total)|number_format(2) }}&#32;€</th>
 								</tr>
 							</tbody>
 						</table>
                     </div>
                 </div>
                 <div class="content-list-body">
-                    <div class="card-list mt-3 p-4 nav-tabs mb-2">
+                    <div class="card-list mt-3 p-2 p-sm-4 nav-tabs mb-2">
                         <div class="card-list-head mb-3">
                             <h4>Validation</h4>
                         </div>

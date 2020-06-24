@@ -24,11 +24,11 @@
                                     {% set choix = formFilter.categories.vars.choices  %}
                                     {% for check in formFilter.categories %}
                                     {% set i = loop.index %}
-                                        {{form_widget(check, {'attr':{'class':'d-none'}})}}
+                                        {{ form_widget(check, {'attr':{'class':'d-none'}}) }}
                                         <div class="checkmark form-check my-2 filterCard col-6 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center align-items-center">
                                             <label class="form-check-label mt-1 d-flex justify-content-center align-items-center" for="filter_categories_{{i}}">
                                                 <img class="" src="{{ asset('/img/category/'~choix[i].data.urlIcon|e) }}" alt="Photo {{ check.vars.label }}" />
-                                                <p class="text-muted m-0">{{check.vars.label}}</p>
+                                                <p class="text-muted m-0">{{ check.vars.label }}</p>
                                             </label>
                                         </div>
                                     {% endfor %}
@@ -49,11 +49,11 @@
                                     {% set choix = formFilter.seasons.vars.choices  %}
                                     {% for check in formFilter.seasons %}
                                     {% set i = loop.index %}
-                                        {{form_widget(check, {'attr':{'class':'d-none'}})}}
+                                        {{ form_widget(check, {'attr':{'class':'d-none'}}) }}
                                         <div class="checkmark form-check my-2 filterCard col-6 col-md-4 col-lg-3 d-flex justify-content-center align-items-center">
                                             <label class="form-check-label mt-1 d-flex justify-content-center align-items-center" for="filter_seasons_{{i}}">
                                                 <img src="{{ asset('/img/seasons/'~choix[i].data.urlIcon|e) }}" alt="Photo {{ check.vars.label }}" />
-                                                <p class="text-muted m-0">{{check.vars.label}}</p>
+                                                <p class="text-muted m-0">{{ check.vars.label }}</p>
                                             </label>
                                         </div>
                                     {% endfor %}
@@ -80,7 +80,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">€</span>
                                                         </div>
-                                                        {{ form_widget(formFilter.maxPrice)}}
+                                                        {{ form_widget(formFilter.maxPrice) }}
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">.00</span>
                                                         </div>
@@ -94,7 +94,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">€</span>
                                                         </div>
-                                                        {{ form_widget(formFilter.minPrice)}}
+                                                        {{ form_widget(formFilter.minPrice) }}
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">.00</span>
                                                         </div>
@@ -164,13 +164,13 @@
 						<div class="">
             	        	<div class="row d-flex">
             	        	    <div class="col-8 d-flex align-items-center justify-content-center layoutQuantity">
-            	        	        {{form_widget(formsAddCart[product.id].productNumber, {"attr":{"class": "border-0"}})}}
+            	        	        {{ form_widget(formsAddCart[product.id].productNumber, {"attr":{"class": "border-0"}}) }}
             	        	    </div>
             	        	    <div class="col-4 d-flex align-items-center justify-content-center layoutCart">
             	        	        <div class="align-middle">
-            	        	            {{form_widget(formsAddCart[product.id].productId)}}
-            	        	            {{form_widget(formsAddCart[product.id].productPage)}}
-            	        	            <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add', {'route':'drive_show'}) }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button-->
+            	        	            {{ form_widget(formsAddCart[product.id].productId) }}
+            	        	            {{ form_widget(formsAddCart[product.id].productPage) }}
+            	        	            <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add', {'route':'drive_show'}) }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
             	        	        </div>
             	        	    </div>
             	        	</div>

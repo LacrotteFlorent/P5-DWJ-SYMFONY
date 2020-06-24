@@ -22,9 +22,9 @@ footer {
     text-decoration: underline;
 }
 
-.preFootFirst {
+/* .preFootFirst {
     border-right: 1px solid #F6F1E8;
-}
+} */
 
 @media (min-width: 575px) { 
     .preFoot {
@@ -46,4 +46,9 @@ footer {
     height: 50px;
     width: 100%;
     color: #919191;
+}
+
+.footFoot a {
+    color: #919191;
+    text-decoration: underline;
 }

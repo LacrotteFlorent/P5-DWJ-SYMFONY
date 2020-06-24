@@ -49,8 +49,8 @@ class OrderManagerController extends AbstractController
                         'product'   => $product,
                         'quantity'  => $quantity,
                     ];
-                    $totalPrice = $totalPrice + $product->getPrice();
-                    $totalNumberOfProducts++;
+                    $totalPrice = $totalPrice + ($product->getPrice() * $quantity);
+                    $totalNumberOfProducts = $totalNumberOfProducts + (1 * $quantity);
                 }
                 array_push($ordersWithData['orderList'], $orderWithData);
                 $order->setListWithData($orderWithData);
@@ -116,7 +116,6 @@ class OrderManagerController extends AbstractController
                 }
 
                 $order = $this->hydrateOrderWithData($order);
-                dump($order);
 
                 return $this->render('order_manager/orderManagerDetails.html.twig', [
                     'order'             => $order,
@@ -192,6 +191,9 @@ class OrderManagerController extends AbstractController
             $formOrder->handleRequest($request);
 
             if($formOrder->isSubmitted() &&  $formOrder->isValid()){
+                if(empty($session->get('cart', []))){
+                    return $this->redirectToRoute('cart_show');
+                }
                 $pickupDate = $order->getPickupDate();
                 $time = $formOrder['pickupTime']->getData();
                 $time = getDate($time->getTimestamp());

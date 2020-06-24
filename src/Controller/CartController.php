@@ -31,6 +31,7 @@ class CartController extends AbstractController
         if($this->security->isGranted('ROLE_USER'))
         {
             $cart = $session->get('cart', []);
+            dump($cart);
             $cartWithData = [];
             foreach($cart as $id => $quantity) {
                 $cartWithData[] = [

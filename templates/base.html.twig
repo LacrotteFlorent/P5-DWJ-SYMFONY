@@ -76,7 +76,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarColor03">
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarColor03">
                         <ul class="navbar-nav d-flex justify-content-center">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('home_show') }}">Accueil <span class="sr-only">(current)</span></a>
@@ -125,24 +125,25 @@
                 <div class="preFoot d-flex justify-content-center align-items-center">
                     <div class="container d-flex justify-content-center align-items-center">
                         <div class="row col-12">
-                            <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center preFootFirst">
+                            <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center preFootFirst text-center">
                                 <a href="#">Mon espace client</a>
                                 <a href="#">Conditions générales de vente</a>
                                 <a href="{{ path('contact_show') }}">Contactez le producteur</a>
                             </div>
-                            <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="mt-2 col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center">
                                 <adress>
-                                    <p> Hauchard Jean Marc</p>
-                                    <p>4 rue Jean Baptiste</p>
-                                    <p>07200</p>
-                                    <p>Aubenas</p>
+                                    <p class="mb-0">Hauchard Jean Marc</p>
+                                    <p class="mb-0">4 rue Jean Baptiste</p>
+                                    <p class="mb-0">07200</p>
+                                    <p class="mb-0">Aubenas</p>
                                 </adress>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="footFoot d-flex justify-content-center align-items-center">
+                <div class="footFoot d-flex justify-content-between align-items-center px-5">
                     <p class="mb-0 mx-1">Designed & created by Lacrotte Florent © 2020</p>
+                    <a href="">Flaticons</a>
                     <p class="mb-0">Copyrigth®</p>
                 </div>
             </footer>
