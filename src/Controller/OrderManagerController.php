@@ -104,6 +104,7 @@ class OrderManagerController extends AbstractController
                     ->context([
                         'order'         => $order,
                         'emailProducer' => $mailProducer,
+                        'message'       => $formValidOrder['customerMessage']->getData(),
                     ]);
 
                     $mailer->send($emailToCustomer);

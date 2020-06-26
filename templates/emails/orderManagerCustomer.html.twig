@@ -21,18 +21,18 @@
     				<td class="tableQty">
     		    		<div class="input-group input-group-sm mb-3">
     		    		    <div class="input-group-prepend">
-    		    		        <a class="btn btn-outline-secondary align-items-center d-flex" href="{{path('cart_less', {'id':product.product.id})}}"><i class="far fa-arrow-alt-circle-down"></i></a>
+    		    		        <a class="btn btn-outline-secondary align-items-center d-flex" href="{{ path('cart_less', {'id':product.product.id}) }}"><i class="far fa-arrow-alt-circle-down"></i></a>
     		    		    </div>
     		    		    <span class="input-group-text">{{product.quantity}}</span>
     					    <div class="input-group-append">
-    		    		    	<a class="btn btn-outline-secondary align-items-center d-flex" href="{{path('cart_more', {'id':product.product.id})}}"><i class="far fa-arrow-alt-circle-up"></i></a>
+    		    		    	<a class="btn btn-outline-secondary align-items-center d-flex" href="{{ path('cart_more', {'id':product.product.id}) }}"><i class="far fa-arrow-alt-circle-up"></i></a>
     		    			</div>
     		    		</div>
     		  		</td>
-    				<td>{{(product.product.price)|number_format(2)}} € /{{product.product.unit}}</td>
-    		  		<td>{{(product.product.price * product.quantity)|number_format(2)}}&#32;€</td>
+    				<td>{{ (product.product.price)|number_format(2) }} € /{{ product.product.unit }}</td>
+    		  		<td>{{ (product.product.price * product.quantity)|number_format(2) }}&#32;€</td>
     				<td>
-    		    		<a href="{{path('cart_remove', {'id':product.product.id})}}" class="btn btn-primary btn-sm">
+    		    		<a href="{{ path('cart_remove', {'id':product.product.id}) }}" class="btn btn-primary btn-sm">
     		    	  		<i class="fas fa-trash"></i>
     		    		</a>
     		  		</td>
@@ -40,10 +40,17 @@
     		{% endfor %}
     		<tr class="table-dark">
     			<th scope="row" class="totalCart">Total:</th>
-    			<th class="text-right sommeCart" colspan="4">{{(total)|number_format(2)}}&#32;€</th>
+    			<th class="text-right sommeCart" colspan="4">{{ (total)|number_format(2) }}&#32;€</th>
     		</tr>
     	</tbody>
     </table>
 
-    <p> Vous pouvez la retirer le {{ order.pickupDate|date('d/m/Y') }} à {{ order.pickupTime|date('H:i') }}
+	<div>
+		<h3>Message du producteur:</h3>
+		<p>{{ message }}</p>
+	</div>
+
+    <p>Vous pouvez la retirer le {{ order.pickupDate|date('d/m/Y') }} à {{ order.pickupTime|date('H:i') }}</p>
+
+	<p>A très bientôt chez MangerPlusPrès.fr</p>
 <div>
