@@ -109,7 +109,6 @@
                         <div class="d-flex justify-content-center align-items-center">
                             {{ form_start(formOrder, {'attr': {'class': 'col-12'}}) }}
                                 {{ form_row(formOrder.pickupDate) }}
-                                {{ form_row(formOrder.pickupTime, {'data': order.pickupDate|date('H/s')}) }}
                                 {{ form_row(formOrder.customerMessage) }}
                                 {{ form_row(formOrder.submit) }}
                             {{ form_end(formOrder) }}

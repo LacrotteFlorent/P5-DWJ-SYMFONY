@@ -87,10 +87,6 @@ class OrderManagerController extends AbstractController
 
                 if($formValidOrder->isSubmitted() &&  $formValidOrder->isValid()){
                     $pickupDate = $order->getPickupDate();
-                    $time = $formValidOrder['pickupTime']->getData();
-                    $time = getDate($time->getTimestamp());
-                    $timeInterval = new DateInterval('PT' . $time['hours'] . 'H' . $time['minutes'] . 'M' . $time['seconds'] . 'S');
-                    $pickupDate->add($timeInterval);
 
                     $order->setValid(true);
 
@@ -196,10 +192,6 @@ class OrderManagerController extends AbstractController
                     return $this->redirectToRoute('cart_show');
                 }
                 $pickupDate = $order->getPickupDate();
-                $time = $formOrder['pickupTime']->getData();
-                $time = getDate($time->getTimestamp());
-                $timeInterval = new DateInterval('PT' . $time['hours'] . 'H' . $time['minutes'] . 'M' . $time['seconds'] . 'S');
-                $pickupDate->add($timeInterval);
 
                 $order->setValid(false);
                 $order->setCreatedAt(new \Datetime());

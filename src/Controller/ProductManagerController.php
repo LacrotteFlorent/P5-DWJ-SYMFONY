@@ -39,10 +39,10 @@ class ProductManagerController extends AbstractController
             $formSearch->handleRequest($request);
 
             if($formSearch->isSubmitted() &&  $formSearch->isValid()){
-                $products = $repoProduct->findBySearchAndPaginator($productSearch, $page, $nbProductsByPage);
+                $products = $repoProduct->findBySearchAndPaginator($productSearch, $page, $nbProductsByPage, false);
             }
             else {
-                $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
+                $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage, false);
             }
 
             $paginate = [

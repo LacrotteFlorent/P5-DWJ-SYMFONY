@@ -29,6 +29,7 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllWithLimit($limit, $orderBy = 'DESC')
     {
         return $this->createQueryBuilder('a')
+            ->where('a.enabled = true')
             ->orderBy('a.createdAt', $orderBy)
             ->setMaxResults($limit)
             ->getQuery()
@@ -71,17 +72,18 @@ class ProductRepository extends ServiceEntityRepository
             $qb->andWhere('p.price <= :valMax');
             $qb->setParameter('valMax', $filters->getMaxPrice());
         }
-        
+
         return $this->paginatorDeploy($page, $nbMaxByPage, $qb);
     }
 
     /**
-     * @param Filter        $filters Entity
+     * @param Filter||Search $filters Entity or Search Entity
      * @param int           $page Actual page
      * @param int           $nbMaxByPage Products by page
+     * @param bool          $enabled
      * @return Product[]    Returns an array of Product objects
      */
-    public function findBySearchAndPaginator($filters, $page, $nbMaxByPage)
+    public function findBySearchAndPaginator($filters, $page, $nbMaxByPage, $enabled = true)
     {
         $qb = $this->createQueryBuilder('p');
 
@@ -89,26 +91,28 @@ class ProductRepository extends ServiceEntityRepository
             $qb->where($qb->expr()->like('p.name', ':search'))->setParameter('search', "%" . $filters->getSearch() . "%");
         }
         
-        return $this->paginatorDeploy($page, $nbMaxByPage, $qb);
+        return $this->paginatorDeploy($page, $nbMaxByPage, $qb, $enabled);
     }
 
     /**
      * @param int           $page
      * @param int           $nbMaxByPage
+     * @param bool          $enabled
      * @return Paginator    $paginator
      */
-    public function findAllAndPaginator($page, $nbMaxByPage)
+    public function findAllAndPaginator($page, $nbMaxByPage, $enabled = true)
     {
-        return $this->paginatorDeploy($page, $nbMaxByPage);
+        return $this->paginatorDeploy($page, $nbMaxByPage, null, $enabled);
     }
 
     /**
      * @param int           $page
      * @param int           $nbMaxByPage
      * @param Qb|null       $qb
+     * @param bool          $enabled
      * @return Paginator    $paginator
      */
-    private function paginatorDeploy($page, $nbMaxByPage, $qb = null)
+    private function paginatorDeploy($page, $nbMaxByPage, $qb = null, $enabled = true)
     {
         if (!is_numeric($page)) {
             throw new InvalidArgumentException(
@@ -125,9 +129,14 @@ class ProductRepository extends ServiceEntityRepository
                 'La valeur de l\'argument $nbMaxByPage est incorrecte (valeur : ' . $nbMaxByPage . ').'
             );
         }
-
+        
         if($qb == null){
             $qb = $this->createQueryBuilder('p');
+        }
+
+        if($enabled == true){
+            $qb->andWhere('p.enabled = :enabled');
+            $qb->setParameter('enabled', true);
         }
 
         $query = $qb->orderBy('p.createdAt', 'DESC')->getQuery();

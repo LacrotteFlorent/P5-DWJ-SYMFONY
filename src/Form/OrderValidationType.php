@@ -6,7 +6,7 @@ use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -16,16 +16,10 @@ class OrderValidationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pickupDate', DateType::class, [
-                'attr'          => ['class' => 'form-control'],
-                'label'         => "Date d'enlèvement",
+            ->add('pickupDate', DateTimeType::class, [
+                'attr'          => ['class' => 'input-group form-control'],
+                'label'         => "Date et heure d'enlèvement",
                 'row_attr'      => ['class' => 'mb-2'],
-            ])
-            ->add('pickupTime', TimeType::class, [
-                'attr'          => ['class' => 'form-control'],
-                'label'         => false,
-                'row_attr'      => ['class' => 'mb-2'],
-                'mapped'        => true,
             ])
             ->add('customerMessage', TextareaType::class, [
                 'attr'              => [

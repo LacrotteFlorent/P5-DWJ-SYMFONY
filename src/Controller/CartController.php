@@ -31,7 +31,6 @@ class CartController extends AbstractController
         if($this->security->isGranted('ROLE_USER'))
         {
             $cart = $session->get('cart', []);
-            dump($cart);
             $cartWithData = [];
             foreach($cart as $id => $quantity) {
                 $cartWithData[] = [
@@ -92,7 +91,6 @@ class CartController extends AbstractController
 
         $session->set('cart', $cart);
 
-        // $currentRoute = $request->attributes->get('_route');
         return $this->redirectToRoute($route, ["page" => $addCart->getProductPage(), "_fragment" => $addCart->getProductId()]);
     }
 

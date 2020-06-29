@@ -16,8 +16,8 @@
                 {{ form_start(formFilter) }}
                     {% set buttonChangeFilter = (form_widget(formFilter.changeFilter, { 'label': 'Changer les Filtres' })) %}
                     <div class="card bg-light mb-3">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
+                        <div class="card-header d-flex justify-content-between">Categories<button type="button" class="btn menu-btn btn-category"><i class="fas fa-arrow-down"></i></button></div>
+                        <div class="card-body category-filter" style="display:none;">
                             <p class="card-text">Vous pouvez selectionner plusieurs catégories.</p>
                             <div class="filterDrive mb-5 col-12 d-flex justify-content-center">
                                 <div class="row justify-content-center">
@@ -35,14 +35,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-muted d-flex justify-content-end">
-                            {{ buttonChangeFilter|raw }}
-                            <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
+                        <div class="card-footer category-filter" style="display:none;">
+                            <div class="text-muted d-flex justify-content-end">
+                                {{ buttonChangeFilter|raw }}
+                                <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card bg-light mb-3">
-                        <div class="card-header">Saisons</div>
-                        <div class="card-body">
+                        <div class="card-header d-flex justify-content-between">Saisons<button type="button" class="btn menu-btn btn-season"><i class="fas fa-arrow-down"></i></button></div>
+                        <div class="card-body season-filter" style="display:none;">
                             <p class="card-text">Vous pouvez selectionner plusieurs saisons.</p>
                             <div class="filterDrive mb-5 col-12 d-flex justify-content-center">
                                 <div class="row justify-content-center">
@@ -60,14 +62,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-muted d-flex justify-content-end">
-                            {{ buttonChangeFilter|raw }}
-                            <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
+                        <div class="card-footer season-filter" style="display:none;">
+                            <div class="text-muted d-flex justify-content-end">
+                                {{ buttonChangeFilter|raw }}
+                                <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card bg-light mb-3">
-                        <div class="card-header">Prix</div>
-                        <div class="card-body">
+                        <div class="card-header d-flex justify-content-between">Prix<button type="button" class="btn menu-btn btn-price"><i class="fas fa-arrow-down"></i></button></div>
+                        <div class="card-body price-filter" style="display:none;">
                             <p class="card-text">Choisissez votre tranche de prix.</p>
                             <div class="filterDrive my-4 row d-flex justify-content-center">
                                 <div class="col-12">
@@ -106,9 +110,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-muted d-flex justify-content-end">
-                            {{ buttonChangeFilter|raw }}
-                            <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
+                        <div class="card-footer price-filter" style="display:none;">
+                            <div class="text-muted d-flex justify-content-end">
+                                {{ buttonChangeFilter|raw }}
+                                <a href="{{ path('drive_clearFilter') }}#store" class="btn btn-danger mx-1" data-dismiss="modal">Supprimer les filtres</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row searchDrive mb-5 d-flex justify-content-center items-align-center">
@@ -225,4 +231,8 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('/js/filters.js') }}"></script>
 {% endblock %}
