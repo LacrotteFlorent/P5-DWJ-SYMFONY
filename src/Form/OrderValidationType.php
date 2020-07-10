@@ -20,6 +20,7 @@ class OrderValidationType extends AbstractType
                 'attr'          => ['class' => 'input-group form-control'],
                 'label'         => "Date et heure d'enlèvement",
                 'row_attr'      => ['class' => 'mb-2'],
+                'widget'        => "single_text"
             ])
             ->add('customerMessage', TextareaType::class, [
                 'attr'              => [

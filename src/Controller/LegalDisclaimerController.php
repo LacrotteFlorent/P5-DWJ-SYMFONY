@@ -14,4 +14,12 @@ class LegalDisclaimerController extends AbstractController
     {
         return $this->render('legal_disclaimer/flaticons.html.twig');
     }
+
+    /**
+     * @Route("/legaldisclaimer/legalNotice", name="legalNotice_show")
+     */
+    public function showLegalNotice()
+    {
+        return $this->render('legal_disclaimer/legal_notices.html.twig');
+    }
 }

@@ -13,7 +13,7 @@
             <div class="col-12 col-sm-11 col-md-10 col-lg-6">
                 {{ form_start(formContact) }}
                     <fieldset>
-                        <legend>Vous souhaitez nous joindre ? Utilisez le formulaire.</legend>
+                        <legend>Vous souhaitez nous joindre ? Utilisez ce formulaire:</legend>
                         <div class="form-group row">
                             <div class="form-group col-6">
                                 <label for="firstName">Nom</label>
@@ -55,6 +55,7 @@
                             </label>
                         </div>
                         {{ form_widget(formContact.send) }}
+                        <button id="send" class="btn" type="button">Test</button>
                     </fieldset>
                 {{ form_end(formContact) }}
             </div>
@@ -62,21 +63,24 @@
                 <div class="card col-12 mb-4">
                     <div class="card-body">
                         <h4 class="card-title">Comment passer commande ?</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Avez vous lus la page de fonctionnement ?</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Avez vous lu la page de fonctionnement ?</h6>
                         <p class="card-text">Tout y est expliqué en détail.</p>
-                        <a href="{{ path('fonctionnement_show') }}" class="card-link">Fonctionnement</a>
+                        <a href="{{ path('fonctionnement_show') }}" class="card-link font-italic">Fonctionnement</a>
                     </div>
                 </div>
                 <div class="card col-12 mb-4">
                     <div class="card-body">
                         <h4 class="card-title">Qui sommes nous ?</h4>
                         <h6 class="card-subtitle mb-2 text-muted">La famille Hauchard</h6>
-                        <p class="card-text">Nous sommes un producteur local, qui à choisi de mettre ses produits à disposition.</p>
-                        <a href="{{ path('producer_show') }}" class="card-link">Producteur</a>
-                        <a href="{{ path('drive_show', {'page' : '1'}) }}" class="card-link">Drive</a>
+                        <p class="card-text">Nous sommes un producteur local, qui choisit de mettre ses produits à votre disposition.</p>
+                        <a href="{{ path('producer_show') }}" class="card-link font-italic">Producteur</a>
+                        <a href="{{ path('drive_show', {'page' : '1'}) }}" class="card-link font-italic">Drive</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 {% endblock body %}
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('/js/checkForm.js') }}"></script>
+{% endblock %}

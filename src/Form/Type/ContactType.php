@@ -18,9 +18,9 @@ class ContactType extends AbstractType
     {
 
         $reasonChoices = [
-            'Demande de renseignements'     => 'Demande de renseignements',
-            'Erreur dans votre commande'    => 'Erreur dans votre commande',
-            'Prise de rdv, professionel'    => 'Prise de rdv, professionel',
+            'Demande de renseignements'             => 'Demande de renseignements',
+            'Erreur dans votre commande'            => 'Erreur dans votre commande',
+            'Prise de rendez-vous, professionnel'   => 'Prise de rendez-vous, professionnel',
         ];
 
         $builder

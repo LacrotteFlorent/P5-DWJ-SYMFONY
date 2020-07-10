@@ -21,7 +21,7 @@ class SignUpType extends AbstractType
             ->add('firstName', TextType::class, [
                 'attr'          => [
                                     'class'         => 'form-control',
-                                    'placeholder'   => 'Votre Nom'
+                                    'placeholder'   => 'Votre nom'
                                 ],
                 'required'      => true,
             ])

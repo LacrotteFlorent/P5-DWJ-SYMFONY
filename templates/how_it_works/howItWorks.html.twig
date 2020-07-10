@@ -8,47 +8,32 @@
 {% block title %}Fonctionnement {% endblock %}
 
 {% block body %}
-<div class="row col-12 pt-5 headHowItWorks d-flex justify-content-start align-items-center">
-    <!--div class="d-flex justify-content-center align-items-center col-12 col-md-2">
-        <img src="{{ asset('/img/gears.png') }}" alt="Carte de l'ardeche avec détail des départements" />
-    </div-->
+<div class="d-flex flex-column pt-5 headHowItWorks justify-content-start align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-center col-12 col-md-12">
         <h1 class="styleBold text-center">Comment passer commande ?</h1>
-        <h4 class="styleTitle">Laisser vous guider</h4>
+        <h4 class="styleTitle">Laissez vous guider</h4>
     </div>
-    <!--div class="d-md-flex justify-content-center align-items-center d-none d-sm-none d-md-block col-md-2">
-        <img src="{{ asset('/img/gears.png') }}" alt="Carte de l'ardeche avec détail des départements" />
-    </div-->
-    
 </div>
-<!--<div class="row rowDivider dark-blue">
-    <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep4" viewBox="0 0 1600 200" style="display: block;" data-height="200">
-        <polygon class="" style="fill: #FFFFFF;" points="886,86 800,172 714,86 -4,86 -4,204 1604,204 1604,86 "></polygon> 
-        <polygon class="" style="opacity: 1;fill: #436C00;" points="800,172 886,86 900,86 800,186 700,86 714,86 "></polygon> 
-        <polygon class="" style="opacity: 1;fill: #568A00;" points="800,162 876,86 888,86 800,174 712,86 724,86 "></polygon>
-    </svg>
-    
-</div>-->
-<div class="help row d-flex justify-content-center">
+<div class="help d-flex flex-column justify-content-center">
     <div class="helpOne col-10 align-self-center">
         <div class="jumbotron">
             <h1 class="display-4 display-sm-3 ">1. Pour commencer</h1>
-            <p class="lead">Je m'inscrit pour avoir accès au service de drive, et pouvoir passer commande</p>
+            <p class="lead">Je m'inscris pour avoir accès au service de Drive et pouvoir passer commande</p>
             <hr class="my-4">
-            <p>En suivant ce lien vous serez redirigé vers la page d'inscription</p>
+            <p>En suivant ce lien vous serez redirigés vers la page d'inscription:</p>
             <p class="lead">
-                <a class="btn btn-lg" href="#" role="button">S'inscrire</a>
+                <a class="btn btn-lg" href="{{ path('signIn_showIn') }}" role="button">S'inscrire</a>
             </p>
         </div>
     </div>
     <div class="helpTwo col-10 align-self-center">
         <div class="jumbotron">
             <h1 class="display-4 display-sm-3 ">2. Faites vos courses</h1>
-            <p class="lead">Une fois inscrit, remplissez votre pannier, faites vos courses</p>
+            <p class="lead">Une fois inscrit, remplissez votre panier, faites vos courses</p>
             <hr class="my-4">
-            <p>Il vous suffit de vous rendre sur la page du drive et de selectionner vos article avec les quantités souhaitées</p>
+            <p>Il vous suffit de vous rendre sur la page du drive et de sélectionner vos articles dans les quantités souhaitées:</p>
             <p class="lead">
-                <a class="btn btn-lg" href="{{ path('drive_show', {'page' : '1'}) }}" role="button">Le drive</a>
+                <a class="btn btn-lg" href="{{ path('drive_show', {'page' : '1'}) }}" role="button">Le Drive</a>
             </p>
         </div>
     </div>
@@ -57,20 +42,20 @@
             <h1 class="display-4 display-sm-3 ">3. Passez commande</h1>
             <p class="lead">Je vérifie ma liste d'achats</p>
             <hr class="my-4">
-            <p>Rendez vous dans votre pannier pour vérifier votre liste et validez la commande si cela vous convient</p>
+            <p>Rendez vous dans votre panier pour vérifier votre liste et validez la commande si cela vous convient:</p>
             <p class="lead">
-                <a class="btn btn-lg" href="#" role="button">Mon pannier</a>
+                <a class="btn btn-lg" href="{{ path('cart_show') }}" role="button">Mon panier</a>
             </p>
         </div>
     </div>
     <div class="helpFour col-10 align-self-center">
         <div class="jumbotron">
-            <h1 class="display-4 display-sm-3 ">4. Je choisis un crénau</h1>
-            <p class="lead">Choissiez un crénau horraire disponnible</p>
+            <h1 class="display-4 display-sm-3 ">4. Je choisis un créneau</h1>
+            <p class="lead">Choissiez un créneau horaire disponible</p>
             <hr class="my-4">
             <p>Une fois que la commande aura été validé par le producteur vous recevrez un mail de confirmation. Vous pouvez voir l'état de votre commande dans votre tableau de bord. </p>
             <p class="lead">
-                <a class="btn btn-lg" href="#" role="button">Tableau de bord</a>
+                <a class="btn btn-lg" href="{{ path('cart_show') }}" role="button">Tableau de bord</a>
             </p>
         </div>
     </div>

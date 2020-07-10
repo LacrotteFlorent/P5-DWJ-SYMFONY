@@ -1,17 +1,10 @@
 // script for hide and show filters in Drive page
 
+let arrayItems = {".btn-category":".category-filter", ".btn-season":".season-filter", ".btn-price":".price-filter"}
 $(document).ready(function(){
-    $(".btn-category").click(function(){
-        $(".category-filter").toggle();
-    });
-});
-$(document).ready(function(){
-    $(".btn-season").click(function(){
-        $(".season-filter").toggle();
-    });
-});
-$(document).ready(function(){
-    $(".btn-price").click(function(){
-        $(".price-filter").toggle();
-    });
+    for(const container in arrayItems){
+        $(container).click(function(){
+            $(arrayItems[container]).toggle();
+        });
+    }
 });

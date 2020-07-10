@@ -41,8 +41,6 @@ class DriveController extends AbstractController
             $products = $repoProduct->findAllAndPaginator($page, $nbProductsByPage);
         }
 
-        dump($session->get('filters'));
-
         $addCart = new AddCart;
         $formsAddCart = [];
         foreach($products as $product){

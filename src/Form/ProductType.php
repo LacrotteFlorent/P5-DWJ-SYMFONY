@@ -53,7 +53,7 @@ class ProductType extends AbstractType
                         'id'            => 'unit',
                         'placeholder'   => 'Saisissez une unité de vente',
                 ],
-                'label'             => 'Unitée',
+                'label'             => 'Unité',
                 'row_attr'          => ['class' => 'mb-3'],
             ])
             ->add('price', MoneyType::class, [
@@ -62,7 +62,7 @@ class ProductType extends AbstractType
                         'id'            => 'price',
                         'placeholder'   => 'Saisissez un prix',
                 ],
-                'label'             => 'Prix en euros TTC',
+                'label'             => 'Prix en euro TTC',
                 'row_attr'          => ['class' => 'mb-3'],
                 'currency'          => false
             ])
@@ -90,7 +90,7 @@ class ProductType extends AbstractType
                 'choice_label'  => 'title',
                 'multiple'      => false,
                 'expanded'      => false,
-                'label'         => 'Categorie',
+                'label'         => 'Catégorie',
                 'row_attr'      => ['class' => 'mb-3'],
             ])
             ->add('submit', SubmitType::class, [

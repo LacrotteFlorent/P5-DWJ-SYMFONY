@@ -17,6 +17,7 @@ class OrderType extends AbstractType
         $builder
             ->add('pickupDate', DateTimeType::class, [
                 'attr'          => ['class' => 'input-group form-control'],
+                'widget'        => "single_text",
                 'label'         => false,
             ])
             ->add('submit', SubmitType::class, [

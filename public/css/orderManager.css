@@ -18,3 +18,12 @@ table td {
         font-size: 0.8em;
     }
 }
+
+.nav-tabs {
+    border-radius: 0.5rem;
+    background: #e9ecef;
+}
+
+.nav-tabs .nav-link.active {
+    border-radius:0.25rem!important;
+}

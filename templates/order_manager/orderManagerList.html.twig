@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-center">
         <div class="col-12 col-sm-10 mt-2">
             <h1>Gestionnaire de commandes</h1>
-            <p class="lead"> Valider, vérifier, et rechercher une commande</p>
+            <p class="lead"> Valider, vérifier et rechercher une commande</p>
             <hr class="mt-4 mb-1">
             <div class="d-flex justify-content-between text-small m-2">
                 <span class="small"> {{ numberOfOrders }} commandes</span>
@@ -18,10 +18,10 @@
             </div>
             <ul class="nav nav-tabs nav-fill p-2" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" href="{{ path('orderManager_show') }}" aria-controls="tasks" aria-selected="false">Liste</a>
+                  <a class="nav-link active" href="{{ path('orderManager_show') }}">Liste</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ path('orderManager_showAndValid_noId') }}" aria-controls="files" aria-selected="true">Détails</a>
+                  <a class="nav-link" href="{{ path('orderManager_showAndValid_noId') }}" aria-controls="files" aria-selected="false">Détails</a>
                 </li>
             </ul>
             <div class="content-list-body">
@@ -71,12 +71,12 @@
                                         <div class="card-meta d-flex align-items-center">
                                             <div class="card-options ml-2 ml-sm-4">
                                                 <button class="btn-options btn" type="button" id="task-dropdown-button-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  <i class="fas fa-ellipsis-v"></i>
+                                                    <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                  <a class="dropdown-item text-primary" href="{{ path('orderManager_showAndValid', {'id' : order.id}) }}">Voir détails</a>
-                                                  <div class="dropdown-divider"></div>
-                                                  <a class="dropdown-item text-danger" href="{{ path('orderManager_delete', {'id' : order.id}) }}">Supprimer</a>
+                                                    <a class="dropdown-item text-primary" href="{{ path('orderManager_showAndValid', {'id' : order.id}) }}">Voir détails</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="{{ path('orderManager_delete', {'id' : order.id}) }}">Supprimer</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,12 +132,12 @@
                                         <div class="card-meta d-flex align-items-center">
                                             <div class="card-options ml-2 ml-sm-4">
                                                 <button class="btn-options btn" type="button" id="task-dropdown-button-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  <i class="fas fa-ellipsis-v"></i>
+                                                    <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                  <a class="dropdown-item text-primary" href="{{ path('orderManager_showAndValid', {'id' : order.id}) }}">Voir détails</a>
-                                                  <div class="dropdown-divider"></div>
-                                                  <a class="dropdown-item text-danger" href="{{ path('orderManager_delete', {'id' : order.id}) }}">Supprimer</a>
+                                                    <a class="dropdown-item text-primary" href="{{ path('orderManager_showAndValid', {'id' : order.id}) }}">Voir détails</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="{{ path('orderManager_delete', {'id' : order.id}) }}">Supprimer</a>
                                                 </div>
                                             </div>
                                         </div>
