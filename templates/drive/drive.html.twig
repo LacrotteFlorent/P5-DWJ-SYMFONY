@@ -28,7 +28,7 @@
                                         <div class="checkmark form-check my-2 filterCard col-6 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center align-items-center">
                                             <label class="form-check-label mt-1 d-flex justify-content-center align-items-center" for="filter_categories_{{i}}">
                                                 <img class="" src="{{ asset('/img/category/'~choix[i].data.urlIcon|e) }}" alt="Photo {{ check.vars.label }}" />
-                                                <p class="text-muted m-0">{{ check.vars.label }}</p>
+                                                <span class="text-muted m-0">{{ check.vars.label }}</span>
                                             </label>
                                         </div>
                                     {% endfor %}
@@ -78,7 +78,7 @@
                                     <fieldset class="">
                                         <div class="row d-flex justify-content-center">
                                             <fieldset class="form-group col-12 sol-sm-6 col-lg-4">
-                                                <label for="customRange1">Maximum</label>
+                                                <label for="maxPrice">Maximum</label>
                                                 <div class="form-group">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
@@ -92,7 +92,7 @@
                                                 </div>
                                             </fieldset>
                                             <fieldset class="form-group col-12 sol-sm-6 col-lg-4">
-                                                <label for="customRange1">Minimum</label>
+                                                <label for="minPrice">Minimum</label>
                                                 <div class="form-group">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
@@ -203,7 +203,7 @@
                     {% endif %}
                     {# Displays all pages between p-4 and p+4 unless < 1 or > nbPages #}
                     {% for p in range(max(paginate.page-4, 1), min(paginate.page+4, paginate.nbPages)) %}
-                        <li {% if p == paginate.page %} class="active page-item" {else} class="page-item" {% endif %}>
+                        <li {% if p == paginate.page %} class="active page-item" {% else %} class="page-item" {% endif %}>
                             <a  
                                 class="page-link" 
                                 href="{{ path(paginate.nameRoute, paginate.paramsRoute|merge({'page': p})) }}#store"

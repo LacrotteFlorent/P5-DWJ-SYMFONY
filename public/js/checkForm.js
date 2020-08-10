@@ -1,23 +1,17 @@
 // script for test form
 
 // constraints
-function AbstractConstraint(id, value) {
-    
-}
-
 function constraintLength(id, values){
     if(values['min']){
         if($(id).val() >= values['min']){
             $(id).css('background-color', '#fff'),$(id).css('color', '#495057');
             $(id + ' + .errorFormJs ').remove();
-            console.log("slength" + this.status);
             return true;
         }
         else{
             $(id).css('background-color', '#D78E8C'),$(id).css('color', 'white');
             $(id + ' + .errorFormJs ').remove();
             $(id).after('<small class="text-info errorFormJs">' + values.minMessage + '</small>');
-            console.log("lenght" + this.status);
             return false;
         }
     }
@@ -109,7 +103,6 @@ class Form{
         request.send();
 
         request.onload = function () {
-            console.log(request.response);
             this.addInputs(request.response);
     
             $(this.idSubmitBtn).click(function(){
@@ -117,19 +110,16 @@ class Form{
                 if(!this.status){
                     event.preventDefault();
                 }
-                console.log("status after click" + this.status);
             }.bind(this));
         }.bind(this);
     }
 
     validate(){
         this.status = true;
-        console.log(this.inputs);
         for(let input of this.inputs){
             if(!input.test()){
                 this.status = false;
             }
-            console.log("status loop click" + this.status);
         }
         return this.status;
     }

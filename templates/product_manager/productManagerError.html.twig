@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Attention {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/sign.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="sign d-flex justify-content-center">
+    <div class="col-10 my-5">
+        <div class="mb-4">
+            <h1 class="styleBold mb-4">Attention</h1>
+            <h4 class="mb-4">Vous avez essayé de supprimer un produit qui est dans une commande en cours</h4>
+            <ul>
+                <li>Supprimez d'abord la commande</li>
+                <li>Essayez ensuite à nouveau de supprimer le produit</li>
+                <li>
+                    <a class="btn" href="{{ path('productManager_show', {'page':'1'}) }}">
+                        Retourner à la page des produits
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

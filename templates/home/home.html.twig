@@ -40,8 +40,8 @@
             </div>
             <div class="col-10 col-sm-6 col-md-6 col-lg-5 col-xl-6 mt-5 squareBackground text-center d-flex flex-column justify-content-center">
                 <p><i class="fas fa-car"></i> Je <span class="showcaseBold">RETIRE</span></p>
-                <p>ma commande</h3>
-            </div class="col-4">
+                <p>ma commande<p>
+            </div>
         </div>
         <div class="d-none row col-12 d-md-flex justify-content-around mt-5 mb-5">
             <div class="col-10 col-sm-6 col-md-6 col-lg-5 col-xl-4 mt-5 squareBackground text-center d-flex flex-column justify-content-center">
@@ -61,10 +61,11 @@
     <div class="movingBackground2">
 
     </div>
+    <div>
         <div class="divider">
             <div class="row rowDivider green justify-content-center pt-4">
                 <div>
-                    <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep1" viewBox="0 0 1600 100" style="" data-height="100">
+                    <svg preserveAspectRatio="xMidYMax meet" class="svg-separator sep1" viewBox="0 0 1600 100" style="" data-height="100">
                     <path class="" style="opacity: 1;fill: #C3CF1F;" d="M1040,56c0.5,0,1,0,1.6,0c-16.6-8.9-36.4-15.7-66.4-15.7c-56,0-76.8,23.7-106.9,41C881.1,89.3,895.6,96,920,96
                     C979.5,96,980,56,1040,56z"></path>
                     <path class="" style="opacity: 1;fill: #C3CF1F;" d="M1699.8,96l0,10H1946l-0.3-6.9c0,0,0,0-88,0s-88.6-58.8-176.5-58.8c-51.4,0-73,20.1-99.6,36.8
@@ -97,8 +98,8 @@
                     s60.2,40,120,40s59.8,0,59.8,0l0.2,143H-60V96L-40,95.6z"></path>
                     </svg>
                     <div class="flagshipProductTitle d-flex flex-column justify-content-center align-items-center text-center">
-                        <h1><span class="showcaseBold">Drive</span></h1>
-                        <p>Faites vivre votre communauté, découvrez nos trois produits star !</p>
+                        <h1><span class="showcaseBold">Nouveauté</span></h1>
+                        <p>Découvrez nos trois derniers produits !</p>
                     </div>
                 </div>
             </div>
@@ -145,7 +146,7 @@
             	            	        <div class="align-middle">
             	            	            {{form_widget(formsAddCart[product.id].productId)}}
             	            	            {{form_widget(formsAddCart[product.id].productPage)}}
-            	            	            <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add', {'route':'home_show'}) }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button-->
+            	            	            <button title="Ajouter au panier" type="submit" formaction="{{ path('cart_add', {'route':'home_show'}) }}" name="add_cart[submit]" value="" class="btn text-muted"><i class="fas fa-shopping-cart mx-2"></i></button>
             	            	        </div>
             	            	    </div>
             	            	</div>
@@ -165,5 +166,5 @@
 {% endblock body %}
 
 {% block javascripts %}
-<script type="text/javascript" src="{{ asset('/js/parallax.js') }}"></script>
+<script src="{{ asset('/js/parallax.js') }}"></script>
 {% endblock %}

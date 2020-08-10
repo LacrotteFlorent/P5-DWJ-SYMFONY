@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Search;
 use App\Entity\Picture;
 use App\Entity\Product;
@@ -179,11 +180,24 @@ class ProductManagerController extends AbstractController
     {
         if($this->security->isGranted('ROLE_ADMIN'))
         {
+            $repoOrder = $this->getDoctrine()->getRepository(Order::class);
+            $orders = $repoOrder->findAll();
+            foreach($orders as $order){
+                $orderList = $order->getList();
+                foreach($orderList as $id => $quantity){
+                    if($id === $product->getId()){
+                        return $this->render('product_manager/productManagerError.html.twig');
+                    }
+                }
+            }
+            
             $manager = $this->getDoctrine()->getManager();
             $manager->remove($product);
             $manager->flush();
 
-            unlink('../public/img/products/'.$product->getPicture()->getName());
+            if($product->getPicture()->getName() != 'defaultImg.png'){
+                unlink('../public/img/products/'.$product->getPicture()->getName());
+            }
 
             return $this->redirectToRoute('productManager_show', ['page' => '1']);
         }

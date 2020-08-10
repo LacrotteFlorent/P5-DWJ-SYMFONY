@@ -16,7 +16,7 @@ class FilterType extends AbstractType
     {
         $builder
             ->add('maxPrice', IntegerType::class, [
-                'attr'          => ['class' => 'form-control'],
+                'attr'          => ['class' => 'form-control', 'id' => 'maxPrice'],
                 'required'      => false,
             ])
             ->add('minPrice', IntegerType::class, [
